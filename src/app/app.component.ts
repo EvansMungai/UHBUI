@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SignupformComponent } from "../../components/elements/forms/signupform/signupform.component";
+import { SigninformComponent } from "../../components/elements/forms/signinform/signinform.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SignupformComponent],
+  imports: [SigninformComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
