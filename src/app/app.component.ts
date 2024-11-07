@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { SigninformComponent } from "../../components/elements/forms/signinform/signinform.component";
+import { DrawerComponent } from "../../components/drawer/drawer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [SigninformComponent],
+  imports: [DrawerComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
