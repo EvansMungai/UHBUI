@@ -1,0 +1,122 @@
+import { Link } from "./links"
+
+export const HomeLinks: Link[] = [
+    {
+        title: "Contact",
+        url: "#footer",
+        class: "fa-bars"
+    },
+    {
+        title: "Sign Up",
+        url: "/",
+        class: "fa-solid fa-bars"
+    },
+    {
+        title: "Log In",
+        url: "/",
+        class: "fa-solid fa-bars"
+    }
+]
+export const StudentLinks: Link[] = [
+    {
+        title: "Dashboard",
+        url: "/",
+        class: "fa-qrcode"
+    },
+    {
+        title: "Book a Room",
+        url: "/",
+        class: "fa-bars"
+    },
+    {
+        title: "Application Details",
+        url: "/",
+        class: "fa-bars"
+    },
+    {
+        title: "Accommodation Details",
+        url: "/",
+        class: "fa-bars"
+    },
+    {
+        title: "User Details",
+        url: "/",
+        class: "fa-bars"
+    },
+    {
+        title: "Log Out",
+        url: "/",
+        class: "fa-bars"
+    },
+]
+export const HousekeeperLinks: Link[] = [
+    {
+        title: "Review Applications",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Successful Applications",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "User Details",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Log Out",
+        url: "/",
+        class: ""
+    }
+]
+export const MatronLinks: Link[] = [
+    {
+        title: "Review Allocations",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Allocated Rooms",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "User Details",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Log Out",
+        url: "/",
+        class: ""
+    }
+]
+export const AdminLinks: Link[] = [
+    {
+        title: "Hostels",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Rooms",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Students",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "Users",
+        url: "/",
+        class: ""
+    },
+    {
+        title: "User Details",
+        url: "/",
+        class: ""
+    }
+]
