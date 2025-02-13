@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
-import { AdminLinks, HousekeeperLinks, HomeLinks, MatronLinks, StudentLinks } from '../../interfaces/mock-links';
-import { Link } from '../../interfaces/links';
+import { Component, Input, OnInit } from '@angular/core';
+import { LinkService } from '../../services/link.service';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { faQrcode} from "@fortawesome/free-solid-svg-icons";
+import { faQrcode } from "@fortawesome/free-solid-svg-icons";
+import { filter } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +12,12 @@ import { faQrcode} from "@fortawesome/free-solid-svg-icons";
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
-export class MenuComponent {
- faQrcode = faQrcode;
- links: Link[] = HousekeeperLinks
+export class MenuComponent implements OnInit {
+  links: any[] = [];
+  faQrcode = faQrcode;
+  constructor(private router: Router, private linkService: LinkService) {}
+  ngOnInit(): void {
+      this.links = this.linkService.getLinks();
+      this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(()=> this.links = this.linkService.getLinks())
+  }
 }

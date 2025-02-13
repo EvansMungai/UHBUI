@@ -41,12 +41,12 @@ export const StudentLinks: Link[] = [
     {
         title: "User Details",
         url: "/",
-        class: "fa-bars"
+        class: "users-gear"
     },
     {
         title: "Log Out",
         url: "/",
-        class: "fa-bars"
+        class: "right-from-bracket"
     },
 ]
 export const HousekeeperLinks: Link[] = [
@@ -63,34 +63,34 @@ export const HousekeeperLinks: Link[] = [
     {
         title: "User Details",
         url: "/",
-        class: ""
+        class: "users-gear"
     },
     {
         title: "Log Out",
         url: "/",
-        class: ""
+        class: "right-from-bracket"
     }
 ]
 export const MatronLinks: Link[] = [
     {
         title: "Review Allocations",
         url: "/",
-        class: ""
+        class: "file-pen"
     },
     {
         title: "Allocated Rooms",
         url: "/",
-        class: ""
+        class: "tents"
     },
     {
         title: "User Details",
         url: "/",
-        class: ""
+        class: "users-gear"
     },
     {
         title: "Log Out",
         url: "/",
-        class: ""
+        class: "right-from-bracket"
     }
 ]
 export const AdminLinks: Link[] = [
@@ -117,6 +117,11 @@ export const AdminLinks: Link[] = [
     {
         title: "User Details",
         url: "/",
-        class: ""
+        class: "users-gear"
+    },
+    {
+        title: "Log Out",
+        url: "/",
+        class: "right-from-bracket"
     }
 ]

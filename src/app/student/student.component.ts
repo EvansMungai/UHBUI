@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { DrawerComponent } from "../../../components/elements/drawer/drawer.component";
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [],
+  imports: [DrawerComponent],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })
