@@ -4,9 +4,12 @@
     </div>
     <div class="flex-none">
         <ul class="menu menu-horizontal">
-            <li class="mx-1"><a href="#footer">Contact</a></li>
+            <!-- <li class="mx-1"><a href="#footer">Contact</a></li>
             <li class="bg-accent rounded-box mx-1"><a href="/">Sign Up</a></li>
-            <li class="bg-accent rounded-box mx-1"><a href="/">Log in</a></li>    
+            <li class="bg-accent rounded-box mx-1"><a href="/">Log in</a></li>     -->
+            @for (link of links; track $index) {
+                <li class="text-white text-[12px]"><a href="{{link.url}}">{{link.title}}</a></li>
+            }
         </ul>
     </div>
 </nav>
