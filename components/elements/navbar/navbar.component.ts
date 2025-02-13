@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { NavlinksComponent } from "./navlinks/navlinks.component";
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
+import { LinkService } from '../../services/link.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NavlinksComponent],
+  imports: [],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
-  sidebarClass = "menu menu-sm dropdown-content bg-secondary rounded-box z-[1] mt-3 w-52 p-2 shadow";
-  navbarClass = "menu menu-horizontal px-1";
+  links: any[]= [];
+  constructor(private router: Router, private linkService: LinkService){}
+  ngOnInit(): void {
+    this.links = this.linkService.getLinks();
+    this.router.events.pipe(filter(event=> event instanceof NavigationEnd)).subscribe(()=> this.links = this.linkService.getLinks());
+  }
 }

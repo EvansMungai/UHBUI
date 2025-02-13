@@ -1,17 +1,15 @@
-<div class="navbar bg-secondary">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-          class="inline-block h-5 w-5 stroke-current">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
-      </div>
-      <app-navlinks [tabindex]="0" [class]="sidebarClass" />
+<nav class="navbar bg-secondary">
+    <div class="flex-1">
+        Hostel System
     </div>
-    <a class="btn btn-ghost text-xl text-white">University Hostel Booking System</a>
-  </div>
-  <div class="navbar-end hidden lg:flex">
-    <app-navlinks [class]="navbarClass" />
-  </div>
-</div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal">
+            <!-- <li class="mx-1"><a href="#footer">Contact</a></li>
+            <li class="bg-accent rounded-box mx-1"><a href="/">Sign Up</a></li>
+            <li class="bg-accent rounded-box mx-1"><a href="/">Log in</a></li>     -->
+            @for (link of links; track $index) {
+                <li class="text-white text-[12px]"><a href="{{link.url}}">{{link.title}}</a></li>
+            }
+        </ul>
+    </div>
+</nav>

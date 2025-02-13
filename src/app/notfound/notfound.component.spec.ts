@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavlinksComponent } from './navlinks.component';
+import { NotfoundComponent } from './notfound.component';
 
-describe('NavlinksComponent', () => {
-  let component: NavlinksComponent;
-  let fixture: ComponentFixture<NavlinksComponent>;
+describe('NotfoundComponent', () => {
+  let component: NotfoundComponent;
+  let fixture: ComponentFixture<NotfoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavlinksComponent]
+      imports: [NotfoundComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NavlinksComponent);
+    fixture = TestBed.createComponent(NotfoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
