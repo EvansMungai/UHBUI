@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
-  selector: 'app-booking',
+  selector: 'booking-form',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './booking.component.html',
