@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { StudentData } from '../../interfaces/studentData';
 
 @Component({
   selector: 'app-table',
@@ -9,5 +10,5 @@ import { Component } from '@angular/core';
 })
 export class TableComponent {
   TableHeading: string[] =["Registration Number", "Surname", "First Name", "Second Name", "Gender"];
-  TableData: string[] =["C026-01-0920/2022", "Julius", "Elizabeth", "Muthoni", "Female"];
+  @Input() TableData: StudentData[] = [];
 }

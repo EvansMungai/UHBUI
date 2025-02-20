@@ -9,12 +9,15 @@
             </tr>
         </thead>
         <tbody>
-            <!-- row 1 -->
+            @for (data of TableData; track $index) {
             <tr>
-                @for (item of TableData; track $index) {
-                <td>{{item}}</td>
-                }
+                <td>{{data.RegistrationNo}}</td>
+                <td>{{data.Surname}}</td>
+                <td>{{data.FirstName}}</td>
+                <td>{{data.SecondName}}</td>
+                <td>{{data.Gender}}</td>
             </tr>
+            }
         </tbody>
     </table>
 </div>
