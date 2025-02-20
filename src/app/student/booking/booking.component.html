@@ -1,0 +1,110 @@
+<form class="flex flex-1 flex-col shadow-2xl mx-auto my-[2%] p-[5%] rounded-[5px]">
+    <h3 class="text-[35px] text-center mb-[2%]">Hostel Application Form</h3>
+
+    <h4 class="label text-lg font-bold ml-5 mt-5">SECTION I: PERSONAL DETAILS</h4>
+    <label for="fname" class="label text-lg font-medium">Registration Number:</label>
+    <input type="text" id="fname" name="fname" class="input input-bordered input-sm bg-white" placeholder="Registration Number">
+    <label for="lname" class="label text-lg font-medium">Hostel Name:</label>
+    <input type="text" id="lname" name="lname" class="input input-bordered input-sm bg-white" placeholder="Hostel Name" />
+    <label for="lname" class="label text-lg font-medium">Application Period:</label>
+    <input type="text" id="lname" name="lname" class="input input-bordered input-sm bg-white" placeholder="Application Period"/>
+    <div class="join">
+        <label for="disability?" class="label text-lg font-medium join-item mr-3">Do you live with any
+            disability?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="isDisabled" id="Disability" value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="isDisabled" id="Disability" value="NO" />
+    </div>
+    <input type="text" name="DisabilityDetails" class="input input-bordered input-sm bg-white" id="DisabilityDetails"
+        placeholder="Disability Details" />
+
+    <h4 class="label text-lg font-bold ml-5 mt-5">SECTION II:NEEDS ASSESSMENT(Attach evidence where needed)</h4>
+    <div class="join">
+        <label for="AccommodatedBefore" class="label text-lg font-medium join-item mr-3">Have you ever been accommodated
+            within the university before?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="isDisabled" id="AccommodatedBefore"
+            value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="isDisabled" id="AccommodatedBefore"
+            value="NO" />
+    </div>
+    <label for="sponsoredBefore" class="label text-sm font-medium join-item mr-3">If yes, provide the accommodation
+        period:</label>
+    <input type="text" name="AccommodationPeriod" class="input input-bordered input-sm bg-white"
+        id="AccommodationPeriod" placeholder="Accommodation Period" />
+
+    <div class="join">
+        <label for="sponsoredBefore" class="label text-lg font-medium join-item mr-3">Are you sponsored by an
+            organization recognized by the University and sponsorship includes accommodation?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="sponsoredBefore" id="sponsoredBefore"
+            value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="sponsoredBefore" id="sponsoredBefore"
+            value="NO" />
+    </div>
+    <label for="sponsored" class="label text-sm font-medium join-item mr-3">If yes, provide the name of the
+        sponsor:</label>
+    <input type="text" name="sponsor" class="input input-bordered input-sm bg-white" id="sponsor"
+        placeholder="Name of sponsor" />
+
+    <div class="join">
+        <label for="helbBefore" class="label text-lg font-medium join-item mr-3">Do you receive helb?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="helbBefore" id="helbBefore" value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="helbBefore" id="helbBefore" value="NO" />
+    </div>
+    <label for="helbAmount" class="label text-sm font-medium join-item mr-3">If yes, how much per year:</label>
+    <input type="text" name="sponsor" class="input input-bordered input-sm bg-white" id="helbAmount"
+        placeholder="Helb Amount" />
+    <div class="join">
+        <label for="bursaryBefore" class="label text-lg font-medium join-item mr-3">Have you ever benefitted from the
+            university bursary before?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="bursaryBefore" id="bursaryBefore"
+            value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="bursaryBefore" id="bursaryBefore" value="NO" />
+    </div>
+    <label for="bursaryAmount" class="label text-sm font-medium join-item mr-3">If yes, state the amount
+        awarded:</label>
+    <input type="text" name="bursaryAmount" class="input input-bordered input-sm bg-white" id="bursaryAmount"
+        placeholder="Amount awarded" />
+
+    <div class="join">
+        <label for="workStudyBefore" class="label text-lg font-medium join-item mr-3">Have you ever benefitted from the
+            university's work study program before?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="workStudyBefore" id="workStudyBefore"
+            value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="workStudyBefore" id="workStudyBefore"
+            value="NO" />
+    </div>
+    <label for="workStudyPeriod" class="label text-sm font-medium join-item mr-3">If yes, specify the period:</label>
+    <input type="text" name="workStudyPeriod" class="input input-bordered input-sm bg-white" id="workStudyPeriod"
+        placeholder="Work study period" />
+
+    <div class="join">
+        <label for="deferredBefore" class="label text-lg font-medium join-item mr-3">Have you ever deferred of studies
+            on financial grounds?</label>
+        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="checkbox" name="deferredBefore" id="deferredBefore"
+            value="YES" />
+        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="checkbox" name="deferredBefore" id="deferredBefore"
+            value="NO" />
+    </div>
+    <label for="deferPeriod" class="label text-sm font-medium join-item mr-3">If yes, specify the period:</label>
+    <input type="text" name="deferPeriod" class="input input-bordered input-sm bg-white" id="deferPeriod"
+        placeholder="Defer period" />
+    <label for="considerationReasons" class="label text-lg font-medium">Briefly describe why you should be considered
+        for a space within the university hostels:</label>
+    <textarea class="textarea textarea-bordered bg-white" placeholder="Reasons for consideration"></textarea>
+    <div class="">
+        <button type="submit" class="btn btn-secondary mt-4">Submit</button>
+    </div>
+</form>
