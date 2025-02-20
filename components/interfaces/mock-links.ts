@@ -20,7 +20,7 @@ export const HomeLinks: Link[] = [
 export const StudentLinks: Link[] = [
     {
         title: "Dashboard",
-        url: "/",
+        url: "/student",
         class: "fa-qrcode"
     },
     {

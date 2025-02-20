@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { DrawerComponent } from "../../../components/elements/drawer/drawer.component";
-import { CardComponent } from "../../../components/elements/card/card.component";
+import { StudentDashboardComponent } from "./dashboard/dashboard.component";
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [DrawerComponent, CardComponent],
+  imports: [DrawerComponent,  StudentDashboardComponent],
   templateUrl: './student.component.html',
   styleUrl: './student.component.css'
 })
