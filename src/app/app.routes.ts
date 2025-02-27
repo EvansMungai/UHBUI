@@ -4,13 +4,28 @@ import { StudentComponent } from './student/student.component';
 import { HousekeeperComponent } from './housekeeper/housekeeper.component';
 import { MatronComponent } from './matron/matron.component';
 import { AdminComponent } from './admin/admin.component';
+import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
+import { StudentDashboardComponent } from './student/dashboard/dashboard.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'student', component: StudentComponent },
-    { path: 'housekeeper', component: HousekeeperComponent },
-    { path: 'matron', component: MatronComponent },
-    { path: 'admin', component: AdminComponent},
-    { path: '**', component:NotfoundComponent}
+    { path: 'uhb', redirectTo: 'uhb/student', pathMatch: 'full' },
+    {
+        path: 'uhb', component: DrawerComponent,
+        children: [
+            {
+                path: 'student', component: StudentComponent, children: [
+                    { path: '', component: StudentDashboardComponent },
+                    { path: 'booking', component: BookingComponent }
+                ]
+            },
+            { path: 'housekeeper', component: HousekeeperComponent },
+            { path: 'matron', component: MatronComponent },
+            { path: 'admin', component: AdminComponent },
+            { path: 'booking', component: BookingComponent }
+        ]
+    },
+    { path: '**', component: NotfoundComponent }
 ];

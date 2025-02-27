@@ -1,0 +1,23 @@
+<div class="overflow-x-auto">
+    <table class="table table-md">
+        <!-- head -->
+        <thead>
+            <tr>
+                @for (item of TableHeading; track $index) {
+                <th>{{item}}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (data of TableData; track $index) {
+            <tr>
+                <td>{{data.RegistrationNo}}</td>
+                <td>{{data.Surname}}</td>
+                <td>{{data.FirstName}}</td>
+                <td>{{data.SecondName}}</td>
+                <td>{{data.Gender}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

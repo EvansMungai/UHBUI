@@ -3,7 +3,7 @@
     <span class="text-xl text-white">Kimathi University<br />Booking System</span>
   </div>
   @for (link of links; track $index) {
-  <li class="text-[18px] py-2 text-white"><a href="{{link.url}}"><fa-icon [icon]="faQrcode" class="pr-2"></fa-icon>{{link.title}}</a>
+  <li class="text-[18px] py-2 text-white"><a [routerLink]="link.url"><fa-icon [icon]="faQrcode" class="pr-2"></fa-icon>{{link.title}}</a>
   </li>
   }
 </ul>
