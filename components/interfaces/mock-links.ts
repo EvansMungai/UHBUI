@@ -20,12 +20,12 @@ export const HomeLinks: Link[] = [
 export const StudentLinks: Link[] = [
     {
         title: "Dashboard",
-        url: "/student",
+        url: "/uhb/student",
         class: "fa-qrcode"
     },
     {
         title: "Book a Room",
-        url: "/",
+        url: "/uhb/student/booking",
         class: "fa-bars"
     },
     {

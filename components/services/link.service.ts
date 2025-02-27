@@ -18,6 +18,18 @@ export class LinkService {
       case '/uhb/student':
         this.links = StudentLinks;
         break;
+      case '/uhb/student/booking':
+        this.links = StudentLinks;
+        break;
+      case '/uhb/student/application-details':
+        this.links = StudentLinks;
+        break;
+      case '/uhb/student/accommodation-details':
+        this.links = StudentLinks;
+        break;
+      case '/uhb/student/user-details':
+        this.links = StudentLinks;
+        break;
       case '/uhb/housekeeper':
         this.links = HousekeeperLinks;
         break;
