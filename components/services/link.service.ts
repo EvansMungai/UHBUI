@@ -15,16 +15,16 @@ export class LinkService {
   }
   private updateLinks(url: string) {
     switch (url) {
-      case '/student':
+      case '/uhb/student':
         this.links = StudentLinks;
         break;
-      case '/housekeeper':
+      case '/uhb/housekeeper':
         this.links = HousekeeperLinks;
         break;
-      case '/matron':
+      case '/uhb/matron':
         this.links = MatronLinks;
         break;
-      case '/admin':
+      case '/uhb/admin':
         this.links = AdminLinks;
         break;
       default:

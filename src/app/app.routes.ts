@@ -6,13 +6,19 @@ import { MatronComponent } from './matron/matron.component';
 import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'student', component: StudentComponent },
-    { path: 'housekeeper', component: HousekeeperComponent },
-    { path: 'matron', component: MatronComponent },
-    { path: 'admin', component: AdminComponent},
-    { path: 'booking', component: BookingComponent},
+    { path: 'uhb', redirectTo: 'uhb/student', pathMatch: 'full' },
+    { path: 'uhb', component: DrawerComponent, 
+        children: [
+            { path: 'student', component: StudentComponent },
+            { path: 'housekeeper', component: HousekeeperComponent },
+            { path: 'matron', component: MatronComponent },
+            { path: 'admin', component: AdminComponent},
+            { path: 'booking', component: BookingComponent}
+        ]
+    },
     { path: '**', component:NotfoundComponent}
 ];
