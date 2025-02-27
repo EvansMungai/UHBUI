@@ -1,14 +1,19 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { StudentData } from '../../interfaces/studentData';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
-export class TableComponent {
-  TableHeading: string[] =["Registration Number", "Surname", "First Name", "Second Name", "Gender"];
-  @Input() TableData: StudentData[] = [];
+export class TableComponent implements OnInit {
+  @Input() TableData: any[] = [];
+  tableHeaders: string[] = [];
+  constructor() { }
+  ngOnInit(): void {
+      this.tableHeaders = Object.keys(this.TableData[0]);
+  }
 }

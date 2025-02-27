@@ -3,21 +3,15 @@
         <!-- head -->
         <thead>
             <tr>
-                @for (item of TableHeading; track $index) {
-                <th>{{item}}</th>
-                }
+                <th>Sr. No</th>
+                <th *ngFor="let column of tableHeaders">{{column}}</th>
             </tr>
         </thead>
         <tbody>
-            @for (data of TableData; track $index) {
-            <tr>
-                <td>{{data.RegistrationNo}}</td>
-                <td>{{data.Surname}}</td>
-                <td>{{data.FirstName}}</td>
-                <td>{{data.SecondName}}</td>
-                <td>{{data.Gender}}</td>
+            <tr *ngFor="let row of TableData; let sr = index">
+                <td>{{sr+1}}</td>
+                <td *ngFor="let key of tableHeaders">{{ row[key]}}</td>
             </tr>
-            }
         </tbody>
     </table>
 </div>
