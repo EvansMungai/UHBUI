@@ -3,4 +3,6 @@
     period, application status, and any required actions, is
     neatly displayed in an easy-to-read table. With everything organized in one place, this page helps you stay on top
     of your application journey effortlessly.</p>
-<app-table [TableData]="tableData"/>
+<app-card [title]="cardTitle">
+    <app-table [TableData]="tableData" />
+</app-card>

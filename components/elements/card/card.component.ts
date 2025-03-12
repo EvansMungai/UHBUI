@@ -1,17 +1,12 @@
-import { Component } from '@angular/core';
-import { TableComponent } from "../table/table.component";
-import { StudentService } from '../../services/student.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [TableComponent],
+  imports: [],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css'
 })
 export class CardComponent {
-  tableData: any[] = [];
-  constructor(private studentService: StudentService) {
-    this.tableData = this.studentService.getStudentData();
-  }
+  @Input() title: string = ""
 }
