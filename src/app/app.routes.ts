@@ -9,7 +9,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
 import { StudentDashboardComponent } from './student/dashboard/dashboard.component';
 import { ApplicationDetailsComponent } from './student/application-details/application-details.component';
-import { AccommodationDetialsComponent } from './student/accommodation-detials/accommodation-detials.component';
+import { AccommodationDetailsComponent } from './student/accommodation-details/accommodation-detials.component';
 import { RegisterStudentDetailsComponent } from './student/register-student-details/register-student-details.component';
 
 export const routes: Routes = [
@@ -24,7 +24,7 @@ export const routes: Routes = [
                     { path: 'register-student-details', component: RegisterStudentDetailsComponent },
                     { path: 'booking', component: BookingComponent },
                     { path: 'application-details', component: ApplicationDetailsComponent },
-                    { path: 'accommodation-details', component: AccommodationDetialsComponent }
+                    { path: 'accommodation-details', component: AccommodationDetailsComponent }
                 ]
             },
             { path: 'housekeeper', component: HousekeeperComponent },
