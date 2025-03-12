@@ -14,6 +14,6 @@ export class ApplicationDetailsComponent {
   cardTitle: string = "Application Details";
   tableData: any = [];
   constructor(private studentService: StudentService){
-    this.tableData = this.studentService.getApplicationData();
+    this.tableData = this.studentService.getApplicationDetails();
   }
 }
