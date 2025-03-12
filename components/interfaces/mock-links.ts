@@ -21,27 +21,27 @@ export const StudentLinks: Link[] = [
     {
         title: "Dashboard",
         url: "/uhb/student",
-        class: "fa-qrcode"
+        class: "house"
     },
     {
         title: "Book a Room",
         url: "/uhb/student/booking",
-        class: "fa-bars"
+        class: "pen-to-square"
     },
     {
         title: "Application Details",
         url: "/uhb/student/application-details",
-        class: "fa-bars"
+        class: "file-pen"
     },
     {
         title: "Accommodation Details",
         url: "/uhb/student/accommodation-details",
-        class: "fa-bars"
+        class: "house-user"
     },
     {
         title: "User Details",
         url: "/",
-        class: "users-gear"
+        class: "user-gear"
     },
     {
         title: "Log Out",
@@ -53,17 +53,17 @@ export const HousekeeperLinks: Link[] = [
     {
         title: "Review Applications",
         url: "/",
-        class: ""
+        class: "file-pen"
     },
     {
         title: "Successful Applications",
         url: "/",
-        class: ""
+        class: "book"
     },
     {
         title: "User Details",
         url: "/",
-        class: "users-gear"
+        class: "user-gear"
     },
     {
         title: "Log Out",
@@ -85,7 +85,7 @@ export const MatronLinks: Link[] = [
     {
         title: "User Details",
         url: "/",
-        class: "users-gear"
+        class: "user-gear"
     },
     {
         title: "Log Out",
