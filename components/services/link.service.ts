@@ -18,6 +18,9 @@ export class LinkService {
       case '/uhb/student':
         this.links = StudentLinks;
         break;
+      case '/uhb/student/register-student-details':
+        this.links = StudentLinks;
+        break;
       case '/uhb/student/booking':
         this.links = StudentLinks;
         break;

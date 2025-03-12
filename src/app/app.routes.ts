@@ -10,16 +10,18 @@ import { DrawerComponent } from '../../components/elements/drawer/drawer.compone
 import { StudentDashboardComponent } from './student/dashboard/dashboard.component';
 import { ApplicationDetailsComponent } from './student/application-details/application-details.component';
 import { AccommodationDetialsComponent } from './student/accommodation-detials/accommodation-detials.component';
+import { RegisterStudentDetailsComponent } from './student/register-student-details/register-student-details.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
-    { path: 'uhb', redirectTo: 'uhb/student', pathMatch: 'full' },
+    { path: 'uhb', redirectTo: 'uhb/student/register-student-details', pathMatch: 'full' },
     {
         path: 'uhb', component: DrawerComponent,
         children: [
             {
                 path: 'student', component: StudentComponent, children: [
                     { path: '', component: StudentDashboardComponent },
+                    { path: 'register-student-details', component: RegisterStudentDetailsComponent },
                     { path: 'booking', component: BookingComponent },
                     { path: 'application-details', component: ApplicationDetailsComponent },
                     { path: 'accommodation-details', component: AccommodationDetialsComponent }
