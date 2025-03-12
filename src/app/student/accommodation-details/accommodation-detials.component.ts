@@ -7,10 +7,10 @@ import { CardComponent } from "../../../../components/elements/card/card.compone
   selector: 'app-accommodation-detials',
   standalone: true,
   imports: [TableComponent, CardComponent],
-  templateUrl: './accommodation-detials.component.html',
-  styleUrl: './accommodation-detials.component.css'
+  templateUrl: './accommodation-details.component.html',
+  styleUrl: './accommodation-details.component.css'
 })
-export class AccommodationDetialsComponent {
+export class AccommodationDetailsComponent {
   cardTitle: string = "Accommodation Details"
   tableData: any = [];
   constructor(private studentService: StudentService){
