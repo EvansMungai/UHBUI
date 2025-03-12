@@ -3,4 +3,6 @@
     information concerning Hostel Booking and Allocation. Below, you will find your student details as recorded in the
     system. Please verify that the information is accurate to ensure a smooth booking experience. If any details appear
     incorrect, kindly reach out to the administration for assistance.</p>
-<app-card />
+<app-card [title]="cardTitle">
+    <app-table [TableData]="tableData"/>
+</app-card>
