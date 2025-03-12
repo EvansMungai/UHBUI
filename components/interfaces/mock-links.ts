@@ -30,12 +30,12 @@ export const StudentLinks: Link[] = [
     },
     {
         title: "Application Details",
-        url: "/",
+        url: "/uhb/student/application-details",
         class: "fa-bars"
     },
     {
         title: "Accommodation Details",
-        url: "/",
+        url: "/uhb/student/accommodation-details",
         class: "fa-bars"
     },
     {

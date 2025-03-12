@@ -8,6 +8,8 @@ import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
 import { StudentDashboardComponent } from './student/dashboard/dashboard.component';
+import { ApplicationDetailsComponent } from './student/application-details/application-details.component';
+import { AccommodationDetialsComponent } from './student/accommodation-detials/accommodation-detials.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -18,7 +20,9 @@ export const routes: Routes = [
             {
                 path: 'student', component: StudentComponent, children: [
                     { path: '', component: StudentDashboardComponent },
-                    { path: 'booking', component: BookingComponent }
+                    { path: 'booking', component: BookingComponent },
+                    { path: 'application-details', component: ApplicationDetailsComponent },
+                    { path: 'accommodation-details', component: AccommodationDetialsComponent }
                 ]
             },
             { path: 'housekeeper', component: HousekeeperComponent },
