@@ -5,12 +5,16 @@
             <tr>
                 <th>Sr. No</th>
                 <th *ngFor="let column of tableHeaders">{{column}}</th>
+                <th *ngIf="showActionColumn">Action</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let row of TableData; let sr = index">
                 <td>{{sr+1}}</td>
                 <td *ngFor="let key of tableHeaders">{{ row[key]}}</td>
+                <td *ngIf="showActionColumn">
+                    <button class="btn btn-accent btn-sm ">Review</button>
+                </td>
             </tr>
         </tbody>
     </table>
