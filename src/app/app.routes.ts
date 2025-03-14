@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
-import { StudentComponent } from './student/student.component';
-import { HousekeeperComponent } from './housekeeper/housekeeper.component';
+import { DashboardComponent } from './student/student.component';
+import { ReviewApplicationsComponent } from './housekeeper/review-applications/review-applications.component';
 import { MatronComponent } from './matron/matron.component';
 import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './student/booking/booking.component';
@@ -19,7 +19,7 @@ export const routes: Routes = [
         path: 'uhb', component: DrawerComponent,
         children: [
             {
-                path: 'student', component: StudentComponent, children: [
+                path: 'student', component: DashboardComponent, children: [
                     { path: '', component: StudentDashboardComponent },
                     { path: 'register-student-details', component: RegisterStudentDetailsComponent },
                     { path: 'booking', component: BookingComponent },
@@ -27,7 +27,9 @@ export const routes: Routes = [
                     { path: 'accommodation-details', component: AccommodationDetailsComponent }
                 ]
             },
-            { path: 'housekeeper', component: HousekeeperComponent },
+            { path: 'housekeeper', component: DashboardComponent, children:[
+                {path: '', component: ReviewApplicationsComponent}
+            ] },
             { path: 'matron', component: MatronComponent },
             { path: 'admin', component: AdminComponent },
             { path: 'booking', component: BookingComponent }
