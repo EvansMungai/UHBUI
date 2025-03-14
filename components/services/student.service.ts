@@ -33,4 +33,12 @@ export class StudentService {
       RoomNo: data.RoomNo
     }))
   }
+  getStudentApplications(): { ApplicationPeriod: string, RegistrationNo: string, Status: string }[] {
+    return this.applicationInfoList.map(data => ({
+      ApplicationPeriod: data.ApplicationPeriod,
+      RegistrationNo: data.RegistrationNo,
+      Status: data.Status,
+      PreferredHostel: data.PreferredHostel
+    }))
+  }
 }

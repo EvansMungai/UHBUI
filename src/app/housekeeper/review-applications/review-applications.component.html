@@ -1,0 +1,22 @@
+<h1 class="text-[35px] font-bold">Welcome to the Housekeeper dashboard!</h1>
+<p class="mt-3">Access a comprehensive and organized overview of all accommodation applications. Essential details such
+    as applicant names, room requests, and application statuses are clearly displayed in a user-friendly table. This
+    page allows you to effortlessly review and manage each application, helping you make informed decisions with ease
+</p>
+<div class="flex flex-col md:flex-row">
+    <app-card [title]="card1Title" baseStyles="card bg-accent shadow-xl m-3 flex-1">
+        <div class="flex flex-1">
+            <p class="font-bold">14</p>
+            <button class="btn btn-base-100 btn-sm" (click)="toggleApplicationsVisibility()">View</button>
+        </div>
+    </app-card>
+    <app-card [title]="card2Title" baseStyles="card bg-accent shadow-xl m-3 py-1 flex-1">
+        <p class="font-bold">14</p>
+    </app-card>
+    <app-card [title]="card3Title" baseStyles="card bg-accent shadow-xl m-3 py-1 flex-1">
+        <p class="font-bold">14</p>
+    </app-card>
+</div>
+<app-card *ngIf="applicationsVisibility" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
+    <app-table [TableData]="tableData" [showActionColumn]="true"/>
+</app-card>
