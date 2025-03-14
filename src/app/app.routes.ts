@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './student/student.component';
 import { ReviewApplicationsComponent } from './housekeeper/review-applications/review-applications.component';
-import { MatronComponent } from './matron/matron.component';
+import { ReviewAllocationsComponent } from './matron/review-allocations/review-allocations.component';
 import { AdminComponent } from './admin/admin.component';
 import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
@@ -27,10 +27,14 @@ export const routes: Routes = [
                     { path: 'accommodation-details', component: AccommodationDetailsComponent }
                 ]
             },
-            { path: 'housekeeper', component: DashboardComponent, children:[
-                {path: '', component: ReviewApplicationsComponent}
+            {
+                path: 'housekeeper', component: DashboardComponent, children: [
+                    { path: '', component: ReviewApplicationsComponent }
+                ]
+            },
+            { path: 'matron', component: DashboardComponent, children:[
+                {path: '', component: ReviewAllocationsComponent}
             ] },
-            { path: 'matron', component: MatronComponent },
             { path: 'admin', component: AdminComponent },
             { path: 'booking', component: BookingComponent }
         ]
