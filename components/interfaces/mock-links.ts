@@ -40,7 +40,7 @@ export const StudentLinks: Link[] = [
     },
     {
         title: "User Details",
-        url: "/",
+        url: "/uhb/student/user-details",
         class: "user-gear"
     },
     {
@@ -62,7 +62,7 @@ export const HousekeeperLinks: Link[] = [
     },
     {
         title: "User Details",
-        url: "/",
+        url: "/uhb/housekeeper/user-details",
         class: "user-gear"
     },
     {
@@ -84,7 +84,7 @@ export const MatronLinks: Link[] = [
     },
     {
         title: "User Details",
-        url: "/",
+        url: "/uhb/matron/user-details",
         class: "user-gear"
     },
     {
@@ -116,7 +116,7 @@ export const AdminLinks: Link[] = [
     },
     {
         title: "User Details",
-        url: "/",
+        url: "/uhb/admin/user-details",
         class: "users-gear"
     },
     {
