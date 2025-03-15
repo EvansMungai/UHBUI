@@ -13,6 +13,7 @@ import { AccommodationDetailsComponent } from './student/accommodation-details/a
 import { RegisterStudentDetailsComponent } from './student/register-student-details/register-student-details.component';
 import { ViewAllocationComponent } from './matron/view-allocation/view-allocation.component';
 import { ViewApplicationComponent } from './housekeeper/view-application/view-application.component';
+import { UserDetailsComponent } from './user-details/user-details.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -26,19 +27,22 @@ export const routes: Routes = [
                     { path: 'register-student-details', component: RegisterStudentDetailsComponent },
                     { path: 'booking', component: BookingComponent },
                     { path: 'application-details', component: ApplicationDetailsComponent },
-                    { path: 'accommodation-details', component: AccommodationDetailsComponent }
+                    { path: 'accommodation-details', component: AccommodationDetailsComponent },
+                    { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
             {
                 path: 'housekeeper', component: DashboardComponent, children: [
                     { path: '', component: ReviewApplicationsComponent },
-                    { path: 'view-application/:id', component: ViewApplicationComponent }
+                    { path: 'view-application/:id', component: ViewApplicationComponent },
+                    { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
             {
                 path: 'matron', component: DashboardComponent, children: [
                     { path: '', component: ReviewAllocationsComponent },
                     { path: 'view-allocation/:id', component: ViewAllocationComponent },
+                    { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
             { path: 'admin', component: AdminComponent },
