@@ -42,7 +42,6 @@ export const routes: Routes = [
                 ]
             },
             { path: 'admin', component: AdminComponent },
-            { path: 'booking', component: BookingComponent }
         ]
     },
     { path: '**', component: NotfoundComponent }
