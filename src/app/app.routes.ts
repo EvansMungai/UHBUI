@@ -11,6 +11,8 @@ import { StudentDashboardComponent } from './student/dashboard/dashboard.compone
 import { ApplicationDetailsComponent } from './student/application-details/application-details.component';
 import { AccommodationDetailsComponent } from './student/accommodation-details/accommodation-detials.component';
 import { RegisterStudentDetailsComponent } from './student/register-student-details/register-student-details.component';
+import { ViewAllocationComponent } from './matron/view-allocation/view-allocation.component';
+import { ViewApplicationComponent } from './housekeeper/view-application/view-application.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -29,12 +31,16 @@ export const routes: Routes = [
             },
             {
                 path: 'housekeeper', component: DashboardComponent, children: [
-                    { path: '', component: ReviewApplicationsComponent }
+                    { path: '', component: ReviewApplicationsComponent },
+                    { path: 'view-application/:id', component: ViewApplicationComponent }
                 ]
             },
-            { path: 'matron', component: DashboardComponent, children:[
-                {path: '', component: ReviewAllocationsComponent}
-            ] },
+            {
+                path: 'matron', component: DashboardComponent, children: [
+                    { path: '', component: ReviewAllocationsComponent },
+                    { path: 'view-allocation/:id', component: ViewAllocationComponent },
+                ]
+            },
             { path: 'admin', component: AdminComponent },
             { path: 'booking', component: BookingComponent }
         ]
