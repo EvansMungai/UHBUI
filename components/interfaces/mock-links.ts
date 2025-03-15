@@ -52,7 +52,7 @@ export const StudentLinks: Link[] = [
 export const HousekeeperLinks: Link[] = [
     {
         title: "Review Applications",
-        url: "/",
+        url: "/uhb/housekeeper",
         class: "file-pen"
     },
     {
@@ -74,7 +74,7 @@ export const HousekeeperLinks: Link[] = [
 export const MatronLinks: Link[] = [
     {
         title: "Review Allocations",
-        url: "/",
+        url: "/uhb/matron",
         class: "file-pen"
     },
     {

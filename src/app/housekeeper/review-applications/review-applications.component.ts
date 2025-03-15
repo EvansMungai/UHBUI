@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../../components/elements/card/card.component';
 import { TableComponent } from '../../../../components/elements/table/table.component';
 import { StudentService } from '../../../../components/services/student.service';
-import { StateService } from '../../../../components/services/state.service';
 
 
 @Component({
@@ -20,14 +19,7 @@ export class ReviewApplicationsComponent {
   tableHeader: string = "Total Applications";
   tableData: any[] = [];
 
-  constructor(private studentService: StudentService, private stateService: StateService) {
+  constructor(private studentService: StudentService) {
     this.tableData = studentService.getStudentApplications();
-  }
-  get applicationsVisibility(): boolean {
-    return this.stateService.applicationsVisibility;
-  }
-
-  toggleApplicationsVisibility(): void {
-    this.stateService._applicationsVisibility = !this.applicationsVisibility;
   }
 }
