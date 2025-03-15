@@ -18,5 +18,5 @@
     </app-card>
 </div>
 <app-card [title]="tableHeader" *ngIf="applicationsVisibility" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
-    <app-table [TableData]="tableData" [showActionColumn]="true"/>
+    <app-table [TableData]="tableData" [showActionColumn]="true" [baseRoute]="'/uhb/matron/view-allocation'"/>
 </app-card>
