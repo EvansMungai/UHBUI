@@ -3,7 +3,7 @@ import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './student/student.component';
 import { ReviewApplicationsComponent } from './housekeeper/review-applications/review-applications.component';
 import { ReviewAllocationsComponent } from './matron/review-allocations/review-allocations.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
@@ -45,7 +45,11 @@ export const routes: Routes = [
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
-            { path: 'admin', component: AdminComponent },
+            {
+                path: 'admin', component: DashboardComponent, children: [
+                    { path: '', component: AdminDashboardComponent }
+                ]
+            },
         ]
     },
     { path: '**', component: NotfoundComponent }
