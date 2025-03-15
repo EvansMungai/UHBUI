@@ -13,7 +13,7 @@
                 <td>{{sr+1}}</td>
                 <td *ngFor="let key of tableHeaders">{{ row[key]}}</td>
                 <td *ngIf="showActionColumn">
-                    <button class="btn btn-accent btn-sm ">Review</button>
+                    <button class="btn btn-accent btn-sm" [routerLink]="generateRouterLink(row, sr)">Review</button>
                 </td>
             </tr>
         </tbody>

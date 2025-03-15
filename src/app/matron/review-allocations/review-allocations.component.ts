@@ -17,14 +17,8 @@ export class ReviewAllocationsComponent {
   card3Title: string = "Total Available Rooms";
   tableHeader: string = "Total Applications";
   tableData: any[] = [];
-  applicationsVisibility: boolean = false;
 
   constructor(private studentService: StudentService) {
     this.tableData = studentService.getStudentApplications();
-  }
-
-  toggleApplicationsVisibility() {
-    this.applicationsVisibility = !this.applicationsVisibility;
-    console.log(this.applicationsVisibility);
   }
 }

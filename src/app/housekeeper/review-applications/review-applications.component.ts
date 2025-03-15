@@ -18,14 +18,8 @@ export class ReviewApplicationsComponent {
   card3Title: string = "Total Rejected Applications";
   tableHeader: string = "Total Applications";
   tableData: any[] = [];
-  applicationsVisibility: boolean = false;
 
   constructor(private studentService: StudentService) {
     this.tableData = studentService.getStudentApplications();
-  }
-
-  toggleApplicationsVisibility() {
-    this.applicationsVisibility = !this.applicationsVisibility;
-    console.log(this.applicationsVisibility);
   }
 }
