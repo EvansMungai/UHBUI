@@ -15,6 +15,8 @@ import { ViewAllocationComponent } from './matron/view-allocation/view-allocatio
 import { ViewApplicationComponent } from './housekeeper/view-application/view-application.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
+import { ChangeUserRolesComponent } from './admin/change-user-roles/change-user-roles.component';
+import { ChangeRoleFormComponent } from './admin/change-user-roles/change-role-form/change-role-form.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -50,6 +52,8 @@ export const routes: Routes = [
                 path: 'admin', component: DashboardComponent, children: [
                     { path: '', component: AdminDashboardComponent },
                     { path: 'register', component: AdminRegisterComponent },
+                    { path: 'change-user-roles', component: ChangeUserRolesComponent },
+                    { path: 'change-user-roles/:id', component: ChangeRoleFormComponent },
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
