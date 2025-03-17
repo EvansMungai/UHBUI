@@ -1,0 +1,26 @@
+<h1 class="text-[35px] font-bold text-center">REGISTER A HOSTEL</h1>
+<p class="my-5">Use this form to provide detailed information about the hostel, including its name, location, and
+    features. Ensure all fields are accurately filled out to help students make informed booking decisions.</p>
+<form class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] shadow-md rounded-lg">
+    <h3 class="text-lg font-bold text-center">HOSTEL REGISTRATION FORM</h3>
+
+    <label for="hostelNo" class="label text-lg font-medium">Hostel Number:</label>
+    <input type="text" id="hostelNo" name="hostelNo" class="input input-bordered input-sm bg-white"
+        placeholder="Hostel Number">
+    <label for="hostelName" class="label text-lg font-medium">Hostel Name:</label>
+    <input type="text" id="hostelName" name="hostelName" class="input input-bordered input-sm bg-white"
+        placeholder="Hostel Name" />
+    <label for="hostelCapacity" class="label text-lg font-medium">Hostel Capacity:</label>
+    <input type="text" id="hostelCapacity" name="hostelCapacity" class="input input-bordered input-sm bg-white"
+        placeholder="Hostel Capacity" />
+    <label for="hostelType" class="label text-lg font-medium">Hostel Type:</label>
+    <select id="hostelType" name="hostelType"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option selected disabled>Select Hostel Type</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <div class="mt-4">
+        <button type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+</form>

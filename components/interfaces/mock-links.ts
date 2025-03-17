@@ -95,18 +95,13 @@ export const MatronLinks: Link[] = [
 ]
 export const AdminLinks: Link[] = [
     {
-        title: "Hostels",
-        url: "/",
+        title: "Dashboard",
+        url: "/uhb/admin",
         class: ""
     },
     {
-        title: "Rooms",
-        url: "/",
-        class: ""
-    },
-    {
-        title: "Students",
-        url: "/",
+        title: "Register",
+        url: "/uhb/admin/register",
         class: ""
     },
     {

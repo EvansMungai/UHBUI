@@ -14,6 +14,7 @@ import { RegisterStudentDetailsComponent } from './student/register-student-deta
 import { ViewAllocationComponent } from './matron/view-allocation/view-allocation.component';
 import { ViewApplicationComponent } from './housekeeper/view-application/view-application.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -47,7 +48,8 @@ export const routes: Routes = [
             },
             {
                 path: 'admin', component: DashboardComponent, children: [
-                    { path: '', component: AdminDashboardComponent }
+                    { path: '', component: AdminDashboardComponent },
+                    { path: 'register', component: AdminRegisterComponent },
                 ]
             },
         ]
