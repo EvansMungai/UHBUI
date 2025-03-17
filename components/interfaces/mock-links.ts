@@ -100,13 +100,13 @@ export const AdminLinks: Link[] = [
         class: ""
     },
     {
-        title: "Register",
+        title: "Hostel Management",
         url: "/uhb/admin/register",
         class: ""
     },
     {
-        title: "Users",
-        url: "/",
+        title: "User Management",
+        url: "/uhb/admin/change-user-roles",
         class: ""
     },
     {
