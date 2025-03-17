@@ -50,6 +50,7 @@ export const routes: Routes = [
                 path: 'admin', component: DashboardComponent, children: [
                     { path: '', component: AdminDashboardComponent },
                     { path: 'register', component: AdminRegisterComponent },
+                    { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
         ]
