@@ -3,7 +3,7 @@ import { LandingComponent } from './landing/landing.component';
 import { DashboardComponent } from './student/student.component';
 import { ReviewApplicationsComponent } from './housekeeper/review-applications/review-applications.component';
 import { ReviewAllocationsComponent } from './matron/review-allocations/review-allocations.component';
-import { AdminComponent } from './admin/admin.component';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { BookingComponent } from './student/booking/booking.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { DrawerComponent } from '../../components/elements/drawer/drawer.component';
@@ -14,6 +14,7 @@ import { RegisterStudentDetailsComponent } from './student/register-student-deta
 import { ViewAllocationComponent } from './matron/view-allocation/view-allocation.component';
 import { ViewApplicationComponent } from './housekeeper/view-application/view-application.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -45,7 +46,13 @@ export const routes: Routes = [
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
             },
-            { path: 'admin', component: AdminComponent },
+            {
+                path: 'admin', component: DashboardComponent, children: [
+                    { path: '', component: AdminDashboardComponent },
+                    { path: 'register', component: AdminRegisterComponent },
+                    { path: 'user-details', component: UserDetailsComponent }
+                ]
+            },
         ]
     },
     { path: '**', component: NotfoundComponent }

@@ -1,0 +1,20 @@
+<h1 class="text-[35px] font-bold text-center">REGISTER A ROOM</h1>
+<p class="my-5">Use this form to add details about the rooms. Accurate
+    information ensures students can find and book rooms that best suit their needs.</p>
+<form class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] shadow-md rounded-lg">
+    <h3 class="text-lg font-bold text-center">ROOMS REGISTRATION FORM</h3>
+
+    <label for="roomNo" class="label text-lg font-medium">Room Number:</label>
+    <input type="text" id="roomNo" name="roomNo" class="input input-bordered input-sm bg-white"
+        placeholder="Room Number">
+    <label for="hostelNo" class="label text-lg font-medium">Hostel Number:</label>
+    <select id="hostelNo" name="hostelNo"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option selected disabled>Select Hostel Number</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+    </select>
+    <div class="mt-4">
+        <button type="submit" class="btn btn-secondary">Submit</button>
+    </div>
+</form>
