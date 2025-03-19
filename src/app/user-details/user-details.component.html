@@ -1,24 +1,31 @@
 <h1 class="text-[35px] font-bold text-center">USER PROFILE INFORMATION</h1>
-<p class="my-5">Below are the details of your profile. If you would like to changes to your password, simply
-    click the 'Change Password' button to update it with ease.</p>
-<!-- Profile Information Card -->
-<div class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
-    <h2 class="text-lg font-bold">Profile Information</h2>
-    <!-- Profile Details -->
-    <div class="divide-y divide-gray-200">
-        <div class="flex py-4">
-            <div class="w-1/6 font-bold text-gray-800">Username:</div>
-            <div class="flex-grow text-gray-600">Ali</div>
-        </div>
+<div>
+    <p class="my-5">Below are the details of your profile. If you would like to changes to your password, simply
+        click the 'Change Password' button to update it with ease.</p>
+    <!-- Profile Information Card -->
+    <div class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
+        <h2 class="text-lg font-bold">Profile Information</h2>
+        <!-- Profile Details -->
+        <div class="divide-y divide-gray-200">
+            <div class="flex py-4">
+                <div class="w-1/6 font-bold text-gray-800">Username:</div>
+                <div class="flex-grow text-gray-600">Ali</div>
+            </div>
 
-        <div class="flex py-4">
-            <div class="w-1/6 font-bold text-gray-800">Role:</div>
-            <div class="flex-grow text-gray-600">Student</div>
+            <div class="flex py-4">
+                <div class="w-1/6 font-bold text-gray-800">Role:</div>
+                <div class="flex-grow text-gray-600">Student</div>
+            </div>
+        </div>
+        <div>
+            <button
+                class="btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md transition duration-300"
+                (click)="toggleChangePasswordForm()">
+                Change Password
+            </button>
         </div>
     </div>
-    <div>
-        <button class="btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-md transition duration-300">
-            Change Password
-        </button>
-    </div>
+</div>
+<div *ngIf="showChangePasswordForm">
+    <app-change-password />
 </div>

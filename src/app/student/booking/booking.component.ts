@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, ReactiveFormsModule} from '@angular/forms';
+import { ButtonComponent } from "../../../../components/elements/button/button.component";
 
 @Component({
   selector: 'booking-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ButtonComponent],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })

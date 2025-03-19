@@ -4,8 +4,8 @@
     making them available for students to book. Ensure all details are accurate to provide a smooth booking experience
     for users.</p>
 <div class="flex gap-4 my-4">
-    <button class="btn btn-secondary btn-sm" (click)="toggleRegisterHostelVisibility()">Register Hostel</button>
-    <button class="btn btn-secondary btn-sm" (click)="toggleRegisterRoomVisibility()">Register Rooms</button>
+    <app-button [buttonProps]="registerHostelButton()" />
+    <app-button [buttonProps]="registerRoomButton()" />
 </div>
 <app-card *ngIf="registerHostelVisibility"
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81]"><hostel-registration-form /></app-card>
@@ -13,8 +13,8 @@
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] mt-5"><rooms-registration-form /></app-card>
 <app-card *ngIf="!registerHostelVisibility" [title]="'Hostels List'"
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-    <app-table [TableData]="hostelsData" />
+    <app-table [data]="hostelsData" [columns]="hostelColumns" />
 </app-card>
 <app-card *ngIf="!registerRoomVisibility" [title]="'Rooms List'"
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-    <app-table [TableData]="roomsData" /></app-card>
+    <app-table [data]="roomsData" [columns]="roomColumns" /></app-card>

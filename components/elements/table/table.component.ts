@@ -1,26 +1,63 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { StudentData } from '../../interfaces/studentData';
+import { TableAction, TableColumn } from '../../interfaces/table.interface';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {
-  @Input() TableData: any[] = [];
-  tableHeaders: string[] = [];
+  @Input() data: any[] = [];
+  @Input() columns: TableColumn[] = [];
+  @Input() actionColumn: TableAction[] = [];
   @Input() showActionColumn: boolean = false;
-  @Input() baseRoute: string = '';
-  constructor() { }
+
+  @Input() tableStyles: string = 'table text-left';
+  @Input() headerStyles: string = 'p-4 text-md font-semibold text-black';
+  @Input() rowStyles: string = 'p-4 text-sm hover:bg-slate-200';
+  @Input() defaultSortKey: string = '';
+  @Input() defaultSortDirection: 'asc' | 'desc' = 'asc';
+
+  sortKey: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
+
+  @Output() rowClick = new EventEmitter<any>();
+
   ngOnInit(): void {
-    this.tableHeaders = Object.keys(this.TableData[0]);
+    if (this.defaultSortKey) {
+      this.sortKey = this.defaultSortKey;
+      this.sortDirection = this.defaultSortDirection;
+    }
   }
-  generateRouterLink(row: any, index: number): string[] {
-    const id = index + 1;
-    return [this.baseRoute, id.toString()]
+
+  get sortedData(): any[] {
+    if (!this.sortKey || !this.data) {
+      return this.data
+    }
+    return [...this.data].sort((a, b) => {
+      const valueA = a[this.sortKey];
+      const valueB = b[this.sortKey];
+
+      if (valueA === valueB) return 0;
+      if (this.sortDirection === 'asc') {
+        return valueA < valueB ? -1 : 1;
+      } else {
+        return valueA > valueB ? -1 : 1;
+      }
+    });
+  }
+  sortTable(key: string): void {
+    if (this.sortKey === key) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortKey = key;
+      this.sortDirection = 'asc';
+    }
+  }
+  onRowClick(row: any): void {
+    this.rowClick.emit(row);
   }
 }

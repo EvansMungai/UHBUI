@@ -1,19 +1,31 @@
-<div class="overflow-x-auto">
-    <table class="table table-md">
-        <!-- head -->
+<div class="relative flex flex-col overflow-auto p-4">
+    <table [ngClass]="tableStyles">
         <thead>
             <tr>
-                <th>Sr. No</th>
-                <th *ngFor="let column of tableHeaders">{{column}}</th>
-                <th *ngIf="showActionColumn">Action</th>
+                <th class="w-[5px] text-md font-semibold text-black">Sr. No</th>
+                <th *ngFor="let column of columns" [ngClass]="headerStyles"
+                    (click)="column.sortable ? sortTable(column.key) : null">{{column.header}}
+                    <span *ngIf="column.sortable">
+                        {{ sortKey === column.key ? (sortDirection === 'asc' ? '↑' : '↓') : '⇅' }}
+                    </span>
+                </th>
+                <th *ngIf="showActionColumn" [ngClass]="headerStyles">Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let row of TableData; let sr = index">
+            <tr *ngFor="let row of sortedData; let sr = index" [ngClass]="rowStyles" (click)="onRowClick($event)">
                 <td>{{sr+1}}</td>
-                <td *ngFor="let key of tableHeaders">{{ row[key]}}</td>
+                <td *ngFor="let column of columns">{{row[column.key]}}</td>
                 <td *ngIf="showActionColumn">
-                    <button class="btn btn-accent btn-sm" [routerLink]="generateRouterLink(row, sr)">Review</button>
+                    <button *ngFor="let action of actionColumn" [ngClass]="action.stylingClass" type="button"
+                        (click)="action.callback(row)">
+                        {{ action.label }}
+                    </button>
+                </td>
+            </tr>
+            <tr *ngIf="!data || data.length === 0">
+                <td [attr.colspan]="showActionColumn ? columns.length + 1 : columns.length">
+                    No data Available
                 </td>
             </tr>
         </tbody>

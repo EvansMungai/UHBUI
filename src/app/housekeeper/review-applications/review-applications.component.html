@@ -17,5 +17,5 @@
     </app-card>
 </div>
 <app-card [title]="tableHeader" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
-    <app-table [TableData]="tableData" [showActionColumn]="true" [baseRoute]="'/uhb/housekeeper/view-application'"/>
+    <app-table [data]="tableData" [columns]="tableColumns" [showActionColumn]="true" [actionColumn]="tableActions" />
 </app-card>
