@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableAction, TableColumn } from '../../interfaces/table.interface';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
