@@ -4,7 +4,5 @@ export interface TableColumn {
     sortable?: boolean
 }
 export interface TableAction {
-    label: string,
-    stylingClass?: string,
-    callback: (row: any) => void;
+    buttonProps: any;
 }

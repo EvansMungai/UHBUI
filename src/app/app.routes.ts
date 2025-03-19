@@ -17,6 +17,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { AdminRegisterComponent } from './admin/admin-register/admin-register.component';
 import { ChangeUserRolesComponent } from './admin/change-user-roles/change-user-roles.component';
 import { ChangeRoleFormComponent } from './admin/change-user-roles/change-role-form/change-role-form.component';
+import { SuccessfulApplicationsComponent } from './housekeeper/successful-applications/successful-applications.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -38,6 +39,7 @@ export const routes: Routes = [
                 path: 'housekeeper', component: DashboardComponent, children: [
                     { path: '', component: ReviewApplicationsComponent },
                     { path: 'view-application/:id', component: ViewApplicationComponent },
+                    { path: 'successful-applications', component: SuccessfulApplicationsComponent },
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
             },

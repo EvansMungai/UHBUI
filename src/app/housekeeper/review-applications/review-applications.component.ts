@@ -4,6 +4,8 @@ import { CardComponent } from '../../../../components/elements/card/card.compone
 import { TableComponent } from '../../../../components/elements/table/table.component';
 import { StudentService } from '../../../../components/services/student.service';
 import { TableAction, TableColumn } from '../../../../components/interfaces/table.interface';
+import { NavigationButton } from '../../../../components/interfaces/button.interface';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,14 +28,14 @@ export class ReviewApplicationsComponent {
     { key: 'PreferredHostel', header: 'Preferred Hostel' }
   ];
   tableActions: TableAction[] = [
-    {
-      label: 'Review',
-      stylingClass: 'btn btn-accent btn-sm', 
-      callback: () => console.log('The Review button has been clicked')
-    }
+    { buttonProps: { text: 'Edit', variant: 'accent', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private router: Router) {
     this.tableData = studentService.getStudentApplications();
+  }
+  
+  navigateToApplicationRoute(row: any, index: number) {
+    this.router.navigate([`uhb/housekeeper/view-application/${index}`]);
   }
 }

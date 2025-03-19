@@ -57,7 +57,7 @@ export const HousekeeperLinks: Link[] = [
     },
     {
         title: "Successful Applications",
-        url: "/",
+        url: "/uhb/housekeeper/successful-applications",
         class: "book"
     },
     {
