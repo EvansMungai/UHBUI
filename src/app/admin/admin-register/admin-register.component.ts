@@ -8,6 +8,7 @@ import { HostelService } from '../../../../components/services/hostel.service';
 import { RoomService } from '../../../../components/services/room.service';
 import { ActionButton } from '../../../../components/interfaces/button.interface';
 import { ButtonComponent } from "../../../../components/elements/button/button.component";
+import { TableColumn } from '../../../../components/interfaces/table.interface';
 
 @Component({
   selector: 'app-admin-register',
@@ -21,6 +22,16 @@ export class AdminRegisterComponent {
   registerRoomVisibility: boolean = false;
   hostelsData: any[] = [];
   roomsData: any[] = [];
+  hostelColumns: TableColumn[] = [
+    { key: 'HostelName', header: 'Hostel Name' },
+    { key: 'HostelCapacity', header: 'Hostel Capacity' },
+    { key: 'HostelType', header: 'Hostel Type' }
+  ];
+  roomColumns: TableColumn[] = [
+    { key: 'RoomNumber', header: 'Room Number' },
+    { key: 'HostelNumber', header: 'Hostel Number' }
+  ];
+
   constructor(private hostelService: HostelService, private roomService: RoomService) {
     this.hostelsData = this.hostelService.getHostelsData();
     this.roomsData = this.roomService.getRoomsData();

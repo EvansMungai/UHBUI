@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserDetails } from '../interfaces/userData';
-import { UserInfo } from '../interfaces/mock_studentData';
+import { UserInfo } from '../interfaces/mock_userData';
 
 @Injectable({
   providedIn: 'root'
