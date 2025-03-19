@@ -3,17 +3,22 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from "../../../../components/elements/button/button.component";
 import { SubmitButton } from '../../../../components/interfaces/button.interface';
+import { ToastComponent } from "../../../../components/elements/toast/toast.component";
 
 @Component({
   selector: 'booking-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './booking.component.html',
   styleUrl: './booking.component.css'
 })
 export class BookingComponent {
   bookingForm: FormGroup;
   submitButtonProps: SubmitButton;
+  showToast: boolean = false;
+  toastStyles: string = '';
+  alertStyles: string = '';
+  alertMessage: string = '';
 
   constructor(private fb: FormBuilder) {
     this.bookingForm = this.fb.group({
@@ -43,8 +48,22 @@ export class BookingComponent {
   onSubmit(): void {
     if (this.bookingForm.valid) {
       console.log(this.bookingForm.value);
+      this.showToast = true;
+      this.toastStyles = 'toast-bottom toast-end';
+      this.alertStyles = 'alert-success'
+      this.alertMessage = 'Your form has been submitted successfully!';
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000);
     } else {
       console.log('Form is invalid')
+      this.showToast = true;
+      this.toastStyles = 'toast-bottom toast-end';
+      this.alertStyles = 'alert-error'
+      this.alertMessage = 'Your form was not submitted!'
+      setTimeout(() => {
+        this.showToast = false;
+      }, 3000);
     }
   }
 }
