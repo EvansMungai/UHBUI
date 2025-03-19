@@ -18,13 +18,17 @@ import { TableAction, TableColumn } from '../../../../components/interfaces/tabl
 export class ChangeUserRolesComponent {
   tableData: any[] = [];
   tableColumns: TableColumn[] = [{ key: 'Username', header: "Username" }, { key: 'Role', header: 'Role' }];
-  tableActions: TableAction[] = []
+  tableActions: TableAction[] = [{
+    buttonProps: {
+      text: 'Change Role', variant: 'accent', size: 'sm', action: () => this.toggleChangeRoleFormVisibility()
+    }
+  }]
   changeRoleFormVisibility: boolean = false;
   constructor(private userService: UserService) {
     this.tableData = this.userService.getUsersData();
   }
-  toggleChangeRoleFormVisibility(): boolean {
-    return this.changeRoleFormVisibility = !this.changeRoleFormVisibility;
+  toggleChangeRoleFormVisibility(): void {
+    this.changeRoleFormVisibility = !this.changeRoleFormVisibility;
   }
 
 }
