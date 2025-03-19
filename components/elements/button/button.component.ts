@@ -47,7 +47,16 @@ export class ButtonComponent {
       this.buttonProps.action();
     } else if (this.isToggleButton()) {
       this.buttonProps.toggleAction(!this.buttonProps.isActive)
+    } else if (this.isSubmitButton()) {
+      // Explicitly submit the form
+      const formId = this.buttonProps.formId;
+      if (formId) {
+        const form = document.getElementById(formId) as HTMLFormElement;
+        if (form) {
+          form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        }
+      }
+      this.buttonClick.emit();
     }
-    this.buttonClick.emit();
   }
 }

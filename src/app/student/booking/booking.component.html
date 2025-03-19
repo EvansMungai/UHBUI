@@ -3,116 +3,174 @@
     accommodation. To apply for internal hostel booking, please fill out the form below with accurate and complete
     information.This information will help us process your application efficiently and match you to the most suitable
     accommodation. We're here to make your stay comfortable and convenient — Welcome Home!</p>
-<form class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
+<form [formGroup]="bookingForm" id="bookingForm" (ngSubmit)="onSubmit()" #form="ngForm"
+    class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
     <h3 class="text-lg font-bold text-center">HOSTEL APPLICATION FORM</h3>
 
     <h4 class="label text-lg font-bold ml-5 mt-5">SECTION I: PERSONAL DETAILS</h4>
-    <label for="fname" class="label text-lg font-medium">Registration Number:</label>
-    <input type="text" id="fname" name="fname" class="input input-bordered input-sm bg-white"
-        placeholder="Registration Number">
-    <label for="lname" class="label text-lg font-medium">Hostel Name:</label>
-    <input type="text" id="lname" name="lname" class="input input-bordered input-sm bg-white"
-        placeholder="Hostel Name" />
-    <label for="lname" class="label text-lg font-medium">Application Period:</label>
-    <input type="text" id="lname" name="lname" class="input input-bordered input-sm bg-white"
-        placeholder="Application Period" />
+    <label for="registrationNo" class="label text-lg font-medium">Registration Number:</label>
+    <input type="text" id="registrationNo" formControlName="registrationNo"
+        class="input input-bordered input-sm bg-white" placeholder="Registration Number"
+        [ngClass]="{'input-error': bookingForm.get('registrationNo')?.invalid && form.submitted }">
+    <p *ngIf="bookingForm.get('registrationNo')?.invalid && form.submitted" class="text-error text-xs ml-1">
+        Registration Number is required.
+    </p>
+    <p *ngIf="bookingForm.get('registrationNo')?.hasError('pattern')" class="text-error text-xs my-1">
+        Enter a valid registration number. eg. A123-45-6789/2023
+    </p>
+    <label for="hostelName" class="label text-lg font-medium">Hostel Name:</label>
+    <select class="select bg-white select-sm" id="hostelName" formControlName="hostelName"
+        [ngClass]="{'input-error': bookingForm.get('hostelName')?.invalid && form.submitted }">
+        <option value="" disabled selected>Select Hostel</option>
+        <option value="Batian">Batian</option>
+        <option value="Serengeti">Serengeti</option>
+    </select>
+    <p *ngIf="bookingForm.get('hostelName')?.invalid && form.submitted" class="text-error text-xs ml-1">
+        Hostel Name is required.
+    </p>
+    <label for="applicationPeriod" class="label text-lg font-medium">Application Period:</label>
+    <input type="text" id="applicationPeriod" formControlName="applicationPeriod"
+        class="input input-bordered input-sm bg-white" placeholder="Application Period"
+        [ngClass]="{'input-error': bookingForm.get('applicationPeriod')?.invalid && form.submitted }" />
+    <p *ngIf="bookingForm.get('applicationPeriod')?.invalid && form.submitted" class="text-error text-xs ml-1">
+        Application Period is required.
+    </p>
     <div class="join">
-        <label for="disability?" class="label text-lg font-medium join-item mr-3">Do you live with any
+        <label for="disabled" class="label text-lg font-medium join-item mr-3">Do you live with any
             disability?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="isDisabled" id="Disability" value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="isDisabled" id="Disability" value="NO" />
+        <label for="disabled" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="isDisabled" id="disabled"
+            value="YES" />
+        <label for="notdisabled" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="isDisabled" id="notdisabled"
+            value="No" />
+        <p *ngIf="bookingForm.get('isDisabled')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+            Details on whether you are disabled is required.
+        </p>
     </div>
-    <input type="text" name="DisabilityDetails" class="input input-bordered input-sm bg-white" id="DisabilityDetails"
-        placeholder="Disability Details" />
+    <label for="disabilityDetails" class="label text-sm font-medium join-item mr-3">If yes, provide the disability
+        details:</label>
+    <input type="text" formControlName="disabilityDetails" class="input input-bordered input-sm bg-white"
+        id="disabilityDetails" placeholder="Disability Details" />
 
     <h4 class="label text-lg font-bold ml-5 mt-5">SECTION II:NEEDS ASSESSMENT(Attach evidence where needed)</h4>
     <div class="join">
-        <label for="AccommodatedBefore" class="label text-lg font-medium join-item mr-3">Have you ever been accommodated
+        <label for="accommodationBefore" class="label text-lg font-medium join-item mr-3">Have you ever been
+            accommodated
             within the university before?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="isDisabled" id="AccommodatedBefore"
-            value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="isDisabled" id="AccommodatedBefore"
-            value="NO" />
+        <label for="accommodationBefore" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="accommodationBefore"
+            id="accommodationBefore" value="YES" />
+        <label for="notAccommodatedBefore" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="accommodationBefore"
+            id="notAccommodatedBefore" value="No" />
+        <p *ngIf="bookingForm.get('accommodationBefore')?.invalid && form.submitted"
+            class="label text-error text-xs ml-1">
+            Details on whether you have been accommodated within the school before are required.
+        </p>
     </div>
-    <label for="sponsoredBefore" class="label text-sm font-medium join-item mr-3">If yes, provide the accommodation
+    <label for="accommodationPeriod" class="label text-sm font-medium join-item mr-3">If yes, provide the accommodation
         period:</label>
-    <input type="text" name="AccommodationPeriod" class="input input-bordered input-sm bg-white"
-        id="AccommodationPeriod" placeholder="Accommodation Period" />
+    <input type="text" formControlName="accommodationPeriod" class="input input-bordered input-sm bg-white"
+        id="accommodationPeriod" placeholder="Accommodation Period" />
 
     <div class="join">
-        <label for="sponsoredBefore" class="label text-lg font-medium join-item mr-3">Are you sponsored by an
-            organization recognized by the University and sponsorship includes accommodation?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="sponsoredBefore" id="sponsoredBefore"
-            value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="sponsoredBefore" id="sponsoredBefore"
-            value="NO" />
+        <label for="sponsoredBefore" class="label text-lg font-medium join-item">Are you sponsored by an
+            organization recognized by the University and sponsorship includes accommodation?
+        </label>
+        <label for="sponsoredBefore" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="isSponsored"
+            id="sponsoredBefore" value="YES" />
+        <label for="notSponsored" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="isSponsored" id="notSponsored"
+            value="No" />
+        <p *ngIf="bookingForm.get('isSponsored')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+            Details on whether you are sponsored are required
+        </p>
     </div>
-    <label for="sponsored" class="label text-sm font-medium join-item mr-3">If yes, provide the name of the
+    <label for="sponsor" class="label text-sm font-medium join-item mr-3">If yes, provide the name of the
         sponsor:</label>
-    <input type="text" name="sponsor" class="input input-bordered input-sm bg-white" id="sponsor"
+    <input type="text" formControlName="sponsor" class="input input-bordered input-sm bg-white" id="sponsor"
         placeholder="Name of sponsor" />
 
     <div class="join">
-        <label for="helbBefore" class="label text-lg font-medium join-item mr-3">Do you receive helb?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="helbBefore" id="helbBefore" value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="helbBefore" id="helbBefore" value="NO" />
+        <label for="receivesHelb" class="label text-lg font-medium join-item mr-3">Do you receive helb?</label>
+        <label for="receivesHelb" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="receivesHelb" id="receivesHelb"
+            value="YES" />
+        <label for="noHelb" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="receivesHelb" id="noHelb"
+            value="No" />
+        <p *ngIf="bookingForm.get('receivesHelb')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+            Details on whether you are receive Helb are required.
+        </p>
     </div>
     <label for="helbAmount" class="label text-sm font-medium join-item mr-3">If yes, how much per year:</label>
-    <input type="text" name="sponsor" class="input input-bordered input-sm bg-white" id="helbAmount"
+    <input type="text" formControlName="helbAmount" class="input input-bordered input-sm bg-white" id="helbAmount"
         placeholder="Helb Amount" />
     <div class="join">
-        <label for="bursaryBefore" class="label text-lg font-medium join-item mr-3">Have you ever benefitted from the
+        <label for="receivesBursary" class="label text-lg font-medium join-item mr-3">Have you ever benefitted from the
             university bursary before?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="bursaryBefore" id="bursaryBefore"
-            value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="bursaryBefore" id="bursaryBefore" value="NO" />
+        <label for="receivesBursary" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="receivesBursary"
+            id="receivesBursary" value="YES" />
+        <label for="noBursary" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="receivesBursary" id="noBursary"
+            value="No" />
+        <p *ngIf="bookingForm.get('receivesBursary')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+            Details on whether you receive bursary are required.
+        </p>
     </div>
     <label for="bursaryAmount" class="label text-sm font-medium join-item mr-3">If yes, state the amount
         awarded:</label>
-    <input type="text" name="bursaryAmount" class="input input-bordered input-sm bg-white" id="bursaryAmount"
+    <input type="text" formControlName="bursaryAmount" class="input input-bordered input-sm bg-white" id="bursaryAmount"
         placeholder="Amount awarded" />
 
     <div class="join">
         <label for="workStudyBefore" class="label text-lg font-medium join-item mr-3">Have you ever benefitted from the
             university's work study program before?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="workStudyBefore" id="workStudyBefore"
-            value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="workStudyBefore" id="workStudyBefore"
-            value="NO" />
+        <label for="workStudyBefore" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="workStudyBenefitsBefore"
+            id="workStudyBefore" value="YES" />
+        <label for="noWorkStudyBenefits" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="workStudyBenefitsBefore"
+            id="noWorkStudyBenefits" value="No" />
+        <p *ngIf="bookingForm.get('workStudyBenefitsBefore')?.invalid && form.submitted"
+            class="label text-error text-xs ml-1">
+            Details on whether you have benefitted from the work study program provided in the school are required.
+        </p>
     </div>
     <label for="workStudyPeriod" class="label text-sm font-medium join-item mr-3">If yes, specify the period:</label>
-    <input type="text" name="workStudyPeriod" class="input input-bordered input-sm bg-white" id="workStudyPeriod"
-        placeholder="Work study period" />
+    <input type="text" formControlName="workStudyPeriod" class="input input-bordered input-sm bg-white"
+        id="workStudyPeriod" placeholder="Work study period" />
 
     <div class="join">
-        <label for="deferredBefore" class="label text-lg font-medium join-item mr-3">Have you ever deferred of studies
+        <label for="specialExamsBefore" class="label text-lg font-medium join-item mr-3">Have you ever deferred of
+            studies
             on financial grounds?</label>
-        <label for="yes" class=" label text-md font-medium join-item mr-1">YES</label>
-        <input class="form-check-input join-item mr-1" type="checkbox" name="deferredBefore" id="deferredBefore"
-            value="YES" />
-        <label for="no" class="label text-md font-medium join-item mr-1">NO</label>
-        <input class="form-check-input join-item" type="checkbox" name="deferredBefore" id="deferredBefore"
-            value="NO" />
+        <label for="specialExamsBefore" class=" label text-md font-medium join-item mr-1">YES</label>
+        <input class="form-check-input join-item mr-1" type="radio" formControlName="specialExamsBefore"
+            id="specialExamsBefore" value="YES" />
+        <label for="notDeferred" class="label text-md font-medium join-item mr-1">NO</label>
+        <input class="form-check-input join-item" type="radio" formControlName="specialExamsBefore" id="notDeferred"
+            value=No />
+        <p *ngIf="bookingForm.get('specialExamsBefore')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+            Details on whether you have deferred studies before on financial grounds are required.
+        </p>
     </div>
-    <label for="deferPeriod" class="label text-sm font-medium join-item mr-3">If yes, specify the period:</label>
-    <input type="text" name="deferPeriod" class="input input-bordered input-sm bg-white" id="deferPeriod"
-        placeholder="Defer period" />
+    <label for="specialExamsPeriod" class="label text-sm font-medium join-item mr-3">If yes, specify the period:</label>
+    <input type="text" formControlName="specialExamsPeriod" class="input input-bordered input-sm bg-white"
+        id="specialExamsPeriod" placeholder="Defer period" />
     <label for="considerationReasons" class="label text-lg font-medium">Briefly describe why you should be considered
         for a space within the university hostels:</label>
-    <textarea class="textarea textarea-bordered bg-white" placeholder="Reasons for consideration"></textarea>
+    <textarea class="textarea textarea-bordered bg-white" formControlName="considerationReasons"
+        id="considerationReasons" placeholder="Reasons for consideration"
+        [ngClass]="{'textarea-error': bookingForm.get('considerationReasons')?.invalid && form.submitted }"></textarea>
+    <p *ngIf="bookingForm.get('considerationReasons')?.invalid && form.submitted" class="label text-error text-xs ml-1">
+        Reasons for consideration is a required field.
+    </p>
     <div class="mt-4">
-        <app-button [buttonProps]="{type: 'submit',text:'Submit', variant: 'secondary' }"/> 
+        <app-button [buttonProps]="submitButtonProps" />
     </div>
+    <app-toast [styles]="toastStyles" [showToast]="showToast" [alertStyle]="alertStyles" [alterMessage]="alertMessage" />
 </form>
