@@ -18,6 +18,7 @@ import { AdminRegisterComponent } from './admin/admin-register/admin-register.co
 import { ChangeUserRolesComponent } from './admin/change-user-roles/change-user-roles.component';
 import { ChangeRoleFormComponent } from './admin/change-user-roles/change-role-form/change-role-form.component';
 import { SuccessfulApplicationsComponent } from './housekeeper/successful-applications/successful-applications.component';
+import { AllocatedRoomsComponent } from './matron/allocated-rooms/allocated-rooms.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -47,6 +48,7 @@ export const routes: Routes = [
                 path: 'matron', component: DashboardComponent, children: [
                     { path: '', component: ReviewAllocationsComponent },
                     { path: 'view-allocation/:id', component: ViewAllocationComponent },
+                    { path: 'allocated-rooms', component: AllocatedRoomsComponent },
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
             },

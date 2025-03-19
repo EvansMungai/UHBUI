@@ -79,7 +79,7 @@ export const MatronLinks: Link[] = [
     },
     {
         title: "Allocated Rooms",
-        url: "/",
+        url: "/uhb/matron/allocated-rooms",
         class: "tents"
     },
     {
