@@ -1,28 +1,54 @@
 <h1 class="text-[35px] font-bold text-center">WELCOME TO UNIVERSITY HOSTEL BOOKING SYSTEM</h1>
 <p class="my-5">Welcome to the University Hostel Booking System! We're thrilled to have you here as part of our
-    community. To get started, please take a moment to fill in your details below. This information will help us create your profile and ensure
+    community. To get started, please take a moment to fill in your details below. This information will help us create
+    your profile and ensure
     a smooth booking experience for you. We’re excited to assist you in finding the perfect accommodation!</p>
-<form class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
+<form [formGroup]="studentProfileForm" id="studentRegistrationForm" (ngSubmit)="onSubmit()" #form='ngForm'
+    class="flex flex-1 flex-col mx-auto m-[2%] p-[2%] border border-[#5D5D81] shadow-xl rounded-lg">
     <h3 class="text-lg font-bold text-center">STUDENT REGISTRATION FORM</h3>
 
-    <label for="fname" class="label text-lg font-medium">Registration Number:</label>
-    <input type="text" id="fname" name="registrationNo" class="input input-bordered input-sm bg-white"
-        placeholder="Registration Number">
-    <label for="Surname" class="label text-lg font-medium">Surname:</label>
-    <input type="text" id="lname" name="Surname" class="input input-bordered input-sm bg-white" placeholder="Surname" />
-    <label for="fname" class="label text-lg font-medium">First Name:</label>
-    <input type="text" id="lname" name="fname" class="input input-bordered input-sm bg-white"
-        placeholder="First Name" />
-    <label for="lname" class="label text-lg font-medium">Second Name:</label>
-    <input type="text" id="lname" name="lname" class="input input-bordered input-sm bg-white"
-        placeholder="Second Name" />
+    <label for="registrationNo" class="label text-lg font-medium">Registration Number:</label>
+    <input type="text" id="registrationNo" formControlName="registrationNo"
+        class="input input-bordered input-sm bg-white" placeholder="Registration Number"
+        [ngClass]="{'input-error': studentProfileForm.get('registrationNo')?.invalid && form.submitted }">
+    <p *ngIf="studentProfileForm.get('registrationNo')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+        Registration Number is required.
+    </p>
+    <p *ngIf="studentProfileForm.get('registrationNo')?.hasError('pattern')" class="text-red-500 text-xs my-1">
+        Enter a valid registration number. eg. A123-45-6789/2023
+    </p>
+    <label for="surname" class="label text-lg font-medium">Surname:</label>
+    <input type="text" id="surname" formControlName="surname" class="input input-bordered input-sm bg-white"
+        placeholder="Surname"
+        [ngClass]="{'input-error': studentProfileForm.get('surname')?.invalid && form.submitted }" />
+    <p *ngIf="studentProfileForm.get('surname')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+        Surname is required.
+    </p>
+    <label for="firstName" class="label text-lg font-medium">First Name:</label>
+    <input type="text" id="firstName" formControlName="firstName" class="input input-bordered input-sm bg-white"
+        placeholder="First Name"
+        [ngClass]="{'input-error': studentProfileForm.get('firstName')?.invalid && form.submitted }" />
+    <p *ngIf="studentProfileForm.get('firstName')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+        First Name is required.
+    </p>
+    <label for="lastName" class="label text-lg font-medium">Second Name:</label>
+    <input type="text" id="lastName" formControlName="lastName" class="input input-bordered input-sm bg-white"
+        placeholder="Last Name"
+        [ngClass]="{'input-error': studentProfileForm.get('lastName')?.invalid && form.submitted }" />
+    <p *ngIf="studentProfileForm.get('lastName')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+        Last Name is required.
+    </p>
     <label for="gender" class="label text-lg font-medium">Gender:</label>
-    <select class="select bg-white select-sm">
-        <option disabled selected>Select one</option>
-        <option>Male</option>
-        <option>Female</option>
-      </select>
+    <select class="select bg-white select-sm" id="gender" formControlName="gender"
+        [ngClass]="{'input-error': studentProfileForm.get('gender')?.invalid && form.submitted }">
+        <option value="" disabled selected>Select one</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <p *ngIf="studentProfileForm.get('gender')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+        Gender is required.
+    </p>
     <div class="mt-4">
-        <app-button [buttonProps]="{text: 'Submit', type: 'submit', variant: 'secondary'}"/>
+        <app-button [buttonProps]="submitButtonProps"></app-button>
     </div>
 </form>
