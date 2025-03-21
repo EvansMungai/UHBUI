@@ -1,18 +1,24 @@
-<form class="flex flex-1 flex-col mx-auto m-[2%] p-[2%]">
+<form id="changeRoleForm" [formGroup]="changeUserRoleForm" (ngSubmit)="onSubmit()" #form="ngForm"
+    class="flex flex-1 flex-col mx-auto m-[2%] p-[2%]">
     <h3 class="text-lg font-bold text-center">CHANGE ROLE FORM</h3>
     <label for="Username" class="label text-lg font-medium">Username:</label>
     <input type="Username" id="Username" name="Username" class="input input-bordered input-sm bg-white"
         placeholder="Username" disabled>
     <label for="Role" class="label text-lg font-medium">Role:</label>
-    <select id="Role" name="Role"
+    <select id="Role" formControlName="role"
         class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <option selected disabled>Select Role</option>
+        <option value="" selected disabled>Select Role</option>
         <option value="Student">Student</option>
         <option value="Housekeeper">Housekeeper</option>
         <option value="Matron">Matron</option>
         <option value="Admin">Admin</option>
     </select>
+    <p *ngIf="changeUserRoleForm.get('role')?.invalid && form.submitted" class="text-red-500 text-xs ml-1 mb-3">
+        Role is required.
+    </p>
     <div class="mt-4">
-        <app-button [buttonProps]="{type: 'submit', text: 'Submit', variant: 'secondary'}"/>
+        <app-button [buttonProps]="submitButtonProps" />
     </div>
+    <app-toast [showToast]="showToast" [styles]="toastStyles" [alertStyle]="alertStyles"
+        [alertMessage]="alertMessage" />
 </form>
