@@ -35,7 +35,7 @@ export class RoomsRegistrationFormComponent {
       this.showToast = true;
       this.toastStyles = 'toast-top toast-end';
       this.alertStyles = 'alert-success';
-      this.alertMessage = 'Room successfully allocated to the applicant! 🎉  ';
+      this.alertMessage = 'Room details successfully registered! 🎉  ';
       setTimeout(() => {
         this.showToast = false;
       }, 3000);

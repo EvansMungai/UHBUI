@@ -37,7 +37,7 @@ export class HostelRegistrationFormComponent {
       this.showToast = true;
       this.toastStyles = 'toast-top toast-end';
       this.alertStyles = 'alert-success';
-      this.alertMessage = 'Hostel Details successfully registered! 🎉  ';
+      this.alertMessage = 'Hostel details successfully registered! 🎉  ';
       setTimeout(() => {
         this.showToast = false;
       }, 3000);

@@ -35,7 +35,7 @@ export class ChangeRoleFormComponent {
       this.showToast = true;
       this.toastStyles = 'toast-top toast-end';
       this.alertStyles = 'alert-success';
-      this.alertMessage = 'Room successfully allocated to the applicant! 🎉  ';
+      this.alertMessage = 'Role successfully allocated to the user! 🎉  ';
       setTimeout(() => {
         this.showToast = false;
       }, 3000);
