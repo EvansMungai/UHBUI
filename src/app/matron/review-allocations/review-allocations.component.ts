@@ -14,10 +14,6 @@ import { Router } from '@angular/router';
   styleUrl: './review-allocations.component.css'
 })
 export class ReviewAllocationsComponent {
-  card1Title: string = "Total Applications";
-  card2Title: string = "Total Allocated Rooms";
-  card3Title: string = "Total Available Rooms";
-  tableHeader: string = "Total Applications";
   tableData: any[] = [];
   tableColumns: TableColumn[] = [
     { key: 'ApplicationPeriod', header: 'Application Period' },
@@ -25,7 +21,7 @@ export class ReviewAllocationsComponent {
     { key: 'Status', header: 'Application Status' },
     { key: 'PreferredHostel', header: 'Preferred Hostel' }
   ];
-  tableActions: TableAction[] = [{ buttonProps: { text: 'Allocate Room', variant: 'accent', size: 'sm', action: (row: any, index: number) => this.navigateToAllocationRoute(row, index) } }]
+  tableActions: TableAction[] = [{ buttonProps: { text: 'Allocate Room',type:'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToAllocationRoute(row, index) } }]
 
   constructor(private studentService: StudentService, private router: Router) {
     this.tableData = studentService.getStudentApplications();

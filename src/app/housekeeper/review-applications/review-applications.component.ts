@@ -16,10 +16,6 @@ import { Router } from '@angular/router';
   styleUrl: './review-applications.component.css'
 })
 export class ReviewApplicationsComponent {
-  card1Title: string = "Total Applications";
-  card2Title: string = "Total Accepted Applications";
-  card3Title: string = "Total Rejected Applications";
-  tableHeader: string = "Total Applications";
   tableData: any[] = [];
   tableColumns: TableColumn[] = [
     { key: 'ApplicationPeriod', header: 'Application Period' },
@@ -28,13 +24,13 @@ export class ReviewApplicationsComponent {
     { key: 'PreferredHostel', header: 'Preferred Hostel' }
   ];
   tableActions: TableAction[] = [
-    { buttonProps: { text: 'Edit', variant: 'accent', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
+    { buttonProps: { text: 'Review', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
 
   constructor(private studentService: StudentService, private router: Router) {
     this.tableData = studentService.getStudentApplications();
   }
-  
+
   navigateToApplicationRoute(row: any, index: number) {
     this.router.navigate([`uhb/housekeeper/view-application/${index}`]);
   }

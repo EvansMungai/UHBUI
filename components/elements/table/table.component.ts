@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableAction, TableColumn } from '../../interfaces/table.interface';
 import { ButtonComponent } from '../button/button.component';
+import { ActionButton } from '../../interfaces/button.interface';
 
 @Component({
   selector: 'app-table',
@@ -56,6 +57,12 @@ export class TableComponent implements OnInit {
     } else {
       this.sortKey = key;
       this.sortDirection = 'asc';
+    }
+  }
+  prepareActionButton(action: TableAction, row: any, index: number): ActionButton {
+    return {
+      ...action.buttonProps,
+      action: () => action.buttonProps.action(row, index)
     }
   }
   onRowClick(row: any): void {

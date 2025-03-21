@@ -18,7 +18,7 @@
                 <td *ngFor="let column of columns">{{row[column.key]}}</td>
                 <td *ngIf="showActionColumn">
                     <ng-container *ngFor="let action of actionColumn">
-                        <app-button [buttonProps]="action.buttonProps" (buttonClick)="action.buttonProps.action(row, sr)">
+                        <app-button [buttonProps]="prepareActionButton(action, row, sr)">
                             {{ action.buttonProps.label }}
                         </app-button>
                     </ng-container>

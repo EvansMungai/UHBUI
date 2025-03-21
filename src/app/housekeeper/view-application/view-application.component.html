@@ -133,21 +133,24 @@
                 </h3>
                 <div class="bg-blue-100 rounded-md p-6">
                     <h3 class="text-lg font-semibold text-blue-600 mb-4">Review Application</h3>
-                    <form id="roomAllocationForm">
+                    <form id="reviewApplicationForm" [formGroup]="reviewApplication" (ngSubmit)="onSubmit()" #form="ngForm">
                         <div class="grid md:grid-cols-2 gap-6 mb-4">
                             <div>
                                 <label for="reviewApplication" class="block mb-2 font-medium">Accept or Reject:</label>
-                                <select id="reviewApplication" name="reviewApplication"
+                                <select id="reviewApplication" formControlName="acceptApplication"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     required>
-                                    <option selected disabled>Review Application</option>
+                                    <option value="" selected disabled>Review Application</option>
                                     <option value="Accepted">Accept</option>
                                     <option value="Rejected">Reject</option>
                                 </select>
+                                <p *ngIf="reviewApplication.get('acceptApplication')?.invalid && form.submitted" class="text-red-500 text-xs ml-1">
+                                    Review application value is required.
+                                </p>
                             </div>
-                            <div>
+                            <div *ngIf="reviewApplication.get('acceptApplication')?.value === 'Accepted'">
                                 <label for="hostelBuilding" class="block mb-2 font-medium">Hostel Building:</label>
-                                <select id="hostelBuilding" name="hostelBuilding"
+                                <select id="hostelBuilding" formControlName="hostelName"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                     <option value="">Select Hostel Building</option>
                                     <option value="north">North Campus Residence</option>
@@ -158,12 +161,14 @@
                             </div>
                         </div>
 
-                        <app-button [buttonProps]="{text: 'Review Application', variant: 'secondary'}" />
+                        <app-button [buttonProps]="submitButtonProps" />
                         <!-- <button type="submit"
                             class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             Review Application
                         </button> -->
                     </form>
+                    <app-toast [styles]="toastStyles" [showToast]="showToast" [alertStyle]="alertStyles"
+                        [alertMessage]="alertMessage" />
                 </div>
             </div>
         </div>

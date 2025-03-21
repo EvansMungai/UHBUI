@@ -12,11 +12,11 @@ export class ToastComponent {
   @Input() styles: string = '';
   @Input() showToast: boolean = false;
   @Input() alertStyle: string = '';
-  @Input() alterMessage: string = '';
+  @Input() alertMessage: string = '';
 
   get toastStyles(): string {
     const props = this.styles;
-    const toastStyles = `toast ${props}`;
+    const toastStyles = `toast ${props} transition-all transition-discrete delay-300 duration-700 ease-in-out`;
     return toastStyles;
   }
   get alertStyles(): string {
