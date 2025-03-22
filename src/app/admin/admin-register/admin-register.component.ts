@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from "../../../../components/elements/card/card.component";
 import { HostelRegistrationFormComponent } from "./hostel-registration-form/hostel-registration-form.component";
@@ -17,7 +17,7 @@ import { TableColumn } from '../../../../components/interfaces/table.interface';
   templateUrl: './admin-register.component.html',
   styleUrl: './admin-register.component.css'
 })
-export class AdminRegisterComponent {
+export class AdminRegisterComponent implements OnInit {
   registerHostelVisibility: boolean = false;
   registerRoomVisibility: boolean = false;
   hostelsData: any[] = [];
@@ -28,13 +28,36 @@ export class AdminRegisterComponent {
     { key: 'HostelType', header: 'Hostel Type' }
   ];
   roomColumns: TableColumn[] = [
-    { key: 'RoomNumber', header: 'Room Number' },
-    { key: 'HostelNumber', header: 'Hostel Number' }
+    { key: 'roomNo', header: 'Room Number' },
+    { key: 'hostelNo', header: 'Hostel Number' }
   ];
+  loading: boolean = true;
+  error: boolean = false;
+  errorMessage: string = '';
 
   constructor(private hostelService: HostelService, private roomService: RoomService) {
     this.hostelsData = this.hostelService.getHostelsData();
-    this.roomsData = this.roomService.getRoomsData();
+  }
+  ngOnInit(): void {
+    this.loadRoomsData();
+  }
+
+  loadRoomsData() {
+    this.loading = true;
+    this.error = false;
+
+    this.roomService.getRoomsData().subscribe({
+      next: (data) => {
+        this.roomsData = data;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching rooms data:', err);
+        this.error = true;
+        this.errorMessage = 'Failed to load rooms data. Please try again later.';
+        this.loading = false;
+      }
+    })
   }
 
   registerHostelButton(): ActionButton {
