@@ -9,6 +9,7 @@ import { RoomService } from '../../../../components/services/room.service';
 import { ActionButton } from '../../../../components/interfaces/button.interface';
 import { ButtonComponent } from "../../../../components/elements/button/button.component";
 import { TableColumn } from '../../../../components/interfaces/table.interface';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-admin-register',
@@ -23,42 +24,62 @@ export class AdminRegisterComponent implements OnInit {
   hostelsData: any[] = [];
   roomsData: any[] = [];
   hostelColumns: TableColumn[] = [
-    { key: 'HostelName', header: 'Hostel Name' },
-    { key: 'HostelCapacity', header: 'Hostel Capacity' },
-    { key: 'HostelType', header: 'Hostel Type' }
+    { key: 'hostelName', header: 'Hostel Name' },
+    { key: 'capacity', header: 'Hostel Capacity' },
+    { key: 'type', header: 'Hostel Type' }
   ];
   roomColumns: TableColumn[] = [
     { key: 'roomNo', header: 'Room Number' },
     { key: 'hostelNo', header: 'Hostel Number' }
   ];
-  loading: boolean = true;
-  error: boolean = false;
-  errorMessage: string = '';
+  hostelsLoading = false;
+  roomsLoading = false;
+  hostelsError = false;
+  roomsError = false;
+  hostelsErrorMessage = '';
+  roomsErrorMessage = '';
 
-  constructor(private hostelService: HostelService, private roomService: RoomService) {
-    this.hostelsData = this.hostelService.getHostelsData();
-  }
+  constructor(private hostelService: HostelService, private roomService: RoomService) { }
   ngOnInit(): void {
-    this.loadRoomsData();
+    this.loadHostelsData();
+    setTimeout(() => this.loadRoomsData(), 1000);
+  }
+  loadHostelsData() {
+    this.hostelsLoading = true;
+    this.hostelsError = false;
+    
+    this.hostelService.getHostelsData().subscribe({
+      next: (data) => {
+        this.hostelsData = data;
+        this.hostelsLoading = false;
+      },
+      error: (err) => {
+        console.error(err);
+        this.hostelsError = true;
+        this.hostelsErrorMessage = 'Failed to load hostels data. Please try again later.';
+        this.hostelsLoading = false;
+      }
+    });
   }
 
   loadRoomsData() {
-    this.loading = true;
-    this.error = false;
+    this.roomsLoading = true;
+    this.roomsError = false;
 
     this.roomService.getRoomsData().subscribe({
       next: (data) => {
         this.roomsData = data;
-        this.loading = false;
+        this.roomsLoading = false;
       },
       error: (err) => {
         console.error('Error fetching rooms data:', err);
-        this.error = true;
-        this.errorMessage = 'Failed to load rooms data. Please try again later.';
-        this.loading = false;
+        this.roomsError = true;
+        this.roomsErrorMessage = 'Failed to load rooms data. Please try again later.';
+        this.roomsLoading = false;
       }
-    })
+    });
   }
+
 
   registerHostelButton(): ActionButton {
     return {
