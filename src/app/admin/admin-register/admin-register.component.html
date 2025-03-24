@@ -13,8 +13,8 @@
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] mt-5"><rooms-registration-form /></app-card>
 <app-card *ngIf="!registerHostelVisibility" [title]="'Hostels List'"
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-    <app-table [data]="hostelsData" [columns]="hostelColumns" />
+    <app-table [data]="hostelsData | async" [columns]="hostelColumns" />
 </app-card>
 <app-card *ngIf="!registerRoomVisibility" [title]="'Rooms List'"
     baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-    <app-table [data]="roomsData" [columns]="roomColumns" /></app-card>
+    <app-table [data]="roomsData | async" [columns]="roomColumns" /></app-card>
