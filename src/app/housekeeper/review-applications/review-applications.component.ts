@@ -26,9 +26,11 @@ export class ReviewApplicationsComponent {
   tableActions: TableAction[] = [
     { buttonProps: { text: 'Review', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
+  loading: boolean = true;
 
   constructor(private applicationService: ApplicationService, private router: Router) {
     this.tableData = this.applicationService.getApplications();
+    this.loading = false;
   }
 
   navigateToApplicationRoute(row: any, index: number) {

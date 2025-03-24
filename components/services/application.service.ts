@@ -17,4 +17,7 @@ export class ApplicationService {
   getAcceptedApplications(): Observable<ApplicationData[]> {
     return this.http.get<ApplicationData[]>(`${this.apiUrl}/accepted-applications`);
   }
+  getRejectedApplications(): Observable<ApplicationData[]> {
+    return this.http.get<ApplicationData[]>(`${this.apiUrl}/rejected-applications`);
+  }
 }
