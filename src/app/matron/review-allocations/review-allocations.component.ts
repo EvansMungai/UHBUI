@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentService } from '../../../../components/services/student.service';
 import { CardComponent } from '../../../../components/elements/card/card.component';
 import { TableComponent } from '../../../../components/elements/table/table.component';
 import { TableColumn, TableAction } from '../../../../components/interfaces/table.interface';
 import { Router } from '@angular/router';
+import { ApplicationService } from '../../../../components/services/application.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-review-allocations',
@@ -14,17 +15,17 @@ import { Router } from '@angular/router';
   styleUrl: './review-allocations.component.css'
 })
 export class ReviewAllocationsComponent {
-  tableData: any[] = [];
+  tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
-    { key: 'ApplicationPeriod', header: 'Application Period' },
-    { key: 'RegistrationNo', header: 'Registration Number' },
-    { key: 'Status', header: 'Application Status' },
-    { key: 'PreferredHostel', header: 'Preferred Hostel' }
+    { key: 'applicationPeriod', header: 'Application Period' },
+    { key: 'registrationNo', header: 'Registration Number' },
+    { key: 'status', header: 'Application Status' },
+    { key: 'preferredHostel', header: 'Preferred Hostel' }
   ];
   tableActions: TableAction[] = [{ buttonProps: { text: 'Allocate Room',type:'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToAllocationRoute(row, index) } }]
 
-  constructor(private studentService: StudentService, private router: Router) {
-    this.tableData = studentService.getStudentApplications();
+  constructor(private applicationService: ApplicationService, private router: Router) {
+    this.tableData = applicationService.getAcceptedApplications();
   }
 
   navigateToAllocationRoute(row: any, index: number) {

@@ -17,5 +17,5 @@
     </app-card>
 </div>
 <app-card [title]="'Total Applications'" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
-    <app-table [data]="tableData" [columns]="tableColumns" [showActionColumn]="true" [actionColumn]="tableActions" />
+    <app-table [data]="tableData | async" [columns]="tableColumns" [showActionColumn]="true" [actionColumn]="tableActions" />
 </app-card>

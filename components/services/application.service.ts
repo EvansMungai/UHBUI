@@ -20,4 +20,7 @@ export class ApplicationService {
   getRejectedApplications(): Observable<ApplicationData[]> {
     return this.http.get<ApplicationData[]>(`${this.apiUrl}/rejected-applications`);
   }
+  getAllocatedRooms(): Observable<ApplicationData[]>{
+    return this.http.get<ApplicationData[]>(`${this.apiUrl}/assigned-applications`);
+  }
 }
