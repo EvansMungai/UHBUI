@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../../components/elements/card/card.component';
 import { TableComponent } from '../../../../components/elements/table/table.component';
-import { StudentService } from '../../../../components/services/student.service';
 import { TableAction, TableColumn } from '../../../../components/interfaces/table.interface';
-import { NavigationButton } from '../../../../components/interfaces/button.interface';
 import { Router } from '@angular/router';
+import { ApplicationService } from '../../../../components/services/application.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,19 +16,19 @@ import { Router } from '@angular/router';
   styleUrl: './review-applications.component.css'
 })
 export class ReviewApplicationsComponent {
-  tableData: any[] = [];
+  tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
-    { key: 'ApplicationPeriod', header: 'Application Period' },
-    { key: 'RegistrationNo', header: 'Registration Number' },
-    { key: 'Status', header: 'Application Status' },
-    { key: 'PreferredHostel', header: 'Preferred Hostel' }
+    { key: 'applicationPeriod', header: 'Application Period' },
+    { key: 'registrationNo', header: 'Registration Number' },
+    { key: 'status', header: 'Application Status' },
+    { key: 'preferredHostel', header: 'Preferred Hostel' }
   ];
   tableActions: TableAction[] = [
     { buttonProps: { text: 'Review', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
 
-  constructor(private studentService: StudentService, private router: Router) {
-    this.tableData = studentService.getStudentApplications();
+  constructor(private applicationService: ApplicationService, private router: Router) {
+    this.tableData = this.applicationService.getApplications();
   }
 
   navigateToApplicationRoute(row: any, index: number) {

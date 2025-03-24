@@ -3,5 +3,5 @@
     as applicant names, application period and application statuses are clearly displayed in a user-friendly table.
 </p>
 <app-card [title]="'List of successful applicants'" baseStyles="card card-compact bg-base-100 shadow-xl my-3">
-    <app-table [data]="tableData" [columns]="tableColumns"/>
+    <app-table [data]="tableData | async" [columns]="tableColumns"/>
 </app-card>

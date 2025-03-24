@@ -1,26 +1,29 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { StudentService } from '../../../../components/services/student.service';
 import { TableComponent } from "../../../../components/elements/table/table.component";
 import { CardComponent } from "../../../../components/elements/card/card.component";
 import { TableColumn } from '../../../../components/interfaces/table.interface';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-accommodation-detials',
   standalone: true,
-  imports: [TableComponent, CardComponent],
+  imports: [CommonModule, TableComponent, CardComponent],
   templateUrl: './accommodation-details.component.html',
   styleUrl: './accommodation-details.component.css'
 })
 export class AccommodationDetailsComponent {
   cardTitle: string = "Accommodation Details"
-  tableData: any = [];
+  tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
-    {key: 'RegistrationNo', header: "Registration Number", sortable: false},
-    {key: 'Status', header: "Status", sortable: false},
-    {key: 'PreferredHostel', header: "Preferred Hostel", sortable: false},
-    {key: 'RoomNo', header: "Room Number", sortable: false},
+    { key: 'registrationNo', header: "Registration Number", sortable: false },
+    { key: 'status', header: "Status", sortable: false },
+    { key: 'preferredHostel', header: "Preferred Hostel", sortable: false },
+    { key: 'roomNo', header: "Room Number", sortable: false },
   ];
-  constructor(private studentService: StudentService){
-    this.tableData = this.studentService.getAccommodationDetails();
+  regNo: string = 'C026-01-0920/2022';
+  constructor(private studentService: StudentService) {
+    this.tableData = this.studentService.getAccommodationData(this.regNo);
   }
 }
