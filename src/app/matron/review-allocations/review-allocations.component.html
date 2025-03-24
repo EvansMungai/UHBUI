@@ -6,7 +6,7 @@
 <div class="flex flex-col md:flex-row">
     <app-card [title]="'Total Applications'" baseStyles="card bg-accent shadow-xl rounded-lg m-3 flex-1">
         <div class="flex flex-1">
-            <p class="font-bold m-1">14</p>
+            <p class="font-bold m-1">{{(tableData | async)?.length}}</p>
         </div>
     </app-card>
     <app-card [title]="'Allocated Rooms'" baseStyles="card bg-accent shadow-xl rounded-lg m-3 py-1 flex-1">
