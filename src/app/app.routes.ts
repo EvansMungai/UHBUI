@@ -19,6 +19,7 @@ import { ChangeUserRolesComponent } from './features/admin/change-user-roles/cha
 import { ChangeRoleFormComponent } from './features/admin/change-user-roles/change-role-form/change-role-form.component';
 import { SuccessfulApplicationsComponent } from './features/housekeeper/successful-applications/successful-applications.component';
 import { AllocatedRoomsComponent } from './features/matron/allocated-rooms/allocated-rooms.component';
+import { LoadingComponent } from './shared/elements/loading/loading.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -60,7 +61,7 @@ export const routes: Routes = [
                     { path: 'change-user-roles/:id', component: ChangeRoleFormComponent },
                     { path: 'user-details', component: UserDetailsComponent }
                 ]
-            },
+            }
         ]
     },
     { path: '**', component: NotfoundComponent }
