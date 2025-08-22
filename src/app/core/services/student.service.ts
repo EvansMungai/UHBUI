@@ -9,7 +9,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class StudentService {
-  private apiUrl = 'http://uhb.runasp.net';
+  // private apiUrl = 'http://uhb.runasp.net';
+  private apiUrl = 'https://uhbapi.onrender.com';
   protected applicationInfoList: ApplicationData[] = ApplicationInfo;
   constructor(private http: HttpClient) { }
   getStudentData(): Observable<StudentData[]> {
