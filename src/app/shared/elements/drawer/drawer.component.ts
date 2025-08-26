@@ -4,11 +4,10 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { MenuComponent } from '../menu/menu.component';
 
 @Component({
-  selector: 'app-drawer',
-  standalone: true,
-  imports: [RouterModule, NavbarComponent, MenuComponent],
-  templateUrl: './drawer.component.html',
-  styleUrl: './drawer.component.css'
+    selector: 'app-drawer',
+    imports: [RouterModule, NavbarComponent, MenuComponent],
+    templateUrl: './drawer.component.html',
+    styleUrl: './drawer.component.css'
 })
 export class DrawerComponent {
 

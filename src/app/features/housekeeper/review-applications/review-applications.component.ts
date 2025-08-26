@@ -9,11 +9,10 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-review-applications',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TableComponent],
-  templateUrl: './review-applications.component.html',
-  styleUrl: './review-applications.component.css'
+    selector: 'app-review-applications',
+    imports: [CommonModule, CardComponent, TableComponent],
+    templateUrl: './review-applications.component.html',
+    styleUrl: './review-applications.component.css'
 })
 export class ReviewApplicationsComponent {
   tableData: Observable<any> = {} as Observable<any>;

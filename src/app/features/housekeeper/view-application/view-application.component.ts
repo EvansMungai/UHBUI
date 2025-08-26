@@ -9,11 +9,10 @@ import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
 
 @Component({
-  selector: 'app-view-application',
-  standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-  templateUrl: './view-application.component.html',
-  styleUrl: './view-application.component.css'
+    selector: 'app-view-application',
+    imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    templateUrl: './view-application.component.html',
+    styleUrl: './view-application.component.css'
 })
 export class ViewApplicationComponent {
   reviewApplication: FormGroup;

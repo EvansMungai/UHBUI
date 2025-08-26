@@ -6,11 +6,10 @@ import { ButtonComponent } from '../elements/button/button.component';
 import { ToastComponent } from '../elements/toast/toast.component';
 
 @Component({
-  selector: 'app-change-password',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-  templateUrl: './change-password.component.html',
-  styleUrl: './change-password.component.css'
+    selector: 'app-change-password',
+    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    templateUrl: './change-password.component.html',
+    styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent {
   changePasswordForm: FormGroup;

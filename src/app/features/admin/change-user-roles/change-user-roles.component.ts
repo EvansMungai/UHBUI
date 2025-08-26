@@ -9,11 +9,10 @@ import { TableAction, TableColumn } from '../../../core/interfaces/table.interfa
 
 
 @Component({
-  selector: 'app-change-user-roles',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TableComponent, ChangeRoleFormComponent],
-  templateUrl: './change-user-roles.component.html',
-  styleUrl: './change-user-roles.component.css'
+    selector: 'app-change-user-roles',
+    imports: [CommonModule, CardComponent, TableComponent, ChangeRoleFormComponent],
+    templateUrl: './change-user-roles.component.html',
+    styleUrl: './change-user-roles.component.css'
 })
 export class ChangeUserRolesComponent {
   tableData: any[] = [];

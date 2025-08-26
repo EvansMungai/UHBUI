@@ -7,11 +7,10 @@ import { TableColumn } from '../../../core/interfaces/table.interface';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-application-details',
-  standalone: true,
-  imports: [CommonModule, TableComponent, CardComponent],
-  templateUrl: './application-details.component.html',
-  styleUrl: './application-details.component.css'
+    selector: 'app-application-details',
+    imports: [CommonModule, TableComponent, CardComponent],
+    templateUrl: './application-details.component.html',
+    styleUrl: './application-details.component.css'
 })
 export class ApplicationDetailsComponent {
   cardTitle: string = "Application Details";

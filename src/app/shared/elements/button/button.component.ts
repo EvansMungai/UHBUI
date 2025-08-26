@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } from '../../../core/interfaces/button.interface';
 
 @Component({
-  selector: 'app-button',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.css'
+    selector: 'app-button',
+    imports: [CommonModule],
+    templateUrl: './button.component.html',
+    styleUrl: './button.component.css'
 })
 export class ButtonComponent {
   @Input() buttonProps: Button = {};

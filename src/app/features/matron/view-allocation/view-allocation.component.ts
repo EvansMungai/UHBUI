@@ -7,11 +7,10 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 
 @Component({
-  selector: 'app-view-allocation',
-  standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-  templateUrl: './view-allocation.component.html',
-  styleUrl: './view-allocation.component.css'
+    selector: 'app-view-allocation',
+    imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    templateUrl: './view-allocation.component.html',
+    styleUrl: './view-allocation.component.css'
 })
 export class ViewAllocationComponent {
   allocateRoomForm: FormGroup;

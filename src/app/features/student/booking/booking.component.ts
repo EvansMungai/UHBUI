@@ -6,11 +6,10 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 
 @Component({
-  selector: 'booking-form',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-  templateUrl: './booking.component.html',
-  styleUrl: './booking.component.css'
+    selector: 'booking-form',
+    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    templateUrl: './booking.component.html',
+    styleUrl: './booking.component.css'
 })
 export class BookingComponent {
   bookingForm: FormGroup;

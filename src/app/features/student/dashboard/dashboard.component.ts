@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -8,8 +8,7 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'student-dashboard',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TableComponent],
+  imports: [CardComponent, TableComponent, AsyncPipe],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

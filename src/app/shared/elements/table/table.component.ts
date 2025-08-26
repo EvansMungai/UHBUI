@@ -5,11 +5,10 @@ import { ButtonComponent } from '../button/button.component';
 import { ActionButton } from '../../../core/interfaces/button.interface';
 
 @Component({
-  selector: 'app-table',
-  standalone: true,
-  imports: [CommonModule, ButtonComponent],
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.css'
+    selector: 'app-table',
+    imports: [CommonModule, ButtonComponent],
+    templateUrl: './table.component.html',
+    styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {
   @Input() data: any[] = [];

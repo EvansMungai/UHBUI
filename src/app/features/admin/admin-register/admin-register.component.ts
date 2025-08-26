@@ -12,11 +12,10 @@ import { TableColumn } from '../../../core/interfaces/table.interface';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-admin-register',
-  standalone: true,
-  imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent],
-  templateUrl: './admin-register.component.html',
-  styleUrl: './admin-register.component.css'
+    selector: 'app-admin-register',
+    imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent],
+    templateUrl: './admin-register.component.html',
+    styleUrl: './admin-register.component.css'
 })
 export class AdminRegisterComponent implements OnInit {
   registerHostelVisibility: boolean = false;

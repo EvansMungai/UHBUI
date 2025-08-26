@@ -8,11 +8,10 @@ import { CommonModule } from '@angular/common';
 
 
 @Component({
-  selector: 'app-successful-applications',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TableComponent],
-  templateUrl: './successful-applications.component.html',
-  styleUrl: './successful-applications.component.css'
+    selector: 'app-successful-applications',
+    imports: [CommonModule, CardComponent, TableComponent],
+    templateUrl: './successful-applications.component.html',
+    styleUrl: './successful-applications.component.css'
 })
 export class SuccessfulApplicationsComponent {
   tableData: Observable<any> = {} as Observable<any>;

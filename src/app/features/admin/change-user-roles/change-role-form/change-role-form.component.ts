@@ -7,11 +7,10 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 
 @Component({
-  selector: 'change-role-form',
-  standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule, ButtonComponent, ToastComponent],
-  templateUrl: './change-role-form.component.html',
-  styleUrl: './change-role-form.component.css'
+    selector: 'change-role-form',
+    imports: [RouterModule, ReactiveFormsModule, CommonModule, ButtonComponent, ToastComponent],
+    templateUrl: './change-role-form.component.html',
+    styleUrl: './change-role-form.component.css'
 })
 export class ChangeRoleFormComponent {
   changeUserRoleForm: FormGroup;

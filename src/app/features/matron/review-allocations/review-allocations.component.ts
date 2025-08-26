@@ -8,11 +8,10 @@ import { ApplicationService } from '../../../core/services/application.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-review-allocations',
-  standalone: true,
-  imports: [CommonModule, CardComponent, TableComponent],
-  templateUrl: './review-allocations.component.html',
-  styleUrl: './review-allocations.component.css'
+    selector: 'app-review-allocations',
+    imports: [CommonModule, CardComponent, TableComponent],
+    templateUrl: './review-allocations.component.html',
+    styleUrl: './review-allocations.component.css'
 })
 export class ReviewAllocationsComponent {
   tableData: Observable<any> = {} as Observable<any>;

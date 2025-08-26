@@ -7,11 +7,10 @@ import { Observable } from 'rxjs';
 import { ApplicationService } from '../../../core/services/application.service';
 
 @Component({
-  selector: 'app-allocated-rooms',
-  standalone: true,
-  imports: [CommonModule,CardComponent, TableComponent],
-  templateUrl: './allocated-rooms.component.html',
-  styleUrl: './allocated-rooms.component.css'
+    selector: 'app-allocated-rooms',
+    imports: [CommonModule, CardComponent, TableComponent],
+    templateUrl: './allocated-rooms.component.html',
+    styleUrl: './allocated-rooms.component.css'
 })
 export class AllocatedRoomsComponent {
   tableData: Observable<any> = {} as Observable<any>;
