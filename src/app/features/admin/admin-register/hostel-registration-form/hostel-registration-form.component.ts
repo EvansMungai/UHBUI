@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
@@ -7,7 +7,7 @@ import { ToastComponent } from '../../../../shared/elements/toast/toast.componen
 
 @Component({
     selector: 'hostel-registration-form',
-    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './hostel-registration-form.component.html',
     styleUrl: './hostel-registration-form.component.css'
 })

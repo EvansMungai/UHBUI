@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } from '../../../core/interfaces/button.interface';
 
 @Component({
     selector: 'app-button',
-    imports: [CommonModule],
+    imports: [],
     templateUrl: './button.component.html',
     styleUrl: './button.component.css'
 })

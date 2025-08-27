@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { SubmitButton } from '../../core/interfaces/button.interface';
 import { ButtonComponent } from '../elements/button/button.component';
@@ -7,7 +7,7 @@ import { ToastComponent } from '../elements/toast/toast.component';
 
 @Component({
     selector: 'app-change-password',
-    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './change-password.component.html',
     styleUrl: './change-password.component.css'
 })

@@ -1,5 +1,7 @@
-<div [ngClass]="toastStyles" *ngIf="showToast">
+@if (showToast) {
+  <div [ngClass]="toastStyles">
     <div [ngClass]="alertStyles">
-        <span>{{alertMessage}}</span>
+      <span>{{alertMessage}}</span>
     </div>
-</div>
+  </div>
+}

@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 
 @Component({
     selector: 'app-user-details',
-    imports: [CommonModule, ChangePasswordComponent],
+    imports: [ChangePasswordComponent],
     templateUrl: './user-details.component.html',
     styleUrl: './user-details.component.css'
 })

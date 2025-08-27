@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { Button, SubmitButton } from '../../../core/interfaces/button.interface';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,7 +10,7 @@ import { ApplicationData } from '../../../core/interfaces/applicationData';
 
 @Component({
     selector: 'app-view-application',
-    imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './view-application.component.html',
     styleUrl: './view-application.component.css'
 })

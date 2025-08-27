@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
@@ -8,7 +8,7 @@ import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 
 @Component({
     selector: 'app-view-allocation',
-    imports: [RouterModule, CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './view-allocation.component.html',
     styleUrl: './view-allocation.component.css'
 })

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { UserDetails } from '../../../core/interfaces/userData';
 import { UserService } from '../../../core/services/user.service';
@@ -10,7 +10,7 @@ import { TableAction, TableColumn } from '../../../core/interfaces/table.interfa
 
 @Component({
     selector: 'app-change-user-roles',
-    imports: [CommonModule, CardComponent, TableComponent, ChangeRoleFormComponent],
+    imports: [CardComponent, TableComponent, ChangeRoleFormComponent],
     templateUrl: './change-user-roles.component.html',
     styleUrl: './change-user-roles.component.css'
 })

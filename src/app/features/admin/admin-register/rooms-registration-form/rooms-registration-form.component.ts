@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 
 @Component({
     selector: 'rooms-registration-form',
-    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './rooms-registration-form.component.html',
     styleUrl: './rooms-registration-form.component.css'
 })

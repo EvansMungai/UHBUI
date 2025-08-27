@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
@@ -8,7 +8,7 @@ import { ToastComponent } from '../../../../shared/elements/toast/toast.componen
 
 @Component({
     selector: 'change-role-form',
-    imports: [RouterModule, ReactiveFormsModule, CommonModule, ButtonComponent, ToastComponent],
+    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
     templateUrl: './change-role-form.component.html',
     styleUrl: './change-role-form.component.css'
 })
