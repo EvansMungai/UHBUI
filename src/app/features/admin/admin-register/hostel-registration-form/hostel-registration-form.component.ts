@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
@@ -6,12 +6,13 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 
 @Component({
-    selector: 'hostel-registration-form',
-    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './hostel-registration-form.component.html',
-    styleUrl: './hostel-registration-form.component.css'
+  selector: 'hostel-registration-form',
+  imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './hostel-registration-form.component.html',
+  styleUrl: './hostel-registration-form.component.css'
 })
 export class HostelRegistrationFormComponent {
+  private fb = inject(FormBuilder);
   registerHostelForm: FormGroup;
   submitButtonProps: SubmitButton;
   showToast: boolean = false;
@@ -19,7 +20,7 @@ export class HostelRegistrationFormComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.registerHostelForm = this.fb.group({
       hostelNo: ['', Validators.required],
       hostelName: ['', Validators.required],
@@ -51,5 +52,4 @@ export class HostelRegistrationFormComponent {
       }, 3000);
     }
   }
-
 }

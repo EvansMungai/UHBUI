@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,12 +6,13 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 
 @Component({
-    selector: 'rooms-registration-form',
-    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './rooms-registration-form.component.html',
-    styleUrl: './rooms-registration-form.component.css'
+  selector: 'rooms-registration-form',
+  imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './rooms-registration-form.component.html',
+  styleUrl: './rooms-registration-form.component.css'
 })
 export class RoomsRegistrationFormComponent {
+  private fb = inject(FormBuilder);
   registerRoomForm: FormGroup;
   submitButtonProps: SubmitButton
   showToast: boolean = false;
@@ -19,7 +20,7 @@ export class RoomsRegistrationFormComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.registerRoomForm = this.fb.group({
       roomNo: ['', Validators.required],
       hostelNo: ['', Validators.required]

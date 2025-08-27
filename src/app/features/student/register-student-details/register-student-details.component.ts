@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,12 +6,14 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 
 @Component({
-    selector: 'app-register-student-details',
-    imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './register-student-details.component.html',
-    styleUrl: './register-student-details.component.css'
+  selector: 'app-register-student-details',
+  imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './register-student-details.component.html',
+  styleUrl: './register-student-details.component.css'
 })
 export class RegisterStudentDetailsComponent {
+  private fb = inject(FormBuilder);
+  
   studentProfileForm: FormGroup;
   submitButtonProps: SubmitButton;
   showToast: boolean = false;
@@ -19,7 +21,7 @@ export class RegisterStudentDetailsComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.studentProfileForm = this.fb.group({
       registrationNo: ['', [Validators.required, Validators.pattern('^[A-Z]\\d{3}-\\d{2}-\\d{4}/\\d{4}$')]],
       surname: ['', Validators.required],

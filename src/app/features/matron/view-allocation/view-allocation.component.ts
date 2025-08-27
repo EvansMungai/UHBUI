@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -7,12 +7,14 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 
 @Component({
-    selector: 'app-view-allocation',
-    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './view-allocation.component.html',
-    styleUrl: './view-allocation.component.css'
+  selector: 'app-view-allocation',
+  imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './view-allocation.component.html',
+  styleUrl: './view-allocation.component.css'
 })
 export class ViewAllocationComponent {
+  private fb = inject(FormBuilder);
+
   allocateRoomForm: FormGroup;
   submitButtonProps: SubmitButton
   showToast: boolean = false;
@@ -20,7 +22,7 @@ export class ViewAllocationComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.allocateRoomForm = this.fb.group({
       roomNo: ['', Validators.required]
     })

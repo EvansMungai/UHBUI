@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } from '../../../core/interfaces/button.interface';
@@ -10,10 +10,12 @@ import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } fr
     styleUrl: './button.component.css'
 })
 export class ButtonComponent {
+  private router = inject(Router);
+
   @Input() buttonProps: Button = {};
   @Output() buttonClick = new EventEmitter<void>();
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   get buttonClasses(): string {
     const props = this.buttonProps;

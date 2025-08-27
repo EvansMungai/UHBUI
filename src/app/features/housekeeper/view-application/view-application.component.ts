@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
@@ -9,12 +9,16 @@ import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
 
 @Component({
-    selector: 'app-view-application',
-    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './view-application.component.html',
-    styleUrl: './view-application.component.css'
+  selector: 'app-view-application',
+  imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './view-application.component.html',
+  styleUrl: './view-application.component.css'
 })
 export class ViewApplicationComponent {
+  private fb = inject(FormBuilder);
+  private route = inject(ActivatedRoute);
+  private applicationService = inject(ApplicationService);
+
   reviewApplication: FormGroup;
   submitButtonProps: SubmitButton;
   showToast: boolean = false;
@@ -23,7 +27,7 @@ export class ViewApplicationComponent {
   alertMessage: string = '';
   applicationDetails: ApplicationData | null = null;
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private applicationService: ApplicationService) {
+  constructor() {
     this.reviewApplication = this.fb.group({
       acceptApplication: ['', Validators.required],
       hostelName: ['']

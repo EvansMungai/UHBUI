@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { StudentData } from '../interfaces/studentData';
 import { ApplicationInfo } from '../interfaces/mock_applicationData';
@@ -9,10 +9,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class StudentService {
-  // private apiUrl = 'http://uhb.runasp.net';
+  private http = inject(HttpClient);
   private apiUrl = 'https://uhbapi.onrender.com';
   protected applicationInfoList: ApplicationData[] = ApplicationInfo;
-  constructor(private http: HttpClient) { }
+
+  constructor() { }
   getStudentData(): Observable<StudentData[]> {
     return this.http.get<StudentData[]>(`${this.apiUrl}/students`);
   }

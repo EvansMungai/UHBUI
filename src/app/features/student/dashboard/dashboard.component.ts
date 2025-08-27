@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
   styleUrl: './dashboard.component.css'
 })
 export class StudentDashboardComponent {
+  private studentService = inject(StudentService);
+  
   cardTitle: string = "Student Details"
   tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
@@ -22,7 +24,8 @@ export class StudentDashboardComponent {
     { key: 'secondName', header: 'Second Name' },
     { key: 'gender', header: 'Gender' },
   ];
-  constructor(private studentService: StudentService) {
+
+  constructor() {
     this.tableData = this.studentService.getStudentData();
   }
 }

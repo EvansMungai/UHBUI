@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { StudentService } from '../../../core/services/student.service';
@@ -7,12 +7,14 @@ import { TableColumn } from '../../../core/interfaces/table.interface';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-application-details',
-    imports: [CommonModule, TableComponent, CardComponent],
-    templateUrl: './application-details.component.html',
-    styleUrl: './application-details.component.css'
+  selector: 'app-application-details',
+  imports: [CommonModule, TableComponent, CardComponent],
+  templateUrl: './application-details.component.html',
+  styleUrl: './application-details.component.css'
 })
 export class ApplicationDetailsComponent {
+  private studentService = inject(StudentService);
+  
   cardTitle: string = "Application Details";
   tableData: Observable<any> = {} as Observable<any>;
   regNo: string = 'C026-01-0920/2022';
@@ -21,7 +23,8 @@ export class ApplicationDetailsComponent {
     { key: 'registrationNo', header: "Registration Number", sortable: false },
     { key: 'status', header: "Status", sortable: false }
   ];
-  constructor(private studentService: StudentService) {
+
+  constructor() {
     this.tableData = this.studentService.getApplicationData(this.regNo);
   }
 }

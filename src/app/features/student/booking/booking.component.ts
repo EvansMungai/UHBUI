@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
@@ -12,6 +12,8 @@ import { ToastComponent } from '../../../shared/elements/toast/toast.component';
     styleUrl: './booking.component.css'
 })
 export class BookingComponent {
+  private fb = inject(FormBuilder);
+
   bookingForm: FormGroup;
   submitButtonProps: SubmitButton;
   showToast: boolean = false;
@@ -19,7 +21,7 @@ export class BookingComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.bookingForm = this.fb.group({
       registrationNo: ['', [Validators.required, Validators.pattern('^[A-Z]\\d{3}-\\d{2}-\\d{4}/\\d{4}$')]],
       hostelName: ['', Validators.required],

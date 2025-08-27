@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
@@ -7,12 +7,13 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 
 @Component({
-    selector: 'change-role-form',
-    imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './change-role-form.component.html',
-    styleUrl: './change-role-form.component.css'
+  selector: 'change-role-form',
+  imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './change-role-form.component.html',
+  styleUrl: './change-role-form.component.css'
 })
 export class ChangeRoleFormComponent {
+  private fb = inject(FormBuilder);
   changeUserRoleForm: FormGroup;
   submitButtonProps: SubmitButton
   showToast: boolean = false;
@@ -20,7 +21,7 @@ export class ChangeRoleFormComponent {
   alertStyles: string = '';
   alertMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
     this.changeUserRoleForm = this.fb.group({
       role: ['', Validators.required]
     })

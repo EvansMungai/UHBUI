@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { HostelRegistrationFormComponent } from "./hostel-registration-form/hostel-registration-form.component";
@@ -12,12 +12,14 @@ import { TableColumn } from '../../../core/interfaces/table.interface';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-admin-register',
-    imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent],
-    templateUrl: './admin-register.component.html',
-    styleUrl: './admin-register.component.css'
+  selector: 'app-admin-register',
+  imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent],
+  templateUrl: './admin-register.component.html',
+  styleUrl: './admin-register.component.css'
 })
 export class AdminRegisterComponent implements OnInit {
+  private hostelService = inject(HostelService);
+  private roomService = inject(RoomService);
   registerHostelVisibility: boolean = false;
   registerRoomVisibility: boolean = false;
   hostelsData: Observable<any> = {} as Observable<any>;
@@ -38,14 +40,13 @@ export class AdminRegisterComponent implements OnInit {
   hostelsErrorMessage = '';
   roomsErrorMessage = '';
 
-  constructor(private hostelService: HostelService, private roomService: RoomService) {
+  constructor() {
     this.hostelsData = this.hostelService.getHostelsData();
   }
+
   ngOnInit(): void {
     this.roomsData = this.roomService.getRoomsData();
   }
-
-
 
   registerHostelButton(): ActionButton {
     return {
@@ -65,7 +66,6 @@ export class AdminRegisterComponent implements OnInit {
       action: () => this.toggleRegisterRoomVisibility()
     }
   }
-
   toggleRegisterHostelVisibility() {
     return this.registerHostelVisibility = !this.registerHostelVisibility;
   }

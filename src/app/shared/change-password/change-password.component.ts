@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { SubmitButton } from '../../core/interfaces/button.interface';
@@ -12,14 +12,16 @@ import { ToastComponent } from '../elements/toast/toast.component';
     styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent {
+  private fb = inject(FormBuilder);
+
   changePasswordForm: FormGroup;
   submitButtonProps: SubmitButton;
   showToast: boolean = false;
   toastStyles: string = '';
   alertStyles: string = '';
   alertMessage: string = '';
-
-  constructor(private fb: FormBuilder) {
+  
+  constructor() {
     const passwordMatchValidator = (control: AbstractControl): ValidationErrors | null => {
       const formGroup = control as FormGroup;
       const newPassword = formGroup.get('newPassword')?.value;

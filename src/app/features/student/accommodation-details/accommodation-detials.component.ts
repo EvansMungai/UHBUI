@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StudentService } from '../../../core/services/student.service';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -7,12 +7,14 @@ import { TableColumn } from '../../../core/interfaces/table.interface';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-accommodation-detials',
-    imports: [CommonModule, TableComponent, CardComponent],
-    templateUrl: './accommodation-details.component.html',
-    styleUrl: './accommodation-details.component.css'
+  selector: 'app-accommodation-detials',
+  imports: [CommonModule, TableComponent, CardComponent],
+  templateUrl: './accommodation-details.component.html',
+  styleUrl: './accommodation-details.component.css'
 })
 export class AccommodationDetailsComponent {
+  private studentService = inject(StudentService);
+  
   cardTitle: string = "Accommodation Details"
   tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
@@ -22,7 +24,7 @@ export class AccommodationDetailsComponent {
     { key: 'roomNo', header: "Room Number", sortable: false },
   ];
   regNo: string = 'C026-01-0920/2022';
-  constructor(private studentService: StudentService) {
+  constructor() {
     this.tableData = this.studentService.getAccommodationData(this.regNo);
   }
 }

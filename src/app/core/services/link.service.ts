@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -8,12 +8,18 @@ import { AdminLinks, HomeLinks, HousekeeperLinks, MatronLinks, StudentLinks } fr
   providedIn: 'root'
 })
 export class LinkService {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+
   links: any[] = [];
-  constructor(private route: ActivatedRoute, private router: Router) {
-        this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
+
+  /** Inserted by Angular inject() migration for backwards compatibility */
+  constructor(...args: unknown[]);
+  constructor() {
+    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
       this.updateLinks(event.urlAfterRedirects);
     });
-   }
+  }
   private updateLinks(url: string) {
     if (url.startsWith('/uhb/student')) {
       this.links = StudentLinks;

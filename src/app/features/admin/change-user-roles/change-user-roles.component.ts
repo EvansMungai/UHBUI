@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { UserDetails } from '../../../core/interfaces/userData';
@@ -9,17 +9,19 @@ import { TableAction, TableColumn } from '../../../core/interfaces/table.interfa
 
 
 @Component({
-    selector: 'app-change-user-roles',
-    imports: [CardComponent, TableComponent, ChangeRoleFormComponent],
-    templateUrl: './change-user-roles.component.html',
-    styleUrl: './change-user-roles.component.css'
+  selector: 'app-change-user-roles',
+  imports: [CardComponent, TableComponent, ChangeRoleFormComponent],
+  templateUrl: './change-user-roles.component.html',
+  styleUrl: './change-user-roles.component.css'
 })
 export class ChangeUserRolesComponent {
+  private userService = inject(UserService);
   tableData: any[] = [];
   tableColumns: TableColumn[] = [{ key: 'Username', header: "Username" }, { key: 'Role', header: 'Role' }];
   tableActions: TableAction[] = [{ buttonProps: { text: 'Change Role', type: 'button', variant: 'secondary', size: 'sm', action: () => this.toggleChangeRoleFormVisibility() } }]
   changeRoleFormVisibility: boolean = false;
-  constructor(private userService: UserService) {
+
+  constructor() {
     this.tableData = this.userService.getUsersData();
   }
   toggleChangeRoleFormVisibility(): void {

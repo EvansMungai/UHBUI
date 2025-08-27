@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HostelData } from '../interfaces/hostelData';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HostelService {
+  private http = inject(HttpClient);
   private apiUrl = 'http://uhb.runasp.net'
 
-  constructor(private http: HttpClient) { }
-  
+  constructor() { }
+
   getHostelsData(): Observable<HostelData[]> {
     return this.http.get<HostelData[]>(`${this.apiUrl}/hostels`);
   }

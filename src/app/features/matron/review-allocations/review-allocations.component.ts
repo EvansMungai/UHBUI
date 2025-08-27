@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -8,12 +8,15 @@ import { ApplicationService } from '../../../core/services/application.service';
 import { Observable } from 'rxjs';
 
 @Component({
-    selector: 'app-review-allocations',
-    imports: [CommonModule, CardComponent, TableComponent],
-    templateUrl: './review-allocations.component.html',
-    styleUrl: './review-allocations.component.css'
+  selector: 'app-review-allocations',
+  imports: [CommonModule, CardComponent, TableComponent],
+  templateUrl: './review-allocations.component.html',
+  styleUrl: './review-allocations.component.css'
 })
 export class ReviewAllocationsComponent {
+  private applicationService = inject(ApplicationService);
+  private router = inject(Router);
+
   tableData: Observable<any> = {} as Observable<any>;
   tableColumns: TableColumn[] = [
     { key: 'applicationPeriod', header: 'Application Period' },
@@ -21,9 +24,11 @@ export class ReviewAllocationsComponent {
     { key: 'status', header: 'Application Status' },
     { key: 'preferredHostel', header: 'Preferred Hostel' }
   ];
-  tableActions: TableAction[] = [{ buttonProps: { text: 'Allocate Room',type:'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToAllocationRoute(row, index) } }]
+  tableActions: TableAction[] = [{ buttonProps: { text: 'Allocate Room', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToAllocationRoute(row, index) } }]
 
-  constructor(private applicationService: ApplicationService, private router: Router) {
+  constructor() {
+    const applicationService = this.applicationService;
+
     this.tableData = applicationService.getAcceptedApplications();
   }
 
