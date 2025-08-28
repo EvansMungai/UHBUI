@@ -214,5 +214,5 @@
   <div class="mt-4">
     <app-button [buttonProps]="submitButtonProps" />
   </div>
-  <app-toast [styles]="toastStyles" [showToast]="showToast" [alertStyle]="alertStyles" [alertMessage]="alertMessage" />
+  <app-toast [styles]="toastStyles()" [showToast]="toastVisible()" [alertStyle]="alertStyles()" [alertMessage]="alertMessage()" />
 </form>

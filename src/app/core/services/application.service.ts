@@ -8,7 +8,7 @@ import { ApplicationData } from '../interfaces/applicationData';
 })
 export class ApplicationService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://uhb.runasp.net';
+  private apiUrl = 'https://uhbapi.onrender.com';
 
   constructor() { }
 
@@ -26,5 +26,8 @@ export class ApplicationService {
   }
   getAllocatedRooms(): Observable<ApplicationData[]> {
     return this.http.get<ApplicationData[]>(`${this.apiUrl}/assigned-applications`);
+  }
+  createApplication(data: ApplicationData): Observable<any>{
+    return this.http.post(`${this.apiUrl}/application`, data);
   }
 }
