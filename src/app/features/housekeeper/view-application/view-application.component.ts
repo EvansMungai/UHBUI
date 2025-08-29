@@ -51,7 +51,7 @@ export class ViewApplicationComponent {
   onSubmit(): void {
     if (this.reviewApplication.valid) {
       console.log(this.reviewApplication.value);
-      this.showToast('You have successfully reviewed the application!', 'alert-sucess');
+      this.showToast('You have successfully reviewed the application!', 'alert-success');
     } else {
       console.log("Form invalid!");
       this.showToast('Application review was unsuccessful! Form is invalid!', 'alert-error');
@@ -60,9 +60,9 @@ export class ViewApplicationComponent {
   private showToast(message: string, style: string): void {
     this.toastVisible.set(true);
     this.toastStyles.set('toast-top toast-end');
-    this.alertMessage.set(style);
+    this.alertStyles.set(style);
     this.alertMessage.set(message);
 
-    setTimeout(()=> this.toastVisible.set(false), 3000);
+    setTimeout(() => this.toastVisible.set(false), 3000);
   }
 }
