@@ -15,7 +15,7 @@ export class ToastComponent {
 
   get toastStyles(): string {
     const props = this.styles;
-    const toastStyles = `toast ${props} transition-all transition-discrete delay-300 duration-700 ease-in-out`;
+    const toastStyles = `toast ${props} max-w-[400px] transition-all transition-discrete delay-300 duration-700 ease-in-out`;
     return toastStyles;
   }
   get alertStyles(): string {

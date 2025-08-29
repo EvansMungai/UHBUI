@@ -8,6 +8,7 @@ import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
 import { showToast } from '../../../shared/elements/toast/toastUtils';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'booking-form',
@@ -76,26 +77,24 @@ export class BookingComponent implements OnInit {
   }
   private convertToApplicationData(form: any): ApplicationData {
     return {
-      ApplicationPeriod: form.applicationPeriod,
-      RegistrationNo: form.registrationNo,
-      PreferredHostel: form.PreferredHostel,
-      Status: 'Pending',
-      RoomNo: form.RoomNo || null,
-      Disability: form.isDisabled,
-      DisabilityDetails: form.disabilityDetails || null,
-      AccommodationBefore: form.accommodationBefore,
-      AccommodationPeriod: form.accommodationPeriod || null,
-      IsSponsored: form.isSponsored,
-      Sponsor: form.sponsor || null,
-      ReceivesHelb: form.receivesHelb,
-      HelbAmount: form.helbAmount || null,
-      ReceivesBursary: form.receivesBursary,
-      BursaryAmount: form.bursaryAmount || null,
-      WorkStudyBenefitsBefore: form.workStudyBenefitsBefore,
-      WorkStudyPeriod: form.workStudyPeriod || null,
-      SpecialExamsBefore: form.specialExamsBefore,
-      SpecialExamsPeriod: form.specialExamsPeriod || null,
-      ConsiderationReasons: form.considerationReasons
+      applicationPeriod: form.applicationPeriod,
+      registrationNo: form.registrationNo,
+      preferredHostel: form.PreferredHostel,
+      disability: form.isDisabled,
+      disabilityDetails: form.disabilityDetails || null,
+      accommodatedBefore: form.accommodationBefore,
+      accommodationPeriod: form.accommodationPeriod || null,
+      isSponsored: form.isSponsored,
+      sponsor: form.sponsor || null,
+      receivesHelb: form.receivesHelb,
+      helbAmount: form.helbAmount || null,
+      receivedBursary: form.receivesBursary,
+      bursaryAmount: form.bursaryAmount || null,
+      workStudyBenefitsBefore: form.workStudyBenefitsBefore,
+      workStudyPeriod: form.workStudyPeriod || null,
+      specialExamsOnFinancialGrounds: form.specialExamsBefore,
+      specialExamPeriod: form.specialExamsPeriod || null,
+      reasonsForConsideration: form.considerationReasons
     }
   }
 
@@ -107,7 +106,10 @@ export class BookingComponent implements OnInit {
 
     this.bookingService.createApplication(this.convertToApplicationData(this.bookingForm.value)).subscribe({
       next: () => showToast('Your form has been submitted successfully!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
-      error: () => showToast('Your form was not submitted!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      error: (err: HttpErrorResponse) => {
+        const errorMessage = typeof err.error === 'string' ? err.error : err.error?.message || err.message || 'An unexpected error occured';
+        showToast(`Submission failed: ${errorMessage}`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+      }
     });
   }
 }
