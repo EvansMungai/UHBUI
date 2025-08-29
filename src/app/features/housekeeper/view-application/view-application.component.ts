@@ -27,7 +27,7 @@ export class ViewApplicationComponent {
     text: 'Review Application', type: 'submit', variant: "secondary", formId: 'reviewApplicationForm'
   };
 
-  applicationDetails: ApplicationData | null = null;
+  applicationDetails: any | null = null;
   toastVisible = signal(false);
   toastStyles = signal('');
   alertStyles = signal('');
@@ -38,10 +38,7 @@ export class ViewApplicationComponent {
     if (!isNaN(applicationId)) {
       this.applicationService.getSpecificApplication(applicationId)
         .subscribe({
-          next: (data) => {
-            this.applicationDetails = data
-            console.log(this.applicationDetails);
-          },
+          next: (data) => this.applicationDetails = data,
           error: (err) => console.error('Error fetching application details:', err)
         });
     } else {
@@ -64,5 +61,29 @@ export class ViewApplicationComponent {
     this.alertMessage.set(message);
 
     setTimeout(() => this.toastVisible.set(false), 3000);
+  }
+  private convertToApplicationData(form: any): ApplicationData {
+    return {
+      ApplicationPeriod: form.applicationPeriod,
+      RegistrationNo: form.registrationNo,
+      PreferredHostel: form.PreferredHostel,
+      Status: 'Pending',
+      RoomNo: form.RoomNo || null,
+      Disability: form.isDisabled,
+      DisabilityDetails: form.disabilityDetails || null,
+      AccommodationBefore: form.accommodationBefore,
+      AccommodationPeriod: form.accommodationPeriod || null,
+      IsSponsored: form.isSponsored,
+      Sponsor: form.sponsor || null,
+      ReceivesHelb: form.receivesHelb,
+      HelbAmount: form.helbAmount || null,
+      ReceivesBursary: form.receivesBursary,
+      BursaryAmount: form.bursaryAmount || null,
+      WorkStudyBenefitsBefore: form.workStudyBenefitsBefore,
+      WorkStudyPeriod: form.workStudyPeriod || null,
+      SpecialExamsBefore: form.specialExamsBefore,
+      SpecialExamsPeriod: form.specialExamsPeriod || null,
+      ConsiderationReasons: form.considerationReasons
+    }
   }
 }
