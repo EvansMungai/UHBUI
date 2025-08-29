@@ -1,21 +1,22 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
+import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
 import { showToast } from '../../../shared/elements/toast/toastUtils';
 
 @Component({
   selector: 'app-view-application',
-  imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
+  imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent, LoadingComponent],
   templateUrl: './view-application.component.html',
   styleUrl: './view-application.component.css'
 })
-export class ViewApplicationComponent {
+export class ViewApplicationComponent implements OnInit {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private applicationService = inject(ApplicationService);
@@ -27,24 +28,26 @@ export class ViewApplicationComponent {
   readonly submitButtonProps: SubmitButton = {
     text: 'Review Application', type: 'submit', variant: "secondary", formId: 'reviewApplicationForm'
   };
+  loadingStyles = 'loading loading-spinner loading-lg'
 
-  applicationDetails: any | null = null;
+  readonly applicationDetails = signal<any | null>(null);
   toastVisible = signal(false);
   toastStyles = signal('');
   alertStyles = signal('');
   alertMessage = signal('');
 
   ngOnInit(): void {
-    const applicationId = Number(this.route.snapshot.paramMap.get('id'));
-    if (!isNaN(applicationId)) {
-      this.applicationService.getSpecificApplication(applicationId)
-        .subscribe({
-          next: (data) => this.applicationDetails = data,
-          error: (err) => console.error('Error fetching application details:', err)
-        });
-    } else {
-      console.error('Invalid application ID');
-    }
+    this.route.paramMap.subscribe(paramMap => {
+      const applicationId = Number(paramMap.get('id'));
+      if(!isNaN(applicationId)){
+        this.applicationService.getSpecificApplication(applicationId).subscribe({
+          next: (data) => this.applicationDetails.set(data),
+          error: (err) => console.error("Error fetching application details: ", err)
+        })
+      } else {
+        console.error('Invalid application Id')
+      }
+    })
   }
   onSubmit(): void {
     if (this.reviewApplication.valid) {
