@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ApplicationData } from '../interfaces/applicationData';
@@ -27,7 +27,11 @@ export class ApplicationService {
   getAllocatedRooms(): Observable<ApplicationData[]> {
     return this.http.get<ApplicationData[]>(`${this.apiUrl}/assigned-applications`);
   }
-  createApplication(data: ApplicationData): Observable<any>{
+  createApplication(data: ApplicationData): Observable<any> {
     return this.http.post(`${this.apiUrl}/application`, data);
+  }
+  reviewApplication(applicationId: number, status: string, preferredHostel: string): Observable<any> {
+    const params = new HttpParams().set('status', status).set('preferredHostel', preferredHostel);
+    return this.http.put(`${this.apiUrl}/application/${applicationId}/status`, null, { params });
   }
 }

@@ -4,7 +4,7 @@
       [buttonProps]="{text: '← Back to Applications', variant: 'secondary',size: 'sm', buttonClass: 'mb-6 hover:underline', route:'/uhb/housekeeper' }" />
 
     <div class="rounded-lg shadow-md p-6">
-      @defer(when applicationDetails()){
+      @defer(when studentDetails()){
       <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-800">Application Details</h1>
         <span class="px-4 py-1 rounded-full text-sm font-semibold badge badge-warning text-neutral">
@@ -30,12 +30,8 @@
             <span class="ml-2">{{applicationDetails()?.registrationNo}}</span>
           </div>
           <div>
-            <span class="font-medium text-gray-600">Student Name:</span>
-            <span class="ml-2">John Smith</span>
-          </div>
-          <div>
             <span class="font-medium text-gray-600">Gender:</span>
-            <span class="ml-2">Male</span>
+            <span class="ml-2">{{studentDetails()?.gender}}</span>
           </div>
         </div>
       </div>
@@ -51,7 +47,7 @@
           </div>
           <div>
             <span class="font-medium text-gray-600">Disability Details:</span>
-            <span class="ml-2">{{applicationDetails()?.disabilityDetails}}</span>
+            <span class="ml-2">{{applicationDetails()?.disabilityDetails || 'Not applicable'}}</span>
           </div>
           <div>
             <span class="font-medium text-gray-600">Accommodated within university before:</span>
@@ -59,7 +55,7 @@
           </div>
           <div>
             <span class="font-medium text-gray-600">Accommodation Period:</span>
-            <span class="ml-2">{{applicationDetails()?.accomodationPeriod}}</span>
+            <span class="ml-2">{{applicationDetails()?.accomodationPeriod || 'Not applicable'}}</span>
           </div>
           <div>
             <span class="font-medium text-gray-600">Sponsored:</span>
@@ -115,11 +111,11 @@
         <div class="grid md:grid-cols-2 gap-4">
           <div>
             <span class="font-medium text-gray-600">Hostel Preference:</span>
-            <span class="ml-2">Batian Hostel Residence</span>
+            <span class="ml-2">{{applicationDetails().preferredHostel}} Hostel Residence</span>
           </div>
           <div>
             <span class="font-medium text-gray-600">Hostel Type:</span>
-            <span class="ml-2">Male Hostel</span>
+            <span class="ml-2">{{studentDetails()?.gender}} Hostel</span>
           </div>
         </div>
       </div>
@@ -133,47 +129,42 @@
           <form id="reviewApplicationForm" [formGroup]="reviewApplication" (ngSubmit)="onSubmit()" #form="ngForm">
             <div class="grid md:grid-cols-2 gap-6 mb-4">
               <div>
-                <label for="reviewApplication" class="block mb-2 font-medium">Accept or Reject:</label>
-                <select id="reviewApplication" formControlName="acceptApplication"
+                <label for="status" class="block mb-2 font-medium">Accept or Reject:</label>
+                <select id="status" formControlName="status"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required>
                   <option value="" selected disabled>Review Application</option>
                   <option value="Accepted">Accept</option>
                   <option value="Rejected">Reject</option>
                 </select>
-                @if (reviewApplication.get('acceptApplication')?.invalid && form.submitted) {
+                @if (reviewApplication.get('status')?.invalid && form.submitted) {
                 <p class="text-red-500 text-xs ml-1">
                   Review application value is required.
                 </p>
                 }
               </div>
-              @if (reviewApplication.get('acceptApplication')?.value === 'Accepted') {
+              @if (reviewApplication.get('status')?.value === 'Accepted') {
               <div>
                 <label for="hostelBuilding" class="block mb-2 font-medium">Hostel Building:</label>
-                <select id="hostelBuilding" formControlName="hostelName"
+                <select id="hostelBuilding" formControlName="preferredHostel"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                   <option value="">Select Hostel Building</option>
-                  <option value="north">North Campus Residence</option>
-                  <option value="south">South Campus Residence</option>
-                  <option value="east">East Wing Residence</option>
-                  <option value="west">West Wing Residence</option>
+                  @for(hostel of hostelDetails(); track hostel){
+                  <option value="{{hostel}}">{{hostel}}</option>
+                  }
                 </select>
               </div>
               }
             </div>
 
             <app-button [buttonProps]="submitButtonProps" />
-            <!-- <button type="submit"
-              class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-              Review Application
-            </button> -->
           </form>
           <app-toast [styles]="toastStyles()" [showToast]="toastVisible()" [alertStyle]="alertStyles()"
             [alertMessage]="alertMessage()" />
         </div>
       </div>
       } @placeholder {
-        <app-loading [styles]="loadingStyles" />
+      <app-loading [styles]="loadingStyles" />
       }
     </div>
   </div>

@@ -1,5 +1,5 @@
 export interface HostelData {
-    HostelName: string,
-    HostelCapacity: number,
-    HostelType: string
+    hostelName: string,
+    hostelCapacity: number,
+    hostelType: string
 }

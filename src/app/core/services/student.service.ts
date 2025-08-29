@@ -15,6 +15,10 @@ export class StudentService {
   getStudentData(): Observable<StudentData[]> {
     return this.http.get<StudentData[]>(`${this.apiUrl}/students`);
   }
+  getSpecificStudentData(registrationNo: string): Observable<StudentData> {
+    const encodedRegNo = encodeURIComponent(registrationNo);
+    return this.http.get<StudentData>(`${this.apiUrl}/student/${encodedRegNo}`);
+  }
   getApplicationData(registrationNo: string): Observable<ApplicationData[]> {
     const encodedRegNo = encodeURIComponent(registrationNo);
     return this.http.get<ApplicationData>(`${this.apiUrl}/application/${encodedRegNo}`).pipe(map((data: ApplicationData) => [data]));
