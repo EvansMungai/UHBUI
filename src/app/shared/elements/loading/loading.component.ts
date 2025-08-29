@@ -7,5 +7,11 @@ import { Component, Input } from '@angular/core';
     styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
- @Input() styles = '';
+    @Input() styles = '';
+
+    get loadingStyles(): string {
+        const props = this.styles;
+        const loadingStyles = `loading ${props}`;
+        return loadingStyles
+    }
 }

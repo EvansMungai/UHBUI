@@ -28,7 +28,7 @@ export class ViewApplicationComponent implements OnInit {
   readonly submitButtonProps: SubmitButton = {
     text: 'Review Application', type: 'submit', variant: "secondary", formId: 'reviewApplicationForm'
   };
-  loadingStyles = 'loading loading-spinner loading-lg'
+  loadingStyles = 'loading-spinner loading-lg'
 
   readonly applicationDetails = signal<any | null>(null);
   toastVisible = signal(false);
