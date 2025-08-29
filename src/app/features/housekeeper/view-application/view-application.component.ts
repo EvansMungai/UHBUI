@@ -2,11 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
-import { Button, SubmitButton } from '../../../core/interfaces/button.interface';
+import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
+import { showToast } from '../../../shared/elements/toast/toastUtils';
 
 @Component({
   selector: 'app-view-application',
@@ -48,42 +49,9 @@ export class ViewApplicationComponent {
   onSubmit(): void {
     if (this.reviewApplication.valid) {
       console.log(this.reviewApplication.value);
-      this.showToast('You have successfully reviewed the application!', 'alert-success');
+      showToast('You have successfully reviewed the application!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
     } else {
-      console.log("Form invalid!");
-      this.showToast('Application review was unsuccessful! Form is invalid!', 'alert-error');
-    }
-  }
-  private showToast(message: string, style: string): void {
-    this.toastVisible.set(true);
-    this.toastStyles.set('toast-top toast-end');
-    this.alertStyles.set(style);
-    this.alertMessage.set(message);
-
-    setTimeout(() => this.toastVisible.set(false), 3000);
-  }
-  private convertToApplicationData(form: any): ApplicationData {
-    return {
-      ApplicationPeriod: form.applicationPeriod,
-      RegistrationNo: form.registrationNo,
-      PreferredHostel: form.PreferredHostel,
-      Status: 'Pending',
-      RoomNo: form.RoomNo || null,
-      Disability: form.isDisabled,
-      DisabilityDetails: form.disabilityDetails || null,
-      AccommodationBefore: form.accommodationBefore,
-      AccommodationPeriod: form.accommodationPeriod || null,
-      IsSponsored: form.isSponsored,
-      Sponsor: form.sponsor || null,
-      ReceivesHelb: form.receivesHelb,
-      HelbAmount: form.helbAmount || null,
-      ReceivesBursary: form.receivesBursary,
-      BursaryAmount: form.bursaryAmount || null,
-      WorkStudyBenefitsBefore: form.workStudyBenefitsBefore,
-      WorkStudyPeriod: form.workStudyPeriod || null,
-      SpecialExamsBefore: form.specialExamsBefore,
-      SpecialExamsPeriod: form.specialExamsPeriod || null,
-      ConsiderationReasons: form.considerationReasons
+      showToast('Application review was unsuccessful! Form is invalid!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
     }
   }
 }

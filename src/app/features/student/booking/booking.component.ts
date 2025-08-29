@@ -1,11 +1,13 @@
 import { Component, inject, OnInit, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
+
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
+import { showToast } from '../../../shared/elements/toast/toastUtils';
 
 @Component({
   selector: 'booking-form',
@@ -50,15 +52,6 @@ export class BookingComponent implements OnInit {
   toastStyles = signal('');
   alertStyles = signal('');
   alertMessage = signal('');
-
-  constructor() {
-    this.toastVisible.set(false);
-    effect(() => {
-      if (this.toastVisible()) {
-        setTimeout(() => this.toastVisible.set(false), 3000);
-      }
-    });
-  }
 
   ngOnInit(): void {
     this.setupConditionalFields('isDisabled', 'disabilityDetails');
@@ -108,20 +101,13 @@ export class BookingComponent implements OnInit {
 
   onSubmit(): void {
     if (!this.bookingForm.valid) {
-      this.showToast('Your form was not submitted!', 'alert-error');
+      showToast('Your form was not submitted!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
       return;
     }
 
     this.bookingService.createApplication(this.convertToApplicationData(this.bookingForm.value)).subscribe({
-      next: () => this.showToast('Your form has been submitted successfully!', 'alert-success'),
-      error: () => this.showToast('Your form was not submitted!', 'alert-error')
+      next: () => showToast('Your form has been submitted successfully!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+      error: () => showToast('Your form was not submitted!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
     });
-  }
-
-  private showToast(message: string, style: string): void {
-    this.toastVisible.set(true);
-    this.toastStyles.set('toast-top toast-end');
-    this.alertStyles.set(style);
-    this.alertMessage.set(message);
   }
 }
