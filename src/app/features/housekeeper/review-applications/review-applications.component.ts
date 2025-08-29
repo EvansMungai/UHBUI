@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
   templateUrl: './review-applications.component.html',
   styleUrl: './review-applications.component.css'
 })
-export class ReviewApplicationsComponent {
+export class ReviewApplicationsComponent implements OnInit {
   private applicationService = inject(ApplicationService);
   private router = inject(Router);
 
@@ -29,7 +29,7 @@ export class ReviewApplicationsComponent {
     { buttonProps: { text: 'Review', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
 
-  constructor() {
+  ngOnInit(): void {
     this.tableData = this.applicationService.getApplications();
   }
 
