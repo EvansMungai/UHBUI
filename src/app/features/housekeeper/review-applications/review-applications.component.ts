@@ -1,11 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableAction, TableColumn } from '../../../core/interfaces/table.interface';
 import { Router } from '@angular/router';
 import { ApplicationService } from '../../../core/services/application.service';
-import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop'
 
 
 @Component({
@@ -18,7 +18,7 @@ export class ReviewApplicationsComponent implements OnInit {
   private applicationService = inject(ApplicationService);
   private router = inject(Router);
 
-  tableData: Observable<any> = {} as Observable<any>;
+  readonly tableData = signal<any | null>(null);
   tableColumns: TableColumn[] = [
     { key: 'applicationPeriod', header: 'Application Period' },
     { key: 'registrationNo', header: 'Registration Number' },
@@ -30,7 +30,10 @@ export class ReviewApplicationsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.tableData = this.applicationService.getApplications();
+    this.applicationService.getApplications().subscribe({
+      next: data => this.tableData.set(data),
+      error: err => console.error("Error fetching application details: ", err)
+    })
   }
 
   navigateToApplicationRoute(row: any, index: number) {
