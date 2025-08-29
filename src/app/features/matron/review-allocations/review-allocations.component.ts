@@ -43,6 +43,7 @@ export class ReviewAllocationsComponent implements OnInit {
   }
 
   navigateToAllocationRoute(row: any, index: number) {
-    this.router.navigate([`uhb/matron/view-allocation/${index}`]);
+    const applicationNo = row['applicationNo'];
+    this.router.navigate([`uhb/matron/view-allocation/${applicationNo}`]);
   }
 }
