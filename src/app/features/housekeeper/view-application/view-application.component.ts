@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
@@ -19,23 +19,20 @@ export class ViewApplicationComponent {
   private route = inject(ActivatedRoute);
   private applicationService = inject(ApplicationService);
 
-  reviewApplication: FormGroup;
-  submitButtonProps: SubmitButton;
-  showToast: boolean = false;
-  toastStyles: string = '';
-  alertStyles: string = '';
-  alertMessage: string = '';
-  applicationDetails: ApplicationData | null = null;
+  reviewApplication: FormGroup = this.fb.group({
+    acceptApplication: ['', Validators.required],
+    hostelName: ['']
+  });
+  readonly submitButtonProps: SubmitButton = {
+    text: 'Review Application', type: 'submit', variant: "secondary", formId: 'reviewApplicationForm'
+  };
 
-  constructor() {
-    this.reviewApplication = this.fb.group({
-      acceptApplication: ['', Validators.required],
-      hostelName: ['']
-    });
-    this.submitButtonProps = {
-      text: 'Review Application', type: 'submit', variant: "secondary", formId: 'reviewApplicationForm'
-    }
-  }
+  applicationDetails: ApplicationData | null = null;
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
+
   ngOnInit(): void {
     const applicationId = Number(this.route.snapshot.paramMap.get('id'));
     if (!isNaN(applicationId)) {
@@ -54,22 +51,18 @@ export class ViewApplicationComponent {
   onSubmit(): void {
     if (this.reviewApplication.valid) {
       console.log(this.reviewApplication.value);
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-success';
-      this.alertMessage = 'You have successfully reviewed the application!';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      this.showToast('You have successfully reviewed the application!', 'alert-sucess');
     } else {
       console.log("Form invalid!");
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-error';
-      this.alertMessage = 'Application review unsuccessful! Form is invalid!';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      this.showToast('Application review was unsuccessful! Form is invalid!', 'alert-error');
     }
+  }
+  private showToast(message: string, style: string): void {
+    this.toastVisible.set(true);
+    this.toastStyles.set('toast-top toast-end');
+    this.alertMessage.set(style);
+    this.alertMessage.set(message);
+
+    setTimeout(()=> this.toastVisible.set(false), 3000);
   }
 }

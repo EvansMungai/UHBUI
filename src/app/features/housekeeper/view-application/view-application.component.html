@@ -6,7 +6,7 @@
       <div class="rounded-lg shadow-md p-6">
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Application Details</h1>
-          <span class="px-4 py-1 rounded-full text-sm font-semibold badge-warning text-neutral">
+          <span class="px-4 py-1 rounded-full text-sm font-semibold badge badge-warning text-neutral">
             Pending Review
           </span>
         </div>
@@ -173,8 +173,7 @@
               Review Application
             </button> -->
           </form>
-          <app-toast [styles]="toastStyles" [showToast]="showToast" [alertStyle]="alertStyles"
-            [alertMessage]="alertMessage" />
+          <app-toast [styles]="toastStyles()" [showToast]="toastVisible()" [alertStyle]="alertStyles()" [alertMessage]="alertMessage()" />
           </div>
         </div>
       </div>
