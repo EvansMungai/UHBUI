@@ -19,6 +19,8 @@ export class ReviewApplicationsComponent implements OnInit {
   private router = inject(Router);
 
   readonly tableData = signal<any | null>(null);
+  acceptCount!: number;
+  rejectCount!: number;
   tableColumns: TableColumn[] = [
     { key: 'applicationPeriod', header: 'Application Period' },
     { key: 'registrationNo', header: 'Registration Number' },
@@ -32,7 +34,11 @@ export class ReviewApplicationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.applicationService.getApplications().subscribe({
-      next: data => this.tableData.set(data),
+      next: data => {
+        this.tableData.set(data);
+        this.acceptCount = data.filter(app => app.status === 'Accepted').length;
+        this.rejectCount = data.filter(app => app.status === 'Rejected').length;
+      },
       error: err => console.error("Error fetching application details: ", err)
     })
   }
