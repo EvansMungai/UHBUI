@@ -79,7 +79,7 @@ export class BookingComponent implements OnInit {
     return {
       applicationPeriod: form.applicationPeriod,
       registrationNo: form.registrationNo,
-      preferredHostel: form.PreferredHostel,
+      preferredHostel: form.hostelName,
       disability: form.isDisabled,
       disabilityDetails: form.disabilityDetails || null,
       accommodatedBefore: form.accommodationBefore,
