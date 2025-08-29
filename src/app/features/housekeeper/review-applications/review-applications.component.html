@@ -16,12 +16,10 @@
         <p class="font-bold">{{rejectCount}}</p>
     </app-card>
 </div>
-@defer(when tableData()){
 <app-card [title]="'Total Applications'" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
+    @defer(when tableData()){
     <app-table [data]="tableData()" [columns]="tableColumns" [showActionColumn]="true" [actionColumn]="tableActions" />
-</app-card>
-} @placeholder {
-<app-card [title]="'Total Applications'" baseStyles="card card-lg bg-base-100 shadow-xl my-3">
+    } @placeholder {
     <app-loading [styles]="loadingStyles" />
 </app-card>
 }
