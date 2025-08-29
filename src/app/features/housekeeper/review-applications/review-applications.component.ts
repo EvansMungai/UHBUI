@@ -5,12 +5,12 @@ import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableAction, TableColumn } from '../../../core/interfaces/table.interface';
 import { Router } from '@angular/router';
 import { ApplicationService } from '../../../core/services/application.service';
-import { toSignal } from '@angular/core/rxjs-interop'
+import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 
 
 @Component({
   selector: 'app-review-applications',
-  imports: [CommonModule, CardComponent, TableComponent],
+  imports: [CommonModule, CardComponent, TableComponent, LoadingComponent],
   templateUrl: './review-applications.component.html',
   styleUrl: './review-applications.component.css'
 })
@@ -28,6 +28,7 @@ export class ReviewApplicationsComponent implements OnInit {
   tableActions: TableAction[] = [
     { buttonProps: { text: 'Review', type: 'button', variant: 'secondary', size: 'sm', action: (row: any, index: number) => this.navigateToApplicationRoute(row, index) } }
   ]
+  loadingStyles: string = 'loading-spinner loading-lg';
 
   ngOnInit(): void {
     this.applicationService.getApplications().subscribe({
