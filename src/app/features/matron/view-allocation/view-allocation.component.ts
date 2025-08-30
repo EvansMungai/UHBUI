@@ -34,6 +34,7 @@ export class ViewAllocationComponent implements OnInit {
   readonly applicationDetails = signal<any | null>(null);
   readonly hostelDetails = signal<any | null>(null);
   readonly roomDetails = signal<any | null>(null);
+  applicationId!: number;
   targetHostelRooms = signal<string[] | null>(null);
   toastVisible = signal(false);
   toastStyles = signal('');
@@ -43,9 +44,9 @@ export class ViewAllocationComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramap => {
-      const applicationId = Number(paramap.get('id'));
-      if (!isNaN(applicationId)) {
-        this.applicationService.getSpecificApplication(applicationId).subscribe({
+      this.applicationId = Number(paramap.get('id'));
+      if (!isNaN(this.applicationId)) {
+        this.applicationService.getSpecificApplication(this.applicationId).subscribe({
           next: data => {
             this.applicationDetails.set(data);
             const targetHostelName = data.preferredHostel;
@@ -67,8 +68,12 @@ export class ViewAllocationComponent implements OnInit {
 
   onSubmit(): void {
     if (this.allocateRoomForm.valid) {
-      console.log(this.allocateRoomForm.value);
-      showToast('Room successfully allocated to the applicant! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+      const allocateRoomData = this.allocateRoomForm.value;
+      const applicationId = Number(this.route.snapshot.paramMap.get('id'));
+      this.applicationService.allocateRoomToApplicant(applicationId, allocateRoomData?.roomNo).subscribe({
+        next: () => showToast('Room successfully allocated to the applicant! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        error: err => showToast(`Error: ${err}`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      })
 
     } else {
       console.log("Form invalid");

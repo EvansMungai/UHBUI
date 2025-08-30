@@ -34,4 +34,8 @@ export class ApplicationService {
     const params = new HttpParams().set('status', status).set('preferredHostel', preferredHostel);
     return this.http.put(`${this.apiUrl}/application/${applicationId}/status`, null, { params });
   }
+  allocateRoomToApplicant(applicationId: number, roomNo: string): Observable<any> {
+    const params = new HttpParams().set('room', roomNo);
+    return this.http.put(`${this.apiUrl}/application/${applicationId}/room`, null, { params });
+  }
 }

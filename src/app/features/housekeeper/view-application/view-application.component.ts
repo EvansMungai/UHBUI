@@ -76,8 +76,10 @@ export class ViewApplicationComponent implements OnInit {
     if (this.reviewApplication.valid) {
       const reviewData = this.reviewApplication.value;
       const applicationId = Number(this.route.snapshot.paramMap.get('id'));
-      this.applicationService.reviewApplication(applicationId, reviewData.status, reviewData.preferredHostel ?? this.applicationDetails().preferredHostel);
-      showToast('You have successfully reviewed the application!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      this.applicationService.reviewApplication(applicationId, reviewData.status, reviewData.preferredHostel || this.applicationDetails().preferredHostel).subscribe({
+        next: () => showToast('You have successfully reviewed the application!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        error: err => showToast(`Error: ${err}`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      });
     } else {
       showToast('Application review was unsuccessful! Form is invalid!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
     }
