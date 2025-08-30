@@ -6,7 +6,7 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 import { showToast } from '../../../../shared/elements/toast/toastUtils';
 import { HostelService } from '../../../../core/services/hostel.service';
-import { RoomService} from '../../../../core/services/room.service';
+import { RoomService } from '../../../../core/services/room.service';
 
 @Component({
   selector: 'hostel-registration-form',
@@ -36,7 +36,10 @@ export class HostelRegistrationFormComponent {
     if (this.registerHostelForm.valid) {
       const data = this.registerHostelForm.value; console.log(data);
       this.hostelService.createHostel(data).subscribe({
-        next: data => showToast('Hostel details successfully registered! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        next: () => { 
+          showToast('Hostel details successfully registered! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+          this.registerHostelForm.reset();
+        },
         error: err => showToast(`Error: ${err} in creating`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
       });
     } else {
