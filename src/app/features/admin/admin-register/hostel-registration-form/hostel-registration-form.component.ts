@@ -1,9 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
+import { showToast } from '../../../../shared/elements/toast/toastUtils';
+import { HostelService } from '../../../../core/services/hostel.service';
+import { RoomService} from '../../../../core/services/room.service';
 
 @Component({
   selector: 'hostel-registration-form',
@@ -13,43 +16,32 @@ import { ToastComponent } from '../../../../shared/elements/toast/toast.componen
 })
 export class HostelRegistrationFormComponent {
   private fb = inject(FormBuilder);
-  registerHostelForm: FormGroup;
-  submitButtonProps: SubmitButton;
-  showToast: boolean = false;
-  toastStyles: string = '';
-  alertStyles: string = '';
-  alertMessage: string = '';
+  private hostelService = inject(HostelService);
 
-  constructor() {
-    this.registerHostelForm = this.fb.group({
-      hostelNo: ['', Validators.required],
-      hostelName: ['', Validators.required],
-      hostelCapacity: ['', Validators.required],
-      hostelType: ['', Validators.required],
-    })
-    this.submitButtonProps = {
-      text: 'submit', type: 'submit', variant: 'secondary', formId: 'registerHostelForm'
-    }
-  }
+  registerHostelForm: FormGroup = this.fb.group({
+    hostelNo: ['', Validators.required],
+    hostelName: ['', Validators.required],
+    capacity: ['', Validators.required],
+    type: ['', Validators.required],
+  });
+  submitButtonProps: SubmitButton = {
+    text: 'submit', type: 'submit', variant: 'secondary', formId: 'registerHostelForm'
+  };
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
+
   onSubmit(): void {
     if (this.registerHostelForm.valid) {
-      console.log(this.registerHostelForm.value);
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-success';
-      this.alertMessage = 'Hostel details successfully registered! 🎉  ';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      const data = this.registerHostelForm.value; console.log(data);
+      this.hostelService.createHostel(data).subscribe({
+        next: data => showToast('Hostel details successfully registered! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        error: err => showToast(`Error: ${err} in creating`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      });
     } else {
       console.log("Form invalid!");
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-error';
-      this.alertMessage = 'Error: The form contains invalid or missing information. Please review and correct the highlighted fields before resubmitting.';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      showToast('Error: The form contains invalid or missing information. Please review and correct the highlighted fields before resubmitting.', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     }
   }
 }
