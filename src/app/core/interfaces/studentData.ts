@@ -1,7 +1,7 @@
 export interface StudentData{
     regNo: string,
-    Surname: string,
-    FirstName: string,
-    SecondName: string,
-    Gender: string
+    surname: string,
+    firstName: string,
+    secondName: string,
+    gender: string
 }
