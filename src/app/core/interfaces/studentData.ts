@@ -1,5 +1,5 @@
 export interface StudentData{
-    RegistrationNo: string,
+    regNo: string,
     Surname: string,
     FirstName: string,
     SecondName: string,

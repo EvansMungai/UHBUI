@@ -5,5 +5,9 @@
     everything organized in one place, this page helps you stay on top of your application journey effortlessly.
 </p>
 <app-card [title]="cardTitle" baseStyles="card card-compact bg-base-100 shadow-xl">
-    <app-table [data]="tableData | async" [columns]="tableColumns" />
+    @defer(when tableData()){
+    <app-table [data]="tableData()" [columns]="tableColumns" />
+    } @placeholder{
+        <app-loading [styles]="loadingStyles" />
+    }
 </app-card>
