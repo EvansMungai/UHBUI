@@ -1,5 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { HostelRegistrationFormComponent } from "./hostel-registration-form/hostel-registration-form.component";
 import { RoomsRegistrationFormComponent } from "./rooms-registration-form/rooms-registration-form.component";
@@ -9,21 +10,22 @@ import { RoomService } from '../../../core/services/room.service';
 import { ActionButton } from '../../../core/interfaces/button.interface';
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { TableColumn } from '../../../core/interfaces/table.interface';
-import { Observable } from 'rxjs';
+import {LoadingComponent} from '../../../shared/elements/loading/loading.component';
 
 @Component({
   selector: 'app-admin-register',
-  imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent],
+  imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent, LoadingComponent],
   templateUrl: './admin-register.component.html',
   styleUrl: './admin-register.component.css'
 })
 export class AdminRegisterComponent implements OnInit {
   private hostelService = inject(HostelService);
   private roomService = inject(RoomService);
+
   registerHostelVisibility: boolean = false;
   registerRoomVisibility: boolean = false;
-  hostelsData: Observable<any> = {} as Observable<any>;
-  roomsData: Observable<any> = {} as Observable<any>;
+  hostelsData = signal<any | null>(null);
+  roomsData = signal<any | null>(null);
   hostelColumns: TableColumn[] = [
     { key: 'hostelName', header: 'Hostel Name' },
     { key: 'capacity', header: 'Hostel Capacity' },
@@ -33,6 +35,7 @@ export class AdminRegisterComponent implements OnInit {
     { key: 'roomNo', header: 'Room Number' },
     { key: 'hostelNo', header: 'Hostel Number' }
   ];
+  loadingStyles: string = 'loading-spinner loading-lg';
   hostelsLoading = false;
   roomsLoading = false;
   hostelsError = false;
@@ -40,12 +43,16 @@ export class AdminRegisterComponent implements OnInit {
   hostelsErrorMessage = '';
   roomsErrorMessage = '';
 
-  constructor() {
-    this.hostelsData = this.hostelService.getHostelsData();
-  }
 
   ngOnInit(): void {
-    this.roomsData = this.roomService.getRoomsData();
+    this.hostelService.getHostelsData().subscribe({
+      next: data => this.hostelsData.set(data),
+      error: err => console.error('Error fetching hostel details: ', err)
+    })
+    this.roomService.getRoomsData().subscribe({
+      next: data => this.roomsData.set(data),
+      error: err => console.error('Error fetching hostel details: ', err)
+    })
   }
 
   registerHostelButton(): ActionButton {

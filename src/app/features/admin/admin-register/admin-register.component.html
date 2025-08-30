@@ -17,10 +17,19 @@
 }
 @if (!registerHostelVisibility) {
 <app-card [title]="'Hostels List'" baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-  <app-table [data]="hostelsData | async" [columns]="hostelColumns" />
+  @defer(when hostelsData()){
+  <app-table [data]="hostelsData()" [columns]="hostelColumns" />
+  } @placeholder{
+  <app-loading [styles]="loadingStyles" />
+  }
 </app-card>
 }
 @if (!registerRoomVisibility) {
 <app-card [title]="'Rooms List'" baseStyles="card card-compact bg-base-100 shadow-xl border border-[#5D5D81] my-5">
-  <app-table [data]="roomsData | async" [columns]="roomColumns" /></app-card>
+  @defer(when roomsData()){
+  <app-table [data]="roomsData()" [columns]="roomColumns" />
+  } @placeholder{
+  <app-loading [styles]="loadingStyles" />
+  }
+</app-card>
 }
