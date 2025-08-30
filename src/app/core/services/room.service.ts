@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class RoomService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://uhb.runasp.net';
+  private apiUrl = 'https://uhbapi.onrender.com';
 
   constructor() { }
 
