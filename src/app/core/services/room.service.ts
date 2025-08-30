@@ -15,4 +15,7 @@ export class RoomService {
   getRoomsData(): Observable<RoomData[]> {
     return this.http.get<RoomData[]>(`${this.apiUrl}/rooms`);
   }
+  createRoom(data: RoomData): Observable<RoomData>{
+    return this.http.post<RoomData>(`${this.apiUrl}/room`, data);
+  }
 }

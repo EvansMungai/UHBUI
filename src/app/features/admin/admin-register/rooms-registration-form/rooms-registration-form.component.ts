@@ -1,9 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
+import { RoomService } from '../../../../core/services/room.service';
+import { HostelService } from '../../../../core/services/hostel.service';
+import { showToast } from '../../../../shared/elements/toast/toastUtils';
 
 @Component({
   selector: 'rooms-registration-form',
@@ -11,43 +14,43 @@ import { ToastComponent } from '../../../../shared/elements/toast/toast.componen
   templateUrl: './rooms-registration-form.component.html',
   styleUrl: './rooms-registration-form.component.css'
 })
-export class RoomsRegistrationFormComponent {
+export class RoomsRegistrationFormComponent implements OnInit {
   private fb = inject(FormBuilder);
-  registerRoomForm: FormGroup;
-  submitButtonProps: SubmitButton
-  showToast: boolean = false;
-  toastStyles: string = '';
-  alertStyles: string = '';
-  alertMessage: string = '';
+  private roomService = inject(RoomService);
+  private hostelService = inject(HostelService);
 
-  constructor() {
-    this.registerRoomForm = this.fb.group({
-      roomNo: ['', Validators.required],
-      hostelNo: ['', Validators.required]
-    })
-    this.submitButtonProps = {
-      text: 'Register', type: 'submit', variant: 'secondary', formId: 'registerRoomForm'
-    }
+  registerRoomForm: FormGroup = this.fb.group({
+    roomNo: ['', Validators.required],
+    hostelNo: ['', Validators.required]
+  });
+  submitButtonProps: SubmitButton = {
+    text: 'Register', type: 'submit', variant: 'secondary', formId: 'registerRoomForm'
   }
+  readonly hostelNoDetails = signal<any | null>(null);
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
+
+  ngOnInit(): void {
+    this.hostelService.getHostelsData().subscribe({
+      next: data => this.hostelNoDetails.set(data.map(h => ({
+        no: h.hostelNo,
+        hostelName : h.hostelName
+      }))),
+      error: err => console.error('Error fetching hostel details')
+    });
+  }
+
   onSubmit(): void {
     if (this.registerRoomForm.valid) {
-      console.log(this.registerRoomForm.value);
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-success';
-      this.alertMessage = 'Room details successfully registered! 🎉  ';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      const data = this.registerRoomForm.value;
+      this.roomService.createRoom(data).subscribe({
+        next: () => showToast('Room details successfully registered! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        error: err => showToast(`Error: ${err}.`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
+      })
     } else {
-      console.log("Form invalid");
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-error';
-      this.alertMessage = 'Error: Room number is required. Please provide a valid room number to proceed.';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      showToast('Error: Form is invalid. Check missing values.', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     }
   }
 }
