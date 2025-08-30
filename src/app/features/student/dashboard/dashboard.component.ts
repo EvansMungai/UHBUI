@@ -1,22 +1,22 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Component, OnInit, inject, signal } from '@angular/core';
+
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableColumn } from '../../../core/interfaces/table.interface';
-import { Observable } from 'rxjs';
+import { LoadingComponent} from '../../../shared/elements/loading/loading.component';
 
 @Component({
   selector: 'student-dashboard',
-  imports: [CardComponent, TableComponent, AsyncPipe],
+  imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class StudentDashboardComponent {
+export class StudentDashboardComponent implements OnInit {
   private studentService = inject(StudentService);
   
   cardTitle: string = "Student Details"
-  tableData: Observable<any> = {} as Observable<any>;
+  tableData = signal<any | null>(null);
   tableColumns: TableColumn[] = [
     { key: 'regNo', header: 'Registration Number' },
     { key: 'surname', header: 'Surname' },
@@ -24,8 +24,12 @@ export class StudentDashboardComponent {
     { key: 'secondName', header: 'Second Name' },
     { key: 'gender', header: 'Gender' },
   ];
+  loadingStyles: string = 'loading-spinner loading-lg';
 
-  constructor() {
-    this.tableData = this.studentService.getStudentData();
+  ngOnInit(): void {
+      this.studentService.getStudentData().subscribe({
+        next: data => this.tableData.set(data),
+        error: err => console.error('Error fetching student details: ', err)
+      })
   }
 }
