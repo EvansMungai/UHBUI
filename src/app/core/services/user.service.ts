@@ -14,6 +14,9 @@ export class UserService {
   getUsersData(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`);
   }
+  getSpecificUserData(username: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/user/${username}`);
+  }
   getRoles(): Observable<any> {
     return this.http.get(`${this.apiUrl}/roles`);
   }
@@ -23,5 +26,8 @@ export class UserService {
   }
   createUser(data: any) {
     return this.http.post(`${this.apiUrl}/register`, data)
+  }
+  login(data: any) {
+    return this.http.post(`${this.apiUrl}/login`, data);
   }
 }
