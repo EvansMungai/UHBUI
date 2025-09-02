@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { UserDetails } from '../interfaces/userData';
-import { UserInfo } from '../interfaces/mock_userData';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  protected UserInfoList: UserDetails[] = UserInfo
+  private apiUrl = 'https://uhbapi.onrender.com';
+  private http = inject(HttpClient)
   constructor() { }
+
   getUsersData() {
-    return this.UserInfoList;
+    return this.http.get(`${this.apiUrl}/users`);
   }
 }
