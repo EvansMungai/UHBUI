@@ -19,10 +19,13 @@ import { ChangeUserRolesComponent } from './features/admin/change-user-roles/cha
 import { ChangeRoleFormComponent } from './features/admin/change-user-roles/change-role-form/change-role-form.component';
 import { SuccessfulApplicationsComponent } from './features/housekeeper/successful-applications/successful-applications.component';
 import { AllocatedRoomsComponent } from './features/matron/allocated-rooms/allocated-rooms.component';
-import { LoadingComponent } from './shared/elements/loading/loading.component';
+import { LoginComponent } from './shared/login/login.component';
+import { SignupComponent } from './shared/signup/signup.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'signup', component: SignupComponent },
     { path: 'uhb', redirectTo: 'uhb/student/register-student-details', pathMatch: 'full' },
     {
         path: 'uhb', component: DrawerComponent,

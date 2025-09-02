@@ -13,8 +13,6 @@ export class LinkService {
 
   links: any[] = [];
 
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
   constructor() {
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((event: NavigationEnd) => {
       this.updateLinks(event.urlAfterRedirects);

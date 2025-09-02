@@ -8,12 +8,12 @@ export const HomeLinks: Link[] = [
     },
     {
         title: "Sign Up",
-        url: "/",
+        url: "/signup",
         class: "fa-solid fa-bars"
     },
     {
         title: "Log In",
-        url: "/",
+        url: "/login",
         class: "fa-solid fa-bars"
     }
 ]
