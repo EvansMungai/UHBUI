@@ -1,9 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
+import { showToast} from '../../../shared/elements/toast/toastUtils';
+import { StudentService } from '../../../core/services/student.service';
 
 @Component({
   selector: 'app-register-student-details',
@@ -13,45 +16,32 @@ import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 })
 export class RegisterStudentDetailsComponent {
   private fb = inject(FormBuilder);
-  
-  studentProfileForm: FormGroup;
-  submitButtonProps: SubmitButton;
-  showToast: boolean = false;
-  toastStyles: string = '';
-  alertStyles: string = '';
-  alertMessage: string = '';
+  private studentService = inject(StudentService);
 
-  constructor() {
-    this.studentProfileForm = this.fb.group({
-      registrationNo: ['', [Validators.required, Validators.pattern('^[A-Z]\\d{3}-\\d{2}-\\d{4}/\\d{4}$')]],
-      surname: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      gender: ['', Validators.required]
-    });
-    this.submitButtonProps = {
-      text: 'Submit', type: 'submit', variant: "secondary", formId: 'studentRegistrationForm'
-    }
+  studentProfileForm: FormGroup = this.fb.group({
+    regNo: ['', [Validators.required, Validators.pattern('^[A-Z]\\d{3}-\\d{2}-\\d{4}/\\d{4}$')]],
+    surname: ['', Validators.required],
+    firstName: ['', Validators.required],
+    secondName: ['', Validators.required],
+    gender: ['', Validators.required]
+  });
+  submitButtonProps: SubmitButton = {
+    text: 'Submit', type: 'submit', variant: "secondary", formId: 'studentRegistrationForm'
   }
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
+
   onSubmit(): void {
     if (this.studentProfileForm.valid) {
-      console.log(this.studentProfileForm.value);
-      this.showToast = true;
-      this.toastStyles = 'toast-bottom toast-end';
-      this.alertStyles = 'alert-success'
-      this.alertMessage = 'Your form has been submitted successfully!';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      this.studentService.createStudentDetails(this.studentProfileForm.value).subscribe({
+        next: () => showToast('Your form was submitted successfully!', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
+        error: err => console.error('Error registering student details: ', err)
+      })
     } else {
       console.log('Form is invalid');
-      this.showToast = true;
-      this.toastStyles = 'toast-bottom toast-end';
-      this.alertStyles = 'alert-error'
-      this.alertMessage = 'Your form was not submitted!'
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      showToast('Your form was not submitted!', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     }
   }
 }

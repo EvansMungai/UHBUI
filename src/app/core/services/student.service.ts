@@ -27,19 +27,7 @@ export class StudentService {
     const encodedRegNo = encodeURIComponent(registrationNo);
     return this.http.get<ApplicationData>(`${this.apiUrl}/application/${encodedRegNo}`).pipe(map((data: ApplicationData) => [data]));
   }
-  // getAccommodationDetails(): { RegistrationNo: string, Status: string, PreferredHostel: string, RoomNo: string }[] {
-  //   return this.applicationInfoList.map(data => ({
-  //     RegistrationNo: data.RegistrationNo,
-  //     Status: data.Status,
-  //     PreferredHostel: data.PreferredHostel,
-  //     RoomNo: data.RoomNo
-  //   }))
-  // }
-  // getStudentApplications(): { ApplicationPeriod: string, RegistrationNo: string, Status: string }[] {
-  //   return this.applicationInfoList.map(data => ({
-  //     ApplicationPeriod: data.ApplicationPeriod,
-  //     RegistrationNo: data.RegistrationNo,
-  //     Status: data.Status,
-  //     PreferredHostel: data.PreferredHostel
-  //   }))
+  createStudentDetails(data: any): Observable<any>{
+    return this.http.post(`${this.apiUrl}/student`, data);
+  }
 }
