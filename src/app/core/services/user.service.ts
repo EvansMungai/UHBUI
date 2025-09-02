@@ -19,8 +19,9 @@ export class UserService {
   }
   assignRoleToUser(username: string, role: string) {
     const params = new HttpParams().set('role', role);
-    console.log(username);
-    console.log(role);
     return this.http.put(`${this.apiUrl}/user-role/${username}`, null, { params })
+  }
+  createUser(data: any) {
+    return this.http.post(`${this.apiUrl}/register`, data)
   }
 }

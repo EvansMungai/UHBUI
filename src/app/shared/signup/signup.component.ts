@@ -1,20 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { ButtonComponent } from '../elements/button/button.component';
+import { ToastComponent } from '../elements/toast/toast.component';
 import { SubmitButton } from '../../core/interfaces/button.interface';
+import { UserService } from '../../core/services/user.service';
+import { showToast } from '../elements/toast/toastUtils';
 
 @Component({
   selector: 'app-signup',
-  imports: [ReactiveFormsModule, ButtonComponent],
+  imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
   private fb = inject(FormBuilder);
+  private userService = inject(UserService);
 
   signupForm = this.fb.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required]
+    userName: ['', Validators.required],
+    passwordHash: ['', Validators.required]
   })
   submitButtonProps: SubmitButton = {
     text: 'Submit',
@@ -23,8 +28,15 @@ export class SignupComponent {
     variant: 'secondary',
     formId: 'signupForm'
   };
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
 
   onSubmit(): void {
-    console.log(this.signupForm.value);
+    this.userService.createUser(this.signupForm.value).subscribe({
+      next: () => showToast("User created successfully.", 'alert-success', this.toastVisible,this.toastStyles, this.alertStyles, this.alertMessage),
+      error: err => console.error('Error creating user details: ', err)
+    })
   }
 }
