@@ -3,12 +3,11 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
 import { TableComponent } from '../../../shared/elements/table/table.component';
-import { TableColumn } from '../../../core/interfaces/table.interface';
 import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 
 @Component({
   selector: 'student-dashboard',
-  imports: [CardComponent, TableComponent, LoadingComponent],
+  imports: [CardComponent, LoadingComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

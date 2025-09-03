@@ -2,13 +2,12 @@
 import { Component, OnInit, signal } from '@angular/core';
 
 import { ChangePasswordComponent } from "../change-password/change-password.component";
-import { LoadingComponent } from '../../elements/loading/loading.component';
 import { ButtonComponent } from '../../elements/button/button.component';
 import { ActionButton } from '../../../core/interfaces/button.interface';
 
 @Component({
   selector: 'app-user-details',
-  imports: [ChangePasswordComponent, LoadingComponent, ButtonComponent],
+  imports: [ChangePasswordComponent, ButtonComponent],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })

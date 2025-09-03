@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, data);
+    return this.http.post(`${this.apiUrl}/login`, data, { withCredentials: true });
   }
   getUser(): UserDetails | null {
     return this.currentUser;
@@ -43,6 +43,9 @@ export class AuthService {
   }
   hasAnyRole(roles: string[]): boolean {
     return roles.includes(this.getRole() ?? '');
+  }
+  changePassword(data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/change-password`, data, { withCredentials: true });
   }
   logout(): void {
     this.currentUser = null;

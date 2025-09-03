@@ -1,10 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
+
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ButtonComponent } from '../../elements/button/button.component';
 import { ToastComponent } from '../../elements/toast/toast.component';
 import { showToast } from '../../utils/toastUtils';
+import { AuthService } from '../../../core/services/auth.service';
+import {extractErrorMessage} from '../../utils/errorHandling';
 
 @Component({
   selector: 'app-change-password',
@@ -14,6 +17,8 @@ import { showToast } from '../../utils/toastUtils';
 })
 export class ChangePasswordComponent {
   private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   changePasswordForm: FormGroup;
   submitButtonProps: SubmitButton;
@@ -42,8 +47,19 @@ export class ChangePasswordComponent {
   }
   onSubmit(): void {
     if (this.changePasswordForm.valid) {
-      console.log(this.changePasswordForm.value);
-      showToast('Password changed successfully! 🔒', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+      const data = this.changePasswordForm.value;
+      this.authService.changePassword(data).subscribe({
+        next: () => {
+          showToast('Password changed successfully! 🔒', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+          this.authService.logout();
+          this.router.navigate(['/login']);
+        },
+        error: (err)=> {
+          const errorMessage = extractErrorMessage(err);
+          showToast(`Error: ${errorMessage}`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+        }
+      })
+
     } else {
       console.log("Form invalid");
       showToast('Error: The form contains invalid or missing information. Please review and correct the highlighted fields before resubmitting', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
