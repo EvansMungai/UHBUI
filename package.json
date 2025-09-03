@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node dist/uhb/server/server.mjs",
+    "start": "node dist/uhb/server/main.js",
     "build": "ng build && ng run uhb:server",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

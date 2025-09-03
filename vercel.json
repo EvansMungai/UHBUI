@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/uhb/server/server.mjs",
+      "src": "dist/uhb/server/main.js",
       "use": "@vercel/node"
     },
     {
@@ -13,7 +13,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/uhb/server/server.mjs"
+      "dest": "dist/uhb/server/main.js"
     }
   ]
 }
