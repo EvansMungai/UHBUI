@@ -2,7 +2,7 @@
 <div>
   <p class="my-3 md:my-5 text-sm md:text-base">Below are the details of your profile. If you would like to changes to
     your password, simply
-  click the 'Change Password' button to update it with ease.</p>
+    click the 'Change Password' button to update it with ease.</p>
   <!-- Profile Information Card -->
   <div class="flex flex-1 flex-col mx-auto m-2 md:m-4 p-3 md:p-4 border border-[#5D5D81] shadow-xl rounded-lg">
     <h2 class="text-lg md:text-xl font-bold mb-2">Profile Information</h2>
@@ -10,11 +10,11 @@
     <div class="divide-y divide-gray-200">
       <div class="flex flex-col sm:flex-row py-3 md:py-4">
         <div class="w-full sm:w-1/4 md:w-1/6 font-bold text-gray-800 mb-1 sm:mb-0 sm:mr-3">Username:</div>
-        <div class="flex-grow text-gray-600">Ali</div>
+        <div class="flex-grow text-gray-600">{{userData().userName}}</div>
       </div>
       <div class="flex flex-col sm:flex-row py-3 md:py-4">
         <div class="w-full sm:w-1/4 md:w-1/6 font-bold text-gray-800 mb-1 sm:mb-0">Role:</div>
-        <div class="flex-grow text-gray-600">Student</div>
+        <div class="flex-grow text-gray-600">{{userData().role}}</div>
       </div>
     </div>
     <div class="mt-4">
@@ -25,9 +25,8 @@
       </button>
     </div>
   </div>
-</div>
-@if (showChangePasswordForm) {
+  @if (showChangePasswordForm) {
   <div>
     <app-change-password />
   </div>
-}
+  }
