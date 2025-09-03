@@ -22,6 +22,7 @@ import { AllocatedRoomsComponent } from './features/matron/allocated-rooms/alloc
 import { LoginComponent } from './shared/pages/login/login.component';
 import { SignupComponent } from './shared/pages/signup/signup.component';
 import { roleGuard } from './core/guards/role.guard';
+import { AccessDeniedComponent } from './shared/pages/access-denied/access-denied.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -68,5 +69,6 @@ export const routes: Routes = [
             }
         ]
     },
+    { path: 'access-denied', component: AccessDeniedComponent },
     { path: '**', component: NotfoundComponent }
 ];
