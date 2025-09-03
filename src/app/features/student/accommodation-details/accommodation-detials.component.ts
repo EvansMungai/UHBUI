@@ -30,16 +30,17 @@ export class AccommodationDetailsComponent implements OnInit {
   loadingStyles: string = 'loading-spinner loading-lg';
 
   ngOnInit(): void {
-    this.studentService.getSpecificStudentData(this.regNo).subscribe({
-      next: data => {
-        const regNo = data.regNo;
-        console.log(data);
-        this.applicationService.getApplications().subscribe({
-          next: data => this.tableData.set(data.filter(a => a.registrationNo === regNo)),
-          error: err => console.error('Error fetching specific application details')
-        })
-      },
-      error: err => console.error('Error fetching specific student details: ', err)
-    });
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      const rawUserName = user.userName;
+      const regNo = rawUserName.replace(/-(?=[^-]*$)/, '/');
+      this.applicationService.getApplications().subscribe({
+        next: data => this.tableData.set(data.filter(a => a.registrationNo === regNo)),
+        error: err => console.error('Error fetching specific application details')
+      })
+    } else {
+      console.warn('No user data found in local storage')
+    }
   }
 }
