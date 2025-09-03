@@ -18,11 +18,12 @@
       </div>
     </div>
     <div class="mt-4">
-      <button
+      <!-- <button
         class="btn bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 md:py-3 md:px-6 rounded-md transition duration-300 w-full sm:w-auto"
         (click)="toggleChangePasswordForm()">
         Change Password
-      </button>
+      </button> -->
+      <app-button [buttonProps]="buttonProps" />
     </div>
   </div>
   @if (showChangePasswordForm) {
