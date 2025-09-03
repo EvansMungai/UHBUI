@@ -20,6 +20,11 @@
             @for (link of links; track $index) {
             <li class="text-white text-[12px]"><a href="{{link.url}}">{{link.title}}</a></li>
             }
+            <li class="text-[12px] text-white">
+                <button (click)="logout()">Logout</button>
+            </li>
         </ul>
     </div>
 </nav>
+<app-toast [styles]="toastStyles()" [showToast]="toastVisible()" [alertStyle]="alertStyles()"
+    [alertMessage]="alertMessage()" />

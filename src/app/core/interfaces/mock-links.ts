@@ -43,11 +43,11 @@ export const StudentLinks: Link[] = [
         url: "/uhb/student/user-details",
         class: "user-gear"
     },
-    {
-        title: "Log Out",
-        url: "/",
-        class: "right-from-bracket"
-    },
+    // {
+    //     title: "Log Out",
+    //     url: "/",
+    //     class: "right-from-bracket"
+    // },
 ]
 export const HousekeeperLinks: Link[] = [
     {
@@ -65,11 +65,11 @@ export const HousekeeperLinks: Link[] = [
         url: "/uhb/housekeeper/user-details",
         class: "user-gear"
     },
-    {
-        title: "Log Out",
-        url: "/",
-        class: "right-from-bracket"
-    }
+    // {
+    //     title: "Log Out",
+    //     url: "/",
+    //     class: "right-from-bracket"
+    // }
 ]
 export const MatronLinks: Link[] = [
     {
@@ -87,11 +87,11 @@ export const MatronLinks: Link[] = [
         url: "/uhb/matron/user-details",
         class: "user-gear"
     },
-    {
-        title: "Log Out",
-        url: "/",
-        class: "right-from-bracket"
-    }
+    // {
+    //     title: "Log Out",
+    //     url: "/",
+    //     class: "right-from-bracket"
+    // }
 ]
 export const AdminLinks: Link[] = [
     {
@@ -114,9 +114,9 @@ export const AdminLinks: Link[] = [
         url: "/uhb/admin/user-details",
         class: "users-gear"
     },
-    {
-        title: "Log Out",
-        url: "/",
-        class: "right-from-bracket"
-    }
+    // {
+    //     title: "Log Out",
+    //     url: "/",
+    //     class: "right-from-bracket"
+    // }
 ]
