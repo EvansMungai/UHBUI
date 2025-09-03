@@ -7,6 +7,7 @@ import { ToastComponent } from '../../../../shared/elements/toast/toast.componen
 import { RoomService } from '../../../../core/services/room.service';
 import { HostelService } from '../../../../core/services/hostel.service';
 import { showToast } from '../../../../shared/utils/toastUtils';
+import { extractErrorMessage } from '../../../../shared/utils/errorHandling';
 
 @Component({
   selector: 'rooms-registration-form',
@@ -47,8 +48,10 @@ export class RoomsRegistrationFormComponent implements OnInit {
       const data = this.registerRoomForm.value;
       this.roomService.createRoom(data).subscribe({
         next: () => showToast('Room details successfully registered! 🎉  ', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage),
-        error: err => showToast(`Error: ${err}.`, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage)
-      })
+        error: err => {
+          const errorMessage = extractErrorMessage(err);
+          showToast(errorMessage, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+        }})
     } else {
       showToast('Error: Form is invalid. Check missing values.', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     }
