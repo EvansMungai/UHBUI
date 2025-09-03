@@ -1,32 +1,33 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ButtonComponent } from '../../elements/button/button.component';
 import { ToastComponent } from '../../elements/toast/toast.component';
+import { showToast } from '../../utils/toastUtils';
 
 @Component({
-    selector: 'app-change-password',
-    imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
-    templateUrl: './change-password.component.html',
-    styleUrl: './change-password.component.css'
+  selector: 'app-change-password',
+  imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
+  templateUrl: './change-password.component.html',
+  styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent {
   private fb = inject(FormBuilder);
 
   changePasswordForm: FormGroup;
   submitButtonProps: SubmitButton;
-  showToast: boolean = false;
-  toastStyles: string = '';
-  alertStyles: string = '';
-  alertMessage: string = '';
-  
+  toastVisible = signal(false);
+  toastStyles = signal('');
+  alertStyles = signal('');
+  alertMessage = signal('');
+
   constructor() {
     const passwordMatchValidator = (control: AbstractControl): ValidationErrors | null => {
       const formGroup = control as FormGroup;
       const newPassword = formGroup.get('newPassword')?.value;
       const confirmPassword = formGroup.get('confirmPassword')?.value;
-    
+
       return newPassword === confirmPassword ? null : { passwordsMismatch: true };
     };
     this.changePasswordForm = this.fb.group({
@@ -42,22 +43,10 @@ export class ChangePasswordComponent {
   onSubmit(): void {
     if (this.changePasswordForm.valid) {
       console.log(this.changePasswordForm.value);
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-success';
-      this.alertMessage = 'Password changed successfully! 🔒';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      showToast('Password changed successfully! 🔒', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     } else {
       console.log("Form invalid");
-      this.showToast = true;
-      this.toastStyles = 'toast-top toast-end';
-      this.alertStyles = 'alert-error';
-      this.alertMessage = 'Error: The form contains invalid or missing information. Please review and correct the highlighted fields before resubmitting';
-      setTimeout(() => {
-        this.showToast = false;
-      }, 3000);
+      showToast('Error: The form contains invalid or missing information. Please review and correct the highlighted fields before resubmitting', 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
     }
   }
 }
