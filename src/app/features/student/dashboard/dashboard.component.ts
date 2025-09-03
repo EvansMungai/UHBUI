@@ -4,7 +4,7 @@ import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableColumn } from '../../../core/interfaces/table.interface';
-import { LoadingComponent} from '../../../shared/elements/loading/loading.component';
+import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 
 @Component({
   selector: 'student-dashboard',
@@ -14,22 +14,31 @@ import { LoadingComponent} from '../../../shared/elements/loading/loading.compon
 })
 export class StudentDashboardComponent implements OnInit {
   private studentService = inject(StudentService);
-  
+
   cardTitle: string = "Student Details"
-  tableData = signal<any | null>(null);
-  tableColumns: TableColumn[] = [
-    { key: 'regNo', header: 'Registration Number' },
-    { key: 'surname', header: 'Surname' },
-    { key: 'firstName', header: 'First Name' },
-    { key: 'secondName', header: 'Second Name' },
-    { key: 'gender', header: 'Gender' },
-  ];
+  studentData = signal<any | null>(null);
+  // tableColumns: TableColumn[] = [
+  //   { key: 'regNo', header: 'Registration Number' },
+  //   { key: 'surname', header: 'Surname' },
+  //   { key: 'firstName', header: 'First Name' },
+  //   { key: 'secondName', header: 'Second Name' },
+  //   { key: 'gender', header: 'Gender' },
+  // ];
   loadingStyles: string = 'loading-spinner loading-lg';
 
   ngOnInit(): void {
-      this.studentService.getStudentData().subscribe({
-        next: data => this.tableData.set(data),
+    const userJson = localStorage.getItem('user');
+    if (userJson) {
+      const user = JSON.parse(userJson);
+      const rawUserName = user.userName;
+      const regNo = rawUserName.replace(/-(?=[^-]*$)/, '/');
+      console.log(regNo);
+      this.studentService.getSpecificStudentData(regNo).subscribe({
+        next: data => this.studentData.set(data),
         error: err => console.error('Error fetching student details: ', err)
       })
+    } else {
+      console.warn('No user data found in local storage')
+    }
   }
 }
