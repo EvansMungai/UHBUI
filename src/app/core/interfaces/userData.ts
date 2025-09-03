@@ -1,4 +1,6 @@
 export interface UserDetails {
-    Username: string, 
-    Role: string
+    userName: string, 
+    role: 'Student' | 'Admin' | 'Housekeeper' | 'Matron',
+    phoneNumber: string,
+    email: string
 }

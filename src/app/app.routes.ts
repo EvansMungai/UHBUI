@@ -21,6 +21,7 @@ import { SuccessfulApplicationsComponent } from './features/housekeeper/successf
 import { AllocatedRoomsComponent } from './features/matron/allocated-rooms/allocated-rooms.component';
 import { LoginComponent } from './shared/pages/login/login.component';
 import { SignupComponent } from './shared/pages/signup/signup.component';
+import { roleGuard } from './core/guards/role.guard';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent },
@@ -32,37 +33,37 @@ export const routes: Routes = [
         children: [
             {
                 path: 'student', component: DashboardComponent, children: [
-                    { path: '', component: StudentDashboardComponent },
-                    { path: 'register-student-details', component: RegisterStudentDetailsComponent },
-                    { path: 'booking', component: BookingComponent },
-                    { path: 'application-details', component: ApplicationDetailsComponent },
-                    { path: 'accommodation-details', component: AccommodationDetailsComponent },
-                    { path: 'user-details', component: UserDetailsComponent }
+                    { path: '', component: StudentDashboardComponent, canActivate: [roleGuard], data: { roles: ['Student'] } },
+                    { path: 'register-student-details', component: RegisterStudentDetailsComponent, canActivate: [roleGuard], data: { roles: ['Student'] } },
+                    { path: 'booking', component: BookingComponent, canActivate: [roleGuard], data: { roles: ['Student'] } },
+                    { path: 'application-details', component: ApplicationDetailsComponent, canActivate: [roleGuard], data: { roles: ['Student'] } },
+                    { path: 'accommodation-details', component: AccommodationDetailsComponent, canActivate: [roleGuard], data: { roles: ['Student'] } },
+                    { path: 'user-details', component: UserDetailsComponent, canActivate: [roleGuard], data: { roles: ['Student'] } }
                 ]
             },
             {
                 path: 'housekeeper', component: DashboardComponent, children: [
-                    { path: '', component: ReviewApplicationsComponent },
-                    { path: 'view-application/:id', component: ViewApplicationComponent },
-                    { path: 'successful-applications', component: SuccessfulApplicationsComponent },
-                    { path: 'user-details', component: UserDetailsComponent }
+                    { path: '', component: ReviewApplicationsComponent, canActivate: [roleGuard], data: { roles: ['Housekeeper'] } },
+                    { path: 'view-application/:id', component: ViewApplicationComponent, canActivate: [roleGuard], data: { roles: ['Housekeeper'] } },
+                    { path: 'successful-applications', component: SuccessfulApplicationsComponent, canActivate: [roleGuard], data: { roles: ['Housekeeper'] } },
+                    { path: 'user-details', component: UserDetailsComponent, canActivate: [roleGuard], data: { roles: ['Housekeeper'] } }
                 ]
             },
             {
                 path: 'matron', component: DashboardComponent, children: [
-                    { path: '', component: ReviewAllocationsComponent },
-                    { path: 'view-allocation/:id', component: ViewAllocationComponent },
-                    { path: 'allocated-rooms', component: AllocatedRoomsComponent },
-                    { path: 'user-details', component: UserDetailsComponent }
+                    { path: '', component: ReviewAllocationsComponent, canActivate: [roleGuard], data: { roles: ['Matron'] } },
+                    { path: 'view-allocation/:id', component: ViewAllocationComponent, canActivate: [roleGuard], data: { roles: ['Matron'] } },
+                    { path: 'allocated-rooms', component: AllocatedRoomsComponent, canActivate: [roleGuard], data: { roles: ['Matron'] } },
+                    { path: 'user-details', component: UserDetailsComponent, canActivate: [roleGuard], data: { roles: ['Matron'] } }
                 ]
             },
             {
                 path: 'admin', component: DashboardComponent, children: [
-                    { path: '', component: AdminDashboardComponent },
-                    { path: 'register', component: AdminRegisterComponent },
-                    { path: 'change-user-roles', component: ChangeUserRolesComponent },
-                    { path: 'change-user-roles/:id', component: ChangeRoleFormComponent },
-                    { path: 'user-details', component: UserDetailsComponent }
+                    { path: '', component: AdminDashboardComponent, canActivate: [roleGuard], data: { roles: ['Admin'] } },
+                    { path: 'register', component: AdminRegisterComponent, canActivate: [roleGuard], data: { roles: ['Admin'] } },
+                    { path: 'change-user-roles', component: ChangeUserRolesComponent, canActivate: [roleGuard], data: { roles: ['Admin'] } },
+                    { path: 'change-user-roles/:id', component: ChangeRoleFormComponent, canActivate: [roleGuard], data: { roles: ['Admin'] } },
+                    { path: 'user-details', component: UserDetailsComponent, canActivate: [roleGuard], data: { roles: ['Admin'] } }
                 ]
             }
         ]

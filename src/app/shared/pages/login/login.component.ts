@@ -5,8 +5,10 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ButtonComponent } from '../../elements/button/button.component';
 import { ToastComponent } from '../../elements/toast/toast.component';
 import { UserService } from '../../../core/services/user.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { showToast } from '../../utils/toastUtils';
 import { extractErrorMessage } from '../../utils/errorHandling';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,8 @@ import { extractErrorMessage } from '../../utils/errorHandling';
 export class LoginComponent {
   private fb = inject(FormBuilder);
   private userService = inject(UserService);
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
   loginForm = this.fb.group({
     userName: ['', Validators.required],
@@ -35,15 +39,46 @@ export class LoginComponent {
   alertMessage = signal('');
 
   onSubmit(): void {
-    this.userService.login(this.loginForm.value).subscribe({
-      next: (data) => {
+    // this.userService.login(this.loginForm.value).subscribe({
+    //   next: (data) => {
+    //     showToast('Welcome Back.', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+    //     this.authService.lo
+    //   },
+    //   error: err => {
+    //     const errorMessage = extractErrorMessage(err);
+    //     showToast(errorMessage, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+    //   }
+    // })
+    this.authService.login(this.loginForm.value).subscribe({
+      next: data => {
+        const user = data[0];
         showToast('Welcome Back.', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
-        console.log(data);
+        this.authService.setUser(user);
+        this.redirectBasedOnRole(user.role);
       },
       error: err => {
         const errorMessage = extractErrorMessage(err);
         showToast(errorMessage, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
       }
     })
+  }
+  redirectBasedOnRole(role: string) {
+    switch (role) {
+      case 'Student':
+        this.router.navigate(['/uhb/student']);
+        break;
+      case 'Admin':
+        this.router.navigate(['/uhb/admin']);
+        break;
+      case 'Housekeeper':
+        this.router.navigate(['/uhb/housekeeper']);
+        break;
+      case 'Matron':
+        this.router.navigate(['/uhb/matron']);
+        break;
+      default:
+        this.router.navigate(['/access-denied']);
+        break;
+    }
   }
 }
