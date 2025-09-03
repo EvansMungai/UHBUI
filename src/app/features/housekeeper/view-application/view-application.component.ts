@@ -10,7 +10,7 @@ import { ApplicationService } from '../../../core/services/application.service';
 import { StudentService } from '../../../core/services/student.service';
 import { HostelService } from '../../../core/services/hostel.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
-import { showToast } from '../../../shared/elements/toast/toastUtils';
+import { showToast } from '../../../shared/utils/toastUtils';
 
 @Component({
   selector: 'app-view-application',

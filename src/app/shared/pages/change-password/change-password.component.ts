@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
-import { SubmitButton } from '../../core/interfaces/button.interface';
-import { ButtonComponent } from '../elements/button/button.component';
-import { ToastComponent } from '../elements/toast/toast.component';
+import { SubmitButton } from '../../../core/interfaces/button.interface';
+import { ButtonComponent } from '../../elements/button/button.component';
+import { ToastComponent } from '../../elements/toast/toast.component';
 
 @Component({
     selector: 'app-change-password',

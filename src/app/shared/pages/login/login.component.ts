@@ -1,11 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { SubmitButton } from '../../core/interfaces/button.interface';
-import { ButtonComponent } from '../elements/button/button.component';
-import { ToastComponent } from '../elements/toast/toast.component';
-import { UserService } from '../../core/services/user.service';
-import { showToast } from '../elements/toast/toastUtils';
+import { SubmitButton } from '../../../core/interfaces/button.interface';
+import { ButtonComponent } from '../../elements/button/button.component';
+import { ToastComponent } from '../../elements/toast/toast.component';
+import { UserService } from '../../../core/services/user.service';
+import { showToast } from '../../utils/toastUtils';
+import { extractErrorMessage } from '../../utils/errorHandling';
 
 @Component({
   selector: 'app-login',
@@ -39,7 +40,10 @@ export class LoginComponent {
         showToast('Welcome Back.', 'alert-success', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
         console.log(data);
       },
-      error: err => console.log('Error retrieving user details', err)
+      error: err => {
+        const errorMessage = extractErrorMessage(err);
+        showToast(errorMessage, 'alert-error', this.toastVisible, this.toastStyles, this.alertStyles, this.alertMessage);
+      }
     })
   }
 }

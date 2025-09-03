@@ -10,7 +10,7 @@ import { RoomService } from '../../../core/services/room.service';
 import { ActionButton } from '../../../core/interfaces/button.interface';
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { TableColumn } from '../../../core/interfaces/table.interface';
-import {LoadingComponent} from '../../../shared/elements/loading/loading.component';
+import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 
 @Component({
   selector: 'app-admin-register',

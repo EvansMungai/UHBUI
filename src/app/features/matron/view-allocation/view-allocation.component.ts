@@ -6,7 +6,7 @@ import { ButtonComponent } from '../../../shared/elements/button/button.componen
 import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
-import { showToast } from '../../../shared/elements/toast/toastUtils';
+import { showToast } from '../../../shared/utils/toastUtils';
 import { ApplicationService } from '../../../core/services/application.service';
 import { RoomService } from '../../../core/services/room.service';
 import { HostelService } from '../../../core/services/hostel.service';

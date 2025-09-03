@@ -7,7 +7,7 @@ import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
 import { ApplicationService } from '../../../core/services/application.service';
 import { ApplicationData } from '../../../core/interfaces/applicationData';
-import { showToast } from '../../../shared/elements/toast/toastUtils';
+import { showToast } from '../../../shared/utils/toastUtils';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

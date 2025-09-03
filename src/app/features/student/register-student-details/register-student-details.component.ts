@@ -5,7 +5,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { ButtonComponent } from '../../../shared/elements/button/button.component';
 import { SubmitButton } from '../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../shared/elements/toast/toast.component';
-import { showToast} from '../../../shared/elements/toast/toastUtils';
+import { showToast} from '../../../shared/utils/toastUtils';
 import { StudentService } from '../../../core/services/student.service';
 
 @Component({

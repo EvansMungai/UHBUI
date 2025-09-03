@@ -5,7 +5,7 @@ import { ButtonComponent } from '../../../../shared/elements/button/button.compo
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
-import { showToast } from '../../../../shared/elements/toast/toastUtils';
+import { showToast } from '../../../../shared/utils/toastUtils';
 import { UserService } from '../../../../core/services/user.service';
 import { LoadingComponent } from '../../../../shared/elements/loading/loading.component';
 

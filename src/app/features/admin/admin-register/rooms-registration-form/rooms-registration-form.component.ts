@@ -6,7 +6,7 @@ import { SubmitButton } from '../../../../core/interfaces/button.interface';
 import { ToastComponent } from '../../../../shared/elements/toast/toast.component';
 import { RoomService } from '../../../../core/services/room.service';
 import { HostelService } from '../../../../core/services/hostel.service';
-import { showToast } from '../../../../shared/elements/toast/toastUtils';
+import { showToast } from '../../../../shared/utils/toastUtils';
 
 @Component({
   selector: 'rooms-registration-form',
