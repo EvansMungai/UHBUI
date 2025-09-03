@@ -1,122 +1,103 @@
+import { Icons } from "./icon-registry"
 import { Link } from "./links"
 
 export const HomeLinks: Link[] = [
     {
         title: "Contact",
         url: "#footer",
-        class: "fa-bars"
+        icon: Icons.bars
     },
     {
         title: "Sign Up",
         url: "/signup",
-        class: "fa-solid fa-bars"
+        icon: Icons.bars
     },
     {
         title: "Log In",
         url: "/login",
-        class: "fa-solid fa-bars"
+        icon: Icons.bars
     }
 ]
 export const StudentLinks: Link[] = [
     {
         title: "Dashboard",
         url: "/uhb/student",
-        class: "house"
+        icon: Icons.house
     },
     {
         title: "Book a Room",
         url: "/uhb/student/booking",
-        class: "pen-to-square"
+        icon: Icons.penToSquare
     },
     {
         title: "Application Details",
         url: "/uhb/student/application-details",
-        class: "file-pen"
+        icon: Icons.filePen
     },
     {
         title: "Accommodation Details",
         url: "/uhb/student/accommodation-details",
-        class: "house-user"
+        icon: Icons.houseUser
     },
     {
         title: "User Details",
         url: "/uhb/student/user-details",
-        class: "user-gear"
-    },
-    // {
-    //     title: "Log Out",
-    //     url: "/",
-    //     class: "right-from-bracket"
-    // },
+        icon: Icons.userGear
+    }
 ]
 export const HousekeeperLinks: Link[] = [
     {
         title: "Review Applications",
         url: "/uhb/housekeeper",
-        class: "file-pen"
+        icon: Icons.filePen
     },
     {
         title: "Successful Applications",
         url: "/uhb/housekeeper/successful-applications",
-        class: "book"
+        icon: Icons.book
     },
     {
         title: "User Details",
         url: "/uhb/housekeeper/user-details",
-        class: "user-gear"
-    },
-    // {
-    //     title: "Log Out",
-    //     url: "/",
-    //     class: "right-from-bracket"
-    // }
+        icon: Icons.userGear
+    }
 ]
 export const MatronLinks: Link[] = [
     {
         title: "Review Allocations",
         url: "/uhb/matron",
-        class: "file-pen"
+        icon: Icons.filePen
     },
     {
         title: "Allocated Rooms",
         url: "/uhb/matron/allocated-rooms",
-        class: "tents"
+        icon: Icons.tents
     },
     {
         title: "User Details",
         url: "/uhb/matron/user-details",
-        class: "user-gear"
-    },
-    // {
-    //     title: "Log Out",
-    //     url: "/",
-    //     class: "right-from-bracket"
-    // }
+        icon: Icons.userGear
+    }
 ]
 export const AdminLinks: Link[] = [
     {
         title: "Dashboard",
         url: "/uhb/admin",
-        class: ""
+        icon: Icons.house
     },
     {
         title: "Hostel Management",
         url: "/uhb/admin/register",
-        class: ""
+        icon: Icons.tents
     },
     {
         title: "User Management",
         url: "/uhb/admin/change-user-roles",
-        class: ""
+        icon: Icons.usersGear
     },
     {
         title: "User Details",
         url: "/uhb/admin/user-details",
-        class: "users-gear"
-    },
-    // {
-    //     title: "Log Out",
-    //     url: "/",
-    //     class: "right-from-bracket"
-    // }
+        icon: Icons.userGear
+    }
 ]
