@@ -25,7 +25,6 @@ export class StudentDashboardComponent implements OnInit {
       const user = JSON.parse(userJson);
       const rawUserName = user.userName;
       const regNo = rawUserName.replace(/-(?=[^-]*$)/, '/');
-      console.log(regNo);
       this.studentService.getSpecificStudentData(regNo).subscribe({
         next: data => this.studentData.set(data),
         error: err => console.error('Error fetching student details: ', err)
