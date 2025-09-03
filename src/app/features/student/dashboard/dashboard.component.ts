@@ -17,13 +17,6 @@ export class StudentDashboardComponent implements OnInit {
 
   cardTitle: string = "Student Details"
   studentData = signal<any | null>(null);
-  // tableColumns: TableColumn[] = [
-  //   { key: 'regNo', header: 'Registration Number' },
-  //   { key: 'surname', header: 'Surname' },
-  //   { key: 'firstName', header: 'First Name' },
-  //   { key: 'secondName', header: 'Second Name' },
-  //   { key: 'gender', header: 'Gender' },
-  // ];
   loadingStyles: string = 'loading-spinner loading-lg';
 
   ngOnInit(): void {
