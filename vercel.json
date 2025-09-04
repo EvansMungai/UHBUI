@@ -14,10 +14,6 @@
       "src": "/(.*)",
       "has": [
         {
-          "type": "host",
-          "value": ".*"
-        },
-        {
           "type": "header",
           "key": "accept",
           "value": "text/html"
