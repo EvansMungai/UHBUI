@@ -10,16 +10,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ],
-      "dest": "/index.html"
-    }
+    { "handle": "filesystem"},
+    { "src": "/.*", "dest": "/index.html"}
   ]
 }
