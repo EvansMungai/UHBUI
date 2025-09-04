@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 
 import { LinkService } from '../../../core/services/link.service';
@@ -9,7 +9,7 @@ import {ToastComponent} from '../toast/toast.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ToastComponent],
+  imports: [ToastComponent, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
