@@ -2,18 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/uhb/server/main.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/uhb/browser/**",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/uhb"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/uhb/server/main.js"
+      "dest": "/index.html"
     }
   ]
 }
