@@ -1,0 +1,82 @@
+name: Secure CI Pipeline (SAST & SCA)
+
+on: 
+  push:
+    branches: 
+      - dev
+      - main
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+  schedule:
+    - cron: '0 0 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0 
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and Run SonarQube Cloud Scan
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        target: sonar
+        push: false
+        build-args: |
+          SONAR_HOST_URL=https://sonarcloud.io
+          SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+  
+  trivy-scan:
+    name: Trivy Dependency & Image scan
+    needs: build-and-scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Scan Repository files & Fail if high/critical vulnerabilities exist
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-fs-results.sarif'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1' 
+
+      - name: Upload FS Scan Results to GitHub
+        uses: github/codeql-action/upload-sarif@v4
+        if: always() 
+        with:
+          sarif_file: 'trivy-fs-results.sarif'
+          category: 'trivy-fs'
+
+      - name: Generate CycloneDX SBOM
+        uses: aquasecurity/trivy-action@57a97c7e7821a5776cebc9bb87c984fa69cba8f1
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'cyclonedx'
+          output: 'sbom.json'
+
+      - name: Save SBOM as Pipeline Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-sbom
+          path: sbom.json
