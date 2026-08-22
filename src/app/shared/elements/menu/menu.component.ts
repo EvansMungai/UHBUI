@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, inject, signal } from '@angular/core';
+import { Component, Input, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { LinkService } from '../../../core/services/link.service';
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { faQrcode, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +13,7 @@ import {ToastComponent} from '../toast/toast.component';
   selector: 'app-menu',
   imports: [FontAwesomeModule, RouterModule, ToastComponent],
   templateUrl: './menu.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './menu.component.css'
 })
 export class MenuComponent implements OnInit {

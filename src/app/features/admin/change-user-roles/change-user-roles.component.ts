@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
@@ -12,6 +12,7 @@ import { TableAction, TableColumn } from '../../../core/interfaces/table.interfa
   selector: 'app-change-user-roles',
   imports: [CardComponent, TableComponent, ChangeRoleFormComponent, LoadingComponent],
   templateUrl: './change-user-roles.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './change-user-roles.component.css'
 })
 export class ChangeUserRolesComponent implements OnInit {

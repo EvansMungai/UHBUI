@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -13,6 +13,7 @@ import { RoomService } from '../../../core/services/room.service';
   selector: 'app-review-allocations',
   imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './review-allocations.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './review-allocations.component.css'
 })
 export class ReviewAllocationsComponent implements OnInit {

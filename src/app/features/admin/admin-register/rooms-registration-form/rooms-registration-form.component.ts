@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -13,6 +13,7 @@ import { extractErrorMessage } from '../../../../shared/utils/errorHandling';
   selector: 'rooms-registration-form',
   imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './rooms-registration-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './rooms-registration-form.component.css'
 })
 export class RoomsRegistrationFormComponent implements OnInit {

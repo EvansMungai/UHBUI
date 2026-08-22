@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, effect } from '@angular/core';
+import { Component, inject, OnInit, signal, effect, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './booking.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './booking.component.css'
 })
 export class BookingComponent implements OnInit {

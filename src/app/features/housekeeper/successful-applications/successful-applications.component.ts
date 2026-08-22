@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -12,6 +12,7 @@ import { LoadingComponent} from '../../../shared/elements/loading/loading.compon
   selector: 'app-successful-applications',
   imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './successful-applications.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './successful-applications.component.css'
 })
 export class SuccessfulApplicationsComponent implements OnInit {

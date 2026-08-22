@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { SubmitButton } from '../../../core/interfaces/button.interface';
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './login.component.css'
 })
 export class LoginComponent {

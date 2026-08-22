@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
@@ -13,6 +13,7 @@ import { LoadingComponent } from '../../../../shared/elements/loading/loading.co
   selector: 'change-role-form',
   imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent, LoadingComponent],
   templateUrl: './change-role-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './change-role-form.component.css'
 })
 export class ChangeRoleFormComponent implements OnInit {

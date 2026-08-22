@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, inject, ChangeDetectionStrategy } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } from '../../../core/interfaces/button.interface';
@@ -7,6 +7,7 @@ import { ActionButton, Button, NavigationButton, SubmitButton, ToggleButton } fr
     selector: 'app-button',
     imports: [],
     templateUrl: './button.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './button.component.css'
 })
 export class ButtonComponent {

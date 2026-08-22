@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/elements/button/button.component';
@@ -12,6 +12,7 @@ import { extractErrorMessage } from '../../../../shared/utils/errorHandling';
   selector: 'hostel-registration-form',
   imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './hostel-registration-form.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './hostel-registration-form.component.css'
 })
 export class HostelRegistrationFormComponent {

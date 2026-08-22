@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { StudentService } from '../../../core/services/student.service';
@@ -9,6 +9,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
   selector: 'student-dashboard',
   imports: [CardComponent, LoadingComponent],
   templateUrl: './dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './dashboard.component.css'
 })
 export class StudentDashboardComponent implements OnInit {

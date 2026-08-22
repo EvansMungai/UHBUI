@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -12,6 +12,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
   selector: 'app-review-applications',
   imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './review-applications.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './review-applications.component.css'
 })
 export class ReviewApplicationsComponent implements OnInit {

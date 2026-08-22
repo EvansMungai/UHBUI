@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
@@ -11,6 +11,7 @@ import { ApplicationService } from '../../../core/services/application.service';
   selector: 'app-allocated-rooms',
   imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './allocated-rooms.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './allocated-rooms.component.css'
 })
 export class AllocatedRoomsComponent implements OnInit {

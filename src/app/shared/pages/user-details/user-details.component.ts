@@ -1,5 +1,5 @@
 
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { ChangePasswordComponent } from "../change-password/change-password.component";
 import { ButtonComponent } from '../../elements/button/button.component';
@@ -9,6 +9,7 @@ import { ActionButton } from '../../../core/interfaces/button.interface';
   selector: 'app-user-details',
   imports: [ChangePasswordComponent, ButtonComponent],
   templateUrl: './user-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './user-details.component.css'
 })
 

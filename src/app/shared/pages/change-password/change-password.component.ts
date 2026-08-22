@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 
@@ -13,6 +13,7 @@ import {extractErrorMessage} from '../../utils/errorHandling';
   selector: 'app-change-password',
   imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './change-password.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './change-password.component.css'
 })
 export class ChangePasswordComponent {

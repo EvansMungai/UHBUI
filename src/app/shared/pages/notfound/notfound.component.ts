@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notfound',
   imports: [],
   templateUrl: './notfound.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './notfound.component.css'
 })
 export class NotfoundComponent {

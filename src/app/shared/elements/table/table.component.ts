@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableAction, TableColumn } from '../../../core/interfaces/table.interface';
 import { ButtonComponent } from '../button/button.component';
@@ -8,6 +8,7 @@ import { ActionButton } from '../../../core/interfaces/button.interface';
     selector: 'app-table',
     imports: [CommonModule, ButtonComponent],
     templateUrl: './table.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './table.component.css'
 })
 export class TableComponent implements OnInit {

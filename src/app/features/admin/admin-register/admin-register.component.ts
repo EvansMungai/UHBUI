@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
@@ -16,6 +16,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
   selector: 'app-admin-register',
   imports: [CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent, LoadingComponent],
   templateUrl: './admin-register.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './admin-register.component.css'
 })
 export class AdminRegisterComponent implements OnInit {

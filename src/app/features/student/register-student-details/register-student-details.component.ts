@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { StudentService } from '../../../core/services/student.service';
   selector: 'app-register-student-details',
   imports: [CommonModule, ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './register-student-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './register-student-details.component.css'
 })
 export class RegisterStudentDetailsComponent {

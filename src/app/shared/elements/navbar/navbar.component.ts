@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 
@@ -11,6 +11,7 @@ import {ToastComponent} from '../toast/toast.component';
   selector: 'app-navbar',
   imports: [ToastComponent, RouterModule],
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ButtonComponent } from '../../elements/button/button.component';
@@ -12,6 +12,7 @@ import { extractErrorMessage } from '../../utils/errorHandling';
   selector: 'app-signup',
   imports: [ReactiveFormsModule, ButtonComponent, ToastComponent],
   templateUrl: './signup.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {

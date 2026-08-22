@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -16,6 +16,7 @@ import { showToast } from '../../../shared/utils/toastUtils';
   selector: 'app-view-application',
   imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent, LoadingComponent],
   templateUrl: './view-application.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './view-application.component.css'
 })
 export class ViewApplicationComponent implements OnInit {

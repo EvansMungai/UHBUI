@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 
 
 import { StudentService } from '../../../core/services/student.service';
@@ -12,6 +12,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
   selector: 'app-accommodation-detials',
   imports: [TableComponent, CardComponent, LoadingComponent],
   templateUrl: './accommodation-details.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './accommodation-details.component.css'
 })
 export class AccommodationDetailsComponent implements OnInit {

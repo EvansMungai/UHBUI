@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-view-allocation',
   imports: [RouterModule, ReactiveFormsModule, ButtonComponent, ToastComponent, LoadingComponent],
   templateUrl: './view-allocation.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './view-allocation.component.css'
 })
 export class ViewAllocationComponent implements OnInit {
