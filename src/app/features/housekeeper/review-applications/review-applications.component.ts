@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableAction, TableColumn } from '../../../core/interfaces/table.interface';
@@ -10,7 +10,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
 
 @Component({
   selector: 'app-review-applications',
-  imports: [CommonModule, CardComponent, TableComponent, LoadingComponent],
+  imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './review-applications.component.html',
   styleUrl: './review-applications.component.css'
 })

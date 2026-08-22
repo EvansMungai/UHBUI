@@ -1,5 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { HostelRegistrationFormComponent } from "./hostel-registration-form/hostel-registration-form.component";
@@ -14,7 +14,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
 
 @Component({
   selector: 'app-admin-register',
-  imports: [CommonModule, CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent, LoadingComponent],
+  imports: [CardComponent, HostelRegistrationFormComponent, RoomsRegistrationFormComponent, TableComponent, ButtonComponent, LoadingComponent],
   templateUrl: './admin-register.component.html',
   styleUrl: './admin-register.component.css'
 })

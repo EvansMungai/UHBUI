@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { StudentService } from '../../../core/services/student.service';
 import { ApplicationService } from '../../../core/services/application.service';
@@ -10,7 +10,7 @@ import { LoadingComponent } from '../../../shared/elements/loading/loading.compo
 
 @Component({
   selector: 'app-accommodation-detials',
-  imports: [CommonModule, TableComponent, CardComponent, LoadingComponent],
+  imports: [TableComponent, CardComponent, LoadingComponent],
   templateUrl: './accommodation-details.component.html',
   styleUrl: './accommodation-details.component.css'
 })

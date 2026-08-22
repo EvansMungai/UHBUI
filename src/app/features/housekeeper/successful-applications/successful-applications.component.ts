@@ -5,12 +5,12 @@ import { TableComponent } from '../../../shared/elements/table/table.component';
 import { TableColumn } from '../../../core/interfaces/table.interface';
 import { ApplicationService } from '../../../core/services/application.service';
 import { LoadingComponent} from '../../../shared/elements/loading/loading.component';
-import { CommonModule } from '@angular/common';
+
 
 
 @Component({
   selector: 'app-successful-applications',
-  imports: [CommonModule, CardComponent, TableComponent, LoadingComponent],
+  imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './successful-applications.component.html',
   styleUrl: './successful-applications.component.css'
 })

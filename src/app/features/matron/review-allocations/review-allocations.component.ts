@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { CommonModule } from '@angular/common';
+
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
 import { LoadingComponent } from '../../../shared/elements/loading/loading.component';
@@ -11,7 +11,7 @@ import { RoomService } from '../../../core/services/room.service';
 
 @Component({
   selector: 'app-review-allocations',
-  imports: [CommonModule, CardComponent, TableComponent, LoadingComponent],
+  imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './review-allocations.component.html',
   styleUrl: './review-allocations.component.css'
 })

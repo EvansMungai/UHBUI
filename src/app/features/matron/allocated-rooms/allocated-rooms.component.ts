@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 import { CardComponent } from '../../../shared/elements/card/card.component';
 import { TableComponent } from '../../../shared/elements/table/table.component';
@@ -9,7 +9,7 @@ import { ApplicationService } from '../../../core/services/application.service';
 
 @Component({
   selector: 'app-allocated-rooms',
-  imports: [CommonModule, CardComponent, TableComponent, LoadingComponent],
+  imports: [CardComponent, TableComponent, LoadingComponent],
   templateUrl: './allocated-rooms.component.html',
   styleUrl: './allocated-rooms.component.css'
 })
