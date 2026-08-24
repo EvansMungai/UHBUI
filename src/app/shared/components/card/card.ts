@@ -24,6 +24,6 @@ export class Card {
   
   get cardStyle(): string {
     const styles = 'block max-w-sm p-6 border border-default rounded-lg shadow-xs';
-    return `${styles} ${this.cardStyles}`.trim();
+    return `${styles} ${this.cardStyles()}`.trim();
   }
 }
