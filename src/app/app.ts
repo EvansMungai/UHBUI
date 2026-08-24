@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { Toast } from './shared/components/toast/toast';
 
 @Component({
-  imports: [Toast],
+  imports: [],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html'
