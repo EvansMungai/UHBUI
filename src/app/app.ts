@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
+import { Toast } from './shared/components/toast/toast';
 
 @Component({
-  imports: [],
+  imports: [Toast],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html'
