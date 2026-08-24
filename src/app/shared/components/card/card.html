@@ -1,0 +1,39 @@
+<div class="flex justify-center">
+    <div [class]="cardStyles">
+        @if (headerTemplate()) {
+        <div>
+            <ng-container *ngTemplateOutlet="headerTemplate()"></ng-container>
+        </div>
+        }
+        <div class="card-body">
+            @if (header || titleTemplate()) {
+            <div>
+                <ng-container *ngTemplateOutlet="titleTemplate()"></ng-container>
+                @if (!titleTemplate()) {
+                <span [class]="titleStyles">{{header}}</span>
+                }
+            </div>
+            }
+            @if (subtitle || subtitleTemplate()) {
+            <div>
+                <ng-container *ngTemplateOutlet="subtitleTemplate()"></ng-container>
+                @if (!subtitleTemplate()) {
+                <span [class]="subtitleStyles">{{subtitle}}</span>
+                }
+            </div>
+            }
+            <div class="card-content">
+                <ng-content></ng-content>
+                <ng-container *ngTemplateOutlet="contentTemplate()"></ng-container>
+            </div>
+            @if (footer || footerTemplate()) {
+            <div class="card-footer">
+                <ng-container *ngTemplateOutlet="footerTemplate()"></ng-container>
+                @if (!footerTemplate()) {
+                <span [class]="footerStyles">{{footer}}</span>
+                }
+            </div>
+            }
+        </div>
+    </div>
+</div>
