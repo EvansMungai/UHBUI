@@ -30,6 +30,20 @@ export class WebPart {
         },
       ],
     }];
+  dropdownMenuSections: NavigationSection[] = [
+    {
+      title: '',
+      items: [
+        {
+          label: 'My-account',
+          link: '/my-account',
+        },
+        {
+          label: 'Log out',
+          link: '/my-account',
+        }
+      ],
+    }];
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update(open => !open)
