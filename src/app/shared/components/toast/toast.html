@@ -1,14 +1,20 @@
+@if(isVisible()){
 <div id="toast" [class]="styles">
+  @for (msg of messages(); track msg) {
+  <div class="">
     @if(headerTemplate()){
-    <div>
-        <ng-container *ngTemplateOutlet="headerTemplate()"></ng-container>
+    <div class="mb-2">
+      <ng-container *ngTemplateOutlet="headerTemplate()"></ng-container>
     </div>
     }
     <div id="content">
-        <h2 class="text=base font-semibold text-heading">{{summary()}}</h2>
-        @if (detail()) {
-        <p>{{detail()}}</p>
-        }
-        <ng-content></ng-content>
+      <h2 class="text-base font-semibold text-heading">{{ msg.summary }}</h2>
+      @if (msg.detail) {
+      <p class="text-sm text-gray-500 mt-1">{{ msg.detail }}</p>
+      }
+      <ng-content></ng-content>
     </div>
+  </div>
+  }
 </div>
+}
