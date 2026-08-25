@@ -1,17 +1,20 @@
 <nav aria-label="Breadcrumb">
     <ol class="flex items-center gap-2 text-sm">
-        <li>
-            <a href="/" class="text-gray-500 transition hover:text-gray-900">
-                Dashboard
+        @for (breadcrumb of breadcrumbs(); track breadcrumb.url; let last = $last) {
+        <li class="flex items-center gap-2">
+            @if (!last) {
+            <a [routerLink]="breadcrumb.url" class="text-gray-500 transition hover:text-gray-900">
+                {{ breadcrumb.label }}
             </a>
+            <span class="text-gray-400" aria-hidden="true">
+                /
+            </span>
+            } @else {
+            <span class="font-medium text-gray-900" aria-current="page">
+                {{ breadcrumb.label }}
+            </span>
+            }
         </li>
-
-        <li class="text-gray-400" aria-hidden="true">
-            /
-        </li>
-
-        <li class="font-medium text-gray-900" aria-current="page">
-            {{ page() }}
-        </li>
+        }
     </ol>
 </nav>

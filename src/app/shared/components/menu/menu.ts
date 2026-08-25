@@ -15,4 +15,5 @@ export class Menu {
   onNavigate(): void {
     this.navigate.emit();
   }
+
 }
