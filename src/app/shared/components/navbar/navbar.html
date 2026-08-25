@@ -1,42 +1,36 @@
 <header>
-    <nav class="border-b border-gray-200 bg-white px-4 py-3">
-        <div class="mx-auto max-w-screen-xl">
+    <nav class="w-full border-b border-gray-100 bg-primary shadow-sm">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <!-- Main navbar row -->
-            <div class="flex items-center justify-between">
-                <a routerLink="/" class="flex shrink-0 items-center" (click)="closeMobileMenu()">
-                    <span class="text-xl font-semibold whitespace-nowrap">
-                        Application Title
+            <div class="flex h-16 items-center justify-between">
+                <a routerLink="/" class="shrink-0" (click)="closeMobileMenu()">
+                    <span class="text-2xl font-bold tracking-tight text-gray-900">
+                        UHB
                     </span>
                 </a>
                 <div class="flex items-center">
-                    <!-- Desktop actions -->
-                    <div class="hidden items-center gap-6 lg:flex">
-                        <a routerLink="/login" routerLinkActive="text-primary-700"
-                            [routerLinkActiveOptions]="{ exact: true }" class="text-sm font-medium text-gray-700
-                                   transition hover:text-primary-700">
+                    <!-- Desktop navigation -->
+                    <div class="hidden items-center gap-1 lg:flex">
+                        <!-- Get Started -->
+                        <a routerLink="/login"
+                            class="ml-2 rounded-md bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                             Login
                         </a>
-
-                        <a routerLink="/signup" routerLinkActive="text-primary-700"
-                            [routerLinkActiveOptions]="{ exact: true }" class="text-sm font-medium text-gray-700
-                                   transition hover:text-primary-700">
-                            Sign Up
+                        <a routerLink="/login"
+                            class="ml-2 rounded-md bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            Sign up
                         </a>
+
                     </div>
 
                     <!-- Mobile hamburger -->
-                    <button type="button" class="inline-flex items-center rounded-lg p-2
-                               text-gray-500
-                               hover:bg-gray-100
-                               focus:outline-none
-                               focus:ring-2
-                               focus:ring-gray-200
-                               lg:hidden" [attr.aria-expanded]="mobileMenuOpen()" aria-controls="mobile-menu"
+                    <button type="button"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
+                        [attr.aria-expanded]="mobileMenuOpen()" aria-controls="mobile-menu"
                         (click)="toggleMobileMenu()">
+
                         <span class="sr-only">
-                            {{ mobileMenuOpen()
-                            ? 'Close main menu'
-                            : 'Open main menu' }}
+                            {{ mobileMenuOpen() ? 'Close main menu' : 'Open main menu' }}
                         </span>
 
                         @if (!mobileMenuOpen()) {
@@ -50,31 +44,31 @@
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                         }
+
                     </button>
                 </div>
             </div>
 
             <!-- Mobile menu -->
             @if (mobileMenuOpen()) {
-            <div id="mobile-menu" class="border-t border-gray-100 pt-3 lg:hidden">
-                <div class="flex flex-col">
-                    <a routerLink="/login" routerLinkActive="bg-gray-100 text-gray-900"
-                        [routerLinkActiveOptions]="{ exact: true }" class="rounded-lg px-3 py-2.5 text-sm
-                                   font-medium text-gray-700
-                                   transition hover:bg-gray-100
-                                   hover:text-gray-900" (click)="closeMobileMenu()">
+            <div id="mobile-menu" class="border-t border-gray-100 py-3 lg:hidden">
+                <div class="flex flex-col gap-1">
+                    <!-- Mobile Get Started -->
+                    <a routerLink="/login"
+                        class="mt-2 block rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        (click)="closeMobileMenu()">
                         Login
                     </a>
-                    <a routerLink="/signup" routerLinkActive="bg-gray-100 text-gray-900"
-                        [routerLinkActiveOptions]="{ exact: true }" class="rounded-lg px-3 py-2.5 text-sm
-                                   font-medium text-gray-700
-                                   transition hover:bg-gray-100
-                                   hover:text-gray-900" (click)="closeMobileMenu()">
+                    <a routerLink="/signup"
+                        class="mt-2 block rounded-md bg-blue-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        (click)="closeMobileMenu()">
                         Sign Up
                     </a>
+
                 </div>
             </div>
             }
+
         </div>
     </nav>
 </header>
