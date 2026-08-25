@@ -1,0 +1,31 @@
+<div class="relative overflow-x-auto shadow-sm rounded-base border border-default">
+    <table [class]="tableStyles()">
+        <thead [class]="headingStyles()">
+            <tr>
+                @for(column of columns(); track column.key){
+                <th scope="col" class="px-6 py-3 font-medium">
+                    {{ column.label }}
+                </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for(row of data(); track $index){
+            <tr [class]="bodyStyles()">
+                @for (column of columns(); track column.key) {
+                <td class="px-6 py-4">
+                    {{ row[column.key] }}
+                </td>
+                }
+            </tr>
+            }
+            @if(data().length ===0) {
+            <tr>
+                <td [attr.colspan]="columns().length" class="px-6 py-8 text-center">
+                    {{ emptyMessage() }}
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
