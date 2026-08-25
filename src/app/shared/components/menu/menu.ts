@@ -10,10 +10,10 @@ import { NavigationSection } from '../../../core/interfaces/Menu';
 })
 export class Menu {
   sections = input.required<NavigationSection[]>();
+  horizontal = input<boolean>(false);
   navigate = output<void>();
 
   onNavigate(): void {
     this.navigate.emit();
   }
-
 }

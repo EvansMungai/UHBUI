@@ -1,3 +1,19 @@
+@if (horizontal()) {
+<nav class="flex items-center">
+    <ul class="flex items-center gap-6">
+        @for (section of sections(); track section.title) {
+        @for (item of section.items; track item.link) {
+        <li>
+            <a [routerLink]="item.link" routerLinkActive="text-primary-700" [routerLinkActiveOptions]="{ exact: true }"
+                class="text-sm font-medium text-gray-700 transition hover:text-primary-700" (click)="onNavigate()">
+                {{ item.label }}
+            </a>
+        </li>
+        }
+        }
+    </ul>
+</nav>
+} @else {
 <nav>
     @for (section of sections(); track section.title) {
     <section class="mb-6 last:mb-0">
@@ -17,3 +33,4 @@
     </section>
     }
 </nav>
+}
