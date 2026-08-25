@@ -1,7 +1,8 @@
 import { Component, signal } from '@angular/core';
+import { Hero } from './shared/layouts/hero/hero';
 
 @Component({
-  imports: [],
+  imports: [Hero],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html'
