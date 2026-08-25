@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Menu } from '../menu/menu';
 import { NavigationSection } from '../../../core/interfaces/Menu';
@@ -10,8 +10,16 @@ import { NavigationSection } from '../../../core/interfaces/Menu';
   templateUrl: './navbar.html',
 })
 export class Navbar {
-  readonly mobileMenuOpen = signal(false);
-    menuSections: NavigationSection[] = [
+  readonly mobileMenuOpen = signal<boolean>(false);
+  darkMode = signal<boolean>(false);
+
+  constructor() {
+    effect(() => {
+      document.documentElement.classList.toggle('dark', this.darkMode())
+    })
+  }
+
+  menuSections: NavigationSection[] = [
     {
       title: '',
       items: [
@@ -29,6 +37,10 @@ export class Navbar {
         }
       ],
     }];
+
+  toggleTheme(): void {
+    this.darkMode.update(dark => !dark);
+  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update(open => !open);
