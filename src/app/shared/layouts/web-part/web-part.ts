@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Breadcrumb } from "../../components/breadcrumb/breadcrumb";
 import { Menu } from '../../components/menu/menu';
 import { NavigationSection } from '../../../core/interfaces/Menu';
 import { ThemeToggle } from "../../components/theme-toggle/theme-toggle";
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { MENU_CONFIGS } from '../../../core/interfaces/menu-config';
 
 @Component({
   imports: [Breadcrumb, Menu, ThemeToggle, RouterOutlet],
@@ -14,38 +15,10 @@ import { RouterOutlet } from '@angular/router';
 export class WebPart {
   mobileMenuOpen = signal<boolean>(false);
 
-  menuSections: NavigationSection[] = [
-    {
-      title: 'Dashboards',
-      items: [
-        {
-          label: 'E-commerce',
-          link: '/dashboard/e-commerce',
-        },
-        {
-          label: 'Project Management',
-          link: '/dashboard/projects',
-        },
-        {
-          label: 'CRM',
-          link: '/dashboard/crm',
-        },
-      ],
-    }];
-  dropdownMenuSections: NavigationSection[] = [
-    {
-      title: '',
-      items: [
-        {
-          label: 'My-account',
-          link: '/my-account',
-        },
-        {
-          label: 'Log out',
-          link: '/my-account',
-        }
-      ],
-    }];
+  private readonly route = inject(ActivatedRoute);
+  readonly menuKey = this.route.snapshot.data['menu'] as string;
+  readonly menuSections: NavigationSection[] = MENU_CONFIGS[this.menuKey]?.menuSections ?? [];
+  readonly dropdownMenuSections: NavigationSection[] = MENU_CONFIGS[this.menuKey]?.dropdownMenuSections ?? [];
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update(open => !open)

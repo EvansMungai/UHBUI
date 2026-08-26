@@ -9,12 +9,12 @@ export const routes: Routes = [
     {
         path: 'uhb', children: [
             {
-                path: 'student', component: WebPart, children: [
+                path: 'student', component: WebPart, data: { menu: 'student' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/student/student-dashboard/student-dashboard').then(m => m.StudentDashboard) },
                     { path: 'register', loadComponent: () => import('./shared/features/student/student-registration/student-registration').then(m => m.StudentRegistration) },
                     { path: 'booking', loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) },
                     { path: 'application-details', loadComponent: () => import('./shared/features/student/application-details/application-details').then(m => m.ApplicationDetails) },
-                    { path: 'accommodation-details', loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },                ]
+                    { path: 'accommodation-details', loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },]
             }
         ]
     },
