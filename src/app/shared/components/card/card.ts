@@ -23,7 +23,7 @@ export class Card {
   footerStyles = input<string>();
   
   get cardStyle(): string {
-    const styles = 'block max-w-sm p-6 border border-default rounded-lg shadow-xs';
+    const styles = 'block max-w-sm p-6';
     return `${styles} ${this.cardStyles()}`.trim();
   }
 }

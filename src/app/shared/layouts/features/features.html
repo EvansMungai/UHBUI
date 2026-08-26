@@ -1,50 +1,50 @@
-<section class="bg-white dark:bg-gray-900">
-    <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
-        <div class="mb-8 text-center lg:mb-16">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Why UHB?</h2>
-            <p class="text-gray-500 sm:text-xl dark:text-gray-400">Here at UHB, we focus on spaces where comfort,
-                convenience, and community can unlock academic success and drive personal growth.</p>
+<section class="bg-primary dark:bg-gray-900">
+    <div class="py-6 px-4 mx-auto sm:py-16 lg:px-6">
+        <div class="text-center mb-6 lg:mb-16">
+            <h2 class="mb-4 font-bold text-gray-800 text-4xl dark:text-white/90 md:text-title-lg max-w-xl mx-auto">Why UHB?</h2>
+            <p class="max-w-xl mx-auto leading-6 text-gray-500 dark:text-gray-400">Here at UHB, we focus on spaces where comfort,
+                convenience and community can unlock academic success and drive personal growth.</p>
         </div>
-        <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-            <app-card>
+        <div class="flex flex-col justify-center md:flex-row space-y-4">
+            <app-card [cardStyles]="'bg-white m-2 border border-gray-200 dark:bg-white/5 dark:border-white/3 rounded-xl shadow-[0px_30px_50px_-32px_rgba(107,110,148,0.04)]'">
                 <ng-template #contentTemplate>
                     <div>
                         <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                            <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full lg:h-12 lg:w-12">
+                            <svg class="w-5 h-5 lg:w-6 lg:h-6 dark:text-white"
                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
                                     d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
                                     clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <h3 class="mb-2 text-xl font-bold dark:text-white">Secure Booking</h3>
-                        <p class="text-gray-500 dark:text-gray-400">Safe and encrypted payment system with instant booking confirmation</p>
+                        <h3 class="mb-2 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl">Secure Booking</h3>
+                        <p class="text-gray-500 dark:text-gray-400">Safe and encrypted payment system with instant booking confirmation.</p>
                     </div>
                 </ng-template>
             </app-card>
-            <app-card>
+            <app-card [cardStyles]="'bg-white m-2 border border-gray-200 dark:bg-white/5 dark:border-white/3 rounded-xl shadow-[0px_30px_50px_-32px_rgba(107,110,148,0.04)]'">
                 <ng-template #contentTemplate>
                     <div>
                         <div
-                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                            <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300"
+                            class="flex justify-center items-center mb-4 w-10 h-10 rounded-full lg:h-12 lg:w-12">
+                            <svg class="w-5 h-5 lg:w-6 lg:h-6 dark:text-white"
                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z">
                                 </path>
                             </svg>
                         </div>
-                        <h3 class="mb-2 text-xl font-bold dark:text-white">Verified Hostels</h3>
-                        <p class="text-gray-500 dark:text-gray-400">All properties are thoroughly inspected and student-approved</p>
+                        <h3 class="mb-2 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl">Verified Hostels</h3>
+                        <p class="text-gray-500 dark:text-gray-400">All properties are thoroughly inspected and student-approved.</p>
                     </div>
                 </ng-template>
             </app-card>
-            <app-card>
+            <app-card [cardStyles]="'bg-white m-2 border border-gray-200 dark:bg-white/5 dark:border-white/3 rounded-xl shadow-[0px_30px_50px_-32px_rgba(107,110,148,0.04)]'">
                 <ng-template #contentTemplate>
                     <div
-                        class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
-                        <svg class="w-5 h-5 text-primary-600 lg:w-6 lg:h-6 dark:text-primary-300" fill="currentColor"
+                        class="flex justify-center items-center mb-4 w-10 h-10 rounded-full lg:h-12 lg:w-12">
+                        <svg class="w-5 h-5 lg:w-6 lg:h-6 dark:text-white" fill="currentColor"
                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
                                 d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
@@ -54,8 +54,8 @@
                             </path>
                         </svg>
                     </div>
-                    <h3 class="mb-2 text-xl font-bold dark:text-white">Student-Friendly</h3>
-                    <p class="text-gray-500 dark:text-gray-400">Affordable rates with flexible payment plans for students</p>
+                    <h3 class="mb-2 text-gray-800 dark:text-white/90 font-bold text-xl md:text-2xl">Student-Friendly</h3>
+                    <p class="text-gray-500 dark:text-gray-400">Affordable rates with flexible payment plans for students.</p>
                 </ng-template>
             </app-card>
         </div>
