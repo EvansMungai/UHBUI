@@ -28,6 +28,7 @@ export const routes: Routes = [
                 path: 'matron', component: WebPart, data: { menu: 'matron' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
                     { path: 'view-allocation', loadComponent: () => import('./shared/features/matron/view-allocation/view-allocation').then(m => m.ViewAllocation) },
+                    { path: 'allocated-rooms', loadComponent: () => import('./shared/features/matron/rooms-allocated/rooms-allocated').then(m => m.RoomsAllocated) }
                 ]
             }
         ]

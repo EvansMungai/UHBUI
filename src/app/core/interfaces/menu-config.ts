@@ -51,7 +51,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 items: [
                     { label: 'Dashboard', link: '/uhb/matron' },
                     { label: 'View Allocation', link: '/uhb/matron/view-allocation' },
-                    // { label: 'Successful Applications', link: '/uhb/housekeeper/successful-applications' },
+                    { label: 'Allocated Rooms', link: '/uhb/matron/allocated-rooms' },
                 ]
             }
         ],
