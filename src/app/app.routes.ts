@@ -3,6 +3,7 @@ import { Landing } from './shared/pages/landing/landing';
 import { Auth } from './shared/pages/auth/auth';
 import { WebPart } from './shared/layouts/web-part/web-part';
 import { AccessDenied } from './shared/pages/access-denied/access-denied';
+import { NotFound } from './shared/pages/not-found/not-found';
 
 export const routes: Routes = [
     { path: '', component: Landing },
@@ -34,5 +35,6 @@ export const routes: Routes = [
             }
         ]
     },
-    { path: 'access-denied', component: AccessDenied }
+    { path: 'access-denied', component: AccessDenied },
+    { path: '**', component: NotFound }
 ];
