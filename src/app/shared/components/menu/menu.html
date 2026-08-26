@@ -5,7 +5,7 @@
         @for (item of section.items; track item.link) {
         <li>
             <a [routerLink]="item.link" routerLinkActive="text-primary-700" [routerLinkActiveOptions]="{ exact: true }"
-                class="text-sm font-medium text-gray-700 transition hover:text-primary-700" (click)="onNavigate()">
+                class="text-sm font-medium text-gray-700 dark:text-white/90 transition hover:text-primary-700" (click)="onNavigate()">
                 {{ item.label }}
             </a>
         </li>
@@ -17,14 +17,14 @@
 <nav>
     @for (section of sections(); track section.title) {
     <section class="mb-6 last:mb-0">
-        <h2 class="mb-2 text-xs uppercase text-gray-400">
+        <h2 class="mb-2 text-xs uppercase text-gray-700 dark:text-white/90">
             {{ section.title }}
         </h2>
-        <div class="space-y-0.5">
+        <div class="py-4 dark:border-white space-y-0.5">
             @for (item of section.items; track item.link) {
             <a [routerLink]="item.link" routerLinkActive="bg-gray-100 font-medium text-gray-900"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="block rounded-lg px-3 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900"
+                class="block rounded-lg px-3 py-2 text-sm text-gray-500 dark:text-white/90 transition hover:bg-white dark:hover:bg-gray-700 hover:text-fg-brand hover:bg-gray-100 hover:text-accent"
                 (click)="onNavigate()">
                 {{ item.label }}
             </a>
