@@ -50,7 +50,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 title: '',
                 items: [
                     { label: 'Dashboard', link: '/uhb/matron' },
-                    // { label: 'View Application', link: '/uhb/housekeeper/view-application' },
+                    { label: 'View Allocation', link: '/uhb/matron/view-allocation' },
                     // { label: 'Successful Applications', link: '/uhb/housekeeper/successful-applications' },
                 ]
             }
