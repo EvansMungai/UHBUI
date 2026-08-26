@@ -2,17 +2,15 @@
     <!-- Desktop Sidebar -->
     <aside class="hidden border-r border-gray-200 dark:border-gray-700 bg-primary dark:bg-primary-alt lg:block">
         <div class="sticky top-0 h-screen">
-            <!-- Logo -->
             <div class="flex h-15 items-center border-b border-gray-100 dark:border-gray-700 px-5">
                 <a href="#" class="flex items-center gap-2 no-underline">
                     <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/c2a66a70db897fd0d89ea72e7cbab1d3c06a93e2/apps/docs/src/assets/images/logos/hb-logo1.svg"
                         alt="Logo" class="h-8 w-8" />
-                    <span class="font-semibold text-gray-600 dark:text-gray-400">
+                    <span class="font-semibold text-base">
                         UHB
                     </span>
                 </a>
             </div>
-            <!-- Navigation -->
             <div class="h-[calc(100vh-3.75rem)] overflow-y-auto p-5">
                 <app-menu [sections]="menuSections" (navigate)="closeMobileMenu()" />
             </div>
