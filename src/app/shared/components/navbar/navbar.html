@@ -10,8 +10,7 @@
                 </a>
                 <div class="flex items-center">
                     <!-- Desktop navigation -->
-                    <!-- Theme toggle -->
-                    <button type="button" class="mr-2 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition-colors bg-secondary hover:bg-base hover:text-gray-900 dark:bg-accent dark:border-gray-700 dark:text-gray-200 dark:hover:text-white dark:hover:bg-base"
+                    <button type="button" class="mr-2 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-600 transition-colors bg-secondary hover:ring-2 hover:ring-base hover:text-gray-900 dark:bg-secondary dark:border-gray-700 dark:text-gray-200 dark:hover:text-white"
                         [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'"
                         [attr.title]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
                         (click)="toggleTheme()">
@@ -33,15 +32,13 @@
                         }
                     </button>
 
-
                     <div class="hidden items-center gap-1 lg:flex">
-                        <!-- Get Started -->
                         <a routerLink="/login"
-                            class="font-semibold text-[0.95rem] py-2 px-[1.1rem]! rounded-lg bg-base dark:bg-accent transition-all duration-200 ease-in">
+                            class="font-semibold py-2 px-[1.1rem]! rounded-md bg-base text-center text-sm font-semibold text-white hover:accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-1 transition-all duration-200 ease-in">
                             Login
                         </a>
                         <a routerLink="/login"
-                            class="ml-2 font-semibold text-[0.95rem] py-2 px-[1.1rem]! rounded-md bg-base dark:bg-accent transition-all duration-200 ease-in">
+                            class="ml-2 font-semibold py-2 px-[1.1rem]! rounded-md bg-base text-center text-sm font-semibold text-white hover:accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-1 transition-all duration-200 ease-in">
                             Sign up
                         </a>
 
@@ -49,7 +46,7 @@
 
                     <!-- Mobile hamburger -->
                     <button type="button"
-                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 lg:hidden"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-gray-600 transition hover:ring-2 hover:ring-base hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-base dark:focus:ring-none lg:hidden"
                         [attr.aria-expanded]="mobileMenuOpen()" aria-controls="mobile-menu"
                         (click)="toggleMobileMenu()">
 
@@ -75,16 +72,16 @@
 
             <!-- Mobile menu -->
             @if (mobileMenuOpen()) {
-            <div id="mobile-menu" class="border-t border-gray-100 py-3 lg:hidden">
+            <div id="mobile-menu" class="py-3 lg:hidden">
                 <div class="flex flex-col gap-1">
                     <!-- Mobile Get Started -->
                     <a routerLink="/login"
-                        class="mt-2 block rounded-md bg-base px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        class="mt-2 block rounded-md bg-base px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:accent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         (click)="closeMobileMenu()">
                         Login
                     </a>
                     <a routerLink="/signup"
-                        class="mt-2 block rounded-md bg-base px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        class="mt-2 block rounded-md bg-base px-5 py-2.5 text-center text-sm font-semibold text-white transition hover:accent focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         (click)="closeMobileMenu()">
                         Sign Up
                     </a>
