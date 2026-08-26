@@ -3,9 +3,10 @@ import { Breadcrumb } from "../../components/breadcrumb/breadcrumb";
 import { Menu } from '../../components/menu/menu';
 import { NavigationSection } from '../../../core/interfaces/Menu';
 import { ThemeToggle } from "../../components/theme-toggle/theme-toggle";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [Breadcrumb, Menu, ThemeToggle],
+  imports: [Breadcrumb, Menu, ThemeToggle, RouterOutlet],
   selector: 'app-web-part',
   styleUrl: './web-part.css',
   templateUrl: './web-part.html',
