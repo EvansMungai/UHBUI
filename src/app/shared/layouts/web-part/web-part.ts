@@ -2,22 +2,16 @@ import { Component, effect, signal } from '@angular/core';
 import { Breadcrumb } from "../../components/breadcrumb/breadcrumb";
 import { Menu } from '../../components/menu/menu';
 import { NavigationSection } from '../../../core/interfaces/Menu';
+import { ThemeToggle } from "../../components/theme-toggle/theme-toggle";
 
 @Component({
-  imports: [Breadcrumb, Menu],
+  imports: [Breadcrumb, Menu, ThemeToggle],
   selector: 'app-web-part',
   styleUrl: './web-part.css',
   templateUrl: './web-part.html',
 })
 export class WebPart {
   mobileMenuOpen = signal<boolean>(false);
-  darkMode = signal<boolean>(false);
-
-  constructor() {
-    effect(() => {
-      document.documentElement.classList.toggle('dark', this.darkMode())
-    })
-  }
 
   menuSections: NavigationSection[] = [
     {
@@ -51,10 +45,6 @@ export class WebPart {
         }
       ],
     }];
-
-  toggleTheme(): void {
-    this.darkMode.update(dark => !dark);
-  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update(open => !open)
