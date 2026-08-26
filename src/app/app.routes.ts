@@ -14,7 +14,13 @@ export const routes: Routes = [
                     { path: 'register', loadComponent: () => import('./shared/features/student/student-registration/student-registration').then(m => m.StudentRegistration) },
                     { path: 'booking', loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) },
                     { path: 'application-details', loadComponent: () => import('./shared/features/student/application-details/application-details').then(m => m.ApplicationDetails) },
-                    { path: 'accommodation-details', loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },]
+                    { path: 'accommodation-details', loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },
+                ]
+            },
+            {
+                path: 'housekeeper', component: WebPart, data: { menu: 'housekeeper' }, children: [
+                    { path: '', loadComponent: () => import('./shared/features/housekeeper/review-applications/review-applications').then(m => m.ReviewApplications) },
+                ]
             }
         ]
     },

@@ -22,5 +22,24 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 ]
             }
         ]
+    },
+    housekeeper: {
+        menuSections: [
+            {
+                title: '',
+                items: [
+                    { label: 'Dashboard', link: '/uhb/housekeeper' },
+                ]
+            }
+        ],
+        dropdownMenuSections: [
+            {
+                title: '',
+                items: [
+                    {label: 'My Account', link: '/my-account'},
+                    {label: 'Log out', link: '/log-out'},
+                ]
+            }
+        ]
     }
 }
