@@ -11,7 +11,8 @@ export const routes: Routes = [
             {
                 path: 'student', component: WebPart, children: [
                     { path: '', loadComponent: () => import('./shared/features/student/student-dashboard/student-dashboard').then(m => m.StudentDashboard) },
-                    { path: 'booking', loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) }
+                    { path: 'booking', loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) },
+                    { path: 'application-details', loadComponent: () => import('./shared/features/student/application-details/application-details').then(m => m.ApplicationDetails) }
                 ]
             }
         ]
