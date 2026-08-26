@@ -1,10 +1,9 @@
 import { Component, effect, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Menu } from '../menu/menu';
+import { RouterLink } from '@angular/router';
 import { NavigationSection } from '../../../core/interfaces/Menu';
 
 @Component({
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink],
   selector: 'app-navbar',
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',

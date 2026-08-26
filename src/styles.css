@@ -1,2 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* --color-primary: #F7F9FC; */
+    --color-primary: #EEF2FF;
+    --color-primary-dark: #111827;
+    /* --color-secondary: #5D5D81; */
+    --color-secondary: #BFCDE0;
+    --color-bg-dark: #BFCDE0;
+    --color-accent: #33B0EB;
+    --color-neutral: #080F0f;
+    --color-info: #00aefb;
+    --color-success: #009c56;
+    --color-base: #5DBEFF;
+    --color-warning: ##ff9000;
+    --color-error: #ff6c75;
+}
