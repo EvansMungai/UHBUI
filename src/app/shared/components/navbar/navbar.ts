@@ -1,22 +1,16 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavigationSection } from '../../../core/interfaces/Menu';
+import { ThemeToggle } from '../theme-toggle/theme-toggle';
 
 @Component({
-  imports: [RouterLink],
+  imports: [RouterLink, ThemeToggle],
   selector: 'app-navbar',
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',
 })
 export class Navbar {
-  readonly mobileMenuOpen = signal<boolean>(false);
-  darkMode = signal<boolean>(false);
-
-  constructor() {
-    effect(() => {
-      document.documentElement.classList.toggle('dark', this.darkMode())
-    })
-  }
+  readonly mobileMenuOpen = signal<boolean>(false);  
 
   menuSections: NavigationSection[] = [
     {
@@ -36,10 +30,6 @@ export class Navbar {
         }
       ],
     }];
-
-  toggleTheme(): void {
-    this.darkMode.update(dark => !dark);
-  }
 
   toggleMobileMenu(): void {
     this.mobileMenuOpen.update(open => !open);
