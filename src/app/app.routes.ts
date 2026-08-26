@@ -33,7 +33,14 @@ export const routes: Routes = [
                     { path: 'view-allocation', loadComponent: () => import('./shared/features/matron/view-allocation/view-allocation').then(m => m.ViewAllocation) },
                     { path: 'allocated-rooms', loadComponent: () => import('./shared/features/matron/rooms-allocated/rooms-allocated').then(m => m.RoomsAllocated) }
                 ]
-            }
+            },
+            {
+                path: 'admin', component: WebPart, data: { menu: 'admin' }, children: [
+                    { path: '', loadComponent: () => import('./shared/features/administrator/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
+                    { path: 'register-user', loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
+                    { path: 'change-user-role', loadComponent: () => import('./shared/features/administrator/change-user-role/change-user-role').then(m => m.ChangeUserRole) }
+                ]
+            },
         ]
     },
     { path: 'access-denied', component: AccessDenied },
