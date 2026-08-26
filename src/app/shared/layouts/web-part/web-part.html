@@ -1,14 +1,14 @@
 <div class="min-h-screen bg-white lg:grid lg:grid-cols-[14.5rem_1fr]">
     <!-- Desktop Sidebar -->
-    <aside class="hidden border-r border-gray-200 bg-white lg:block">
+    <aside class="hidden border-r border-gray-200 dark:border-gray-700 bg-primary dark:bg-primary-alt lg:block">
         <div class="sticky top-0 h-screen">
             <!-- Logo -->
-            <div class="flex h-15 items-center border-b border-gray-200 px-5">
+            <div class="flex h-15 items-center border-b border-gray-100 dark:border-gray-700 px-5">
                 <a href="#" class="flex items-center gap-2 no-underline">
                     <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/c2a66a70db897fd0d89ea72e7cbab1d3c06a93e2/apps/docs/src/assets/images/logos/hb-logo1.svg"
                         alt="Logo" class="h-8 w-8" />
-                    <span class="font-semibold text-gray-600">
-                        Application Title
+                    <span class="font-semibold text-gray-600 dark:text-gray-400">
+                        UHB
                     </span>
                 </a>
             </div>
@@ -22,28 +22,23 @@
     <!-- Mobile Sidebar -->
     @if (mobileMenuOpen()) {
     <div class="fixed inset-0 z-40 bg-black/40 lg:hidden" (click)="closeMobileMenu()"></div>
-    <aside class="fixed inset-y-0 left-0 z-50 w-66 bg-white shadow-xl lg:hidden">
-        <!-- Sidebar Header -->
-        <div class="flex h-15 items-center justify-between border-b border-gray-200 px-5">
+    <aside class="fixed inset-y-0 left-0 z-50 w-66 bg-primary dark:bg-primary-alt shadow-xl lg:hidden">
+        <div class="flex h-15 items-center justify-between border-b border-gray-100 dark:border-gray-700 px-5">
             <a href="#" class="flex items-center gap-2 no-underline">
                 <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/c2a66a70db897fd0d89ea72e7cbab1d3c06a93e2/apps/docs/src/assets/images/logos/hb-logo1.svg"
                     alt="Logo" class="h-8 w-8" />
-                <span class="font-semibold text-gray-600">
-                    Application Title
+                <span class="font-semibold text-gray-600 dark:text-gray-400">
+                    UHB
                 </span>
             </a>
-            <!-- Close -->
-            <button type="button" class="rounded-lg p-2 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900"
+            <button type="button" class="rounded-lg p-2 text-gray-500 transition hover:ring-2 hover:ring-base hover:text-white"
                 aria-label="Close navigation" (click)="closeMobileMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="h-5 w-5">
                     <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
             </button>
         </div>
-
-        <!-- Mobile Navigation -->
         <div class="h-[calc(100vh-3.75rem)] overflow-y-auto p-5">
-            <!-- Dashboards -->
             <app-menu [sections]="menuSections" (navigate)="closeMobileMenu()" />
         </div>
     </aside>
@@ -52,7 +47,7 @@
     <main class="min-w-0">
         <!-- Header -->
         <header
-            class="fixed top-0 z-30 flex h-15 w-full items-center border-b border-gray-200 bg-white px-6 lg:w-[calc(100%-14.5rem)]">
+            class="fixed top-0 z-30 flex h-15 w-full items-center border-b border-gray-100 dark:border-gray-700 bg-primary dark:bg-primary-alt px-6 lg:w-[calc(100%-14.5rem)]">
             <button type="button"
                 class="mr-4 rounded-lg p-2 text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 lg:hidden"
                 aria-label="Toggle navigation" [attr.aria-expanded]="mobileMenuOpen()" (click)="toggleMobileMenu()">
@@ -63,25 +58,51 @@
             <!-- Breadcrumb -->
             <app-breadcrumb page="E-commerce" />
 
-            <!-- User Menu -->
-            <details class="relative ml-auto">
-                <summary
-                    class="cursor-pointer list-none rounded-full focus:outline-none focus:ring-2 focus:ring-gray-300">
-                    <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/refs/heads/main/apps/docs/public/images/avatar/avatar_1.webp"
-                        alt="Avatar" class="h-8 w-8 rounded-full" />
-                </summary>
-                <!-- Dropdown -->
-                <div
-                    class="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
-                    <app-menu [sections]="dropdownMenuSections" (navigate)="closeMobileMenu()" />
-                </div>
-            </details>
+            <div class="ml-auto flex items-center gap-2">
+                <button type="button"
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-secondary text-gray-600 transition-colors hover:ring-2 hover:ring-base hover:text-gray-900 dark:border-gray-700 dark:bg-secondary dark:text-gray-200 dark:hover:text-white"
+                    [attr.aria-label]="darkMode() ? 'Light mode' : 'Dark mode'"
+                    [attr.title]="darkMode() ? 'Switch to light mode' : 'Switch to dark mode'" (click)="toggleTheme()">
+
+                    @if (!darkMode()) {
+                    <!-- Moon -->
+                    <svg class="h-4 w-4 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                    </svg>
+                    } @else {
+                    <!-- Sun -->
+                    <svg class="h-4 w-4 text-yellow-500 dark:text-yellow-400" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1 m0 16v1 m9-9h-1 M4 12H3 m15.364-6.364l-.707.707 M6.343 17.657l-.707.707 M17.657 17.657l-.707-.707 M6.343 6.343l-.707-.707 M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                    </svg>
+                    }
+                </button>
+
+                <!-- User Menu -->
+                <details class="relative">
+                    <summary
+                        class="cursor-pointer list-none rounded-full focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/refs/heads/main/apps/docs/public/images/avatar/avatar_1.webp"
+                            alt="Avatar" class="h-8 w-8 rounded-full" />
+                    </summary>
+
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+                        <app-menu [sections]="dropdownMenuSections" (navigate)="closeMobileMenu()" />
+                    </div>
+                </details>
+            </div>
+
         </header>
 
         <!-- Page Content -->
-        <div class="flex min-h-screen flex-col pt-15">
+        <div class="flex min-h-screen flex-col pt-15 dark:bg-gray-700">
             <div class="flex flex-1 flex-col p-6">
-                <div class="mt-4 flex-1 rounded-lg bg-gray-100 md:mt-6"></div>
+                <div class="mt-4 flex-1 rounded-lg bg-gray-100 dark:bg-primary-alt md:mt-6"></div>
             </div>
         </div>
     </main>
