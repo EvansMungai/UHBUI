@@ -8,6 +8,7 @@ import { NotFound } from './shared/pages/not-found/not-found';
 export const routes: Routes = [
     { path: '', component: Landing },
     { path: 'auth', component: Auth },
+    { path: 'uhb', redirectTo: '', pathMatch: 'full' },
     {
         path: 'uhb', children: [
             {
