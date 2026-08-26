@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Landing } from './shared/pages/landing/landing';
 import { Auth } from './shared/pages/auth/auth';
 import { WebPart } from './shared/layouts/web-part/web-part';
+import { AccessDenied } from './shared/pages/access-denied/access-denied';
 
 export const routes: Routes = [
     { path: '', component: Landing },
@@ -33,4 +34,5 @@ export const routes: Routes = [
             }
         ]
     },
+    { path: 'access-denied', component: AccessDenied }
 ];
