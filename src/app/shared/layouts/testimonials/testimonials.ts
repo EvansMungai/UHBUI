@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Card } from '../../components/card/card';
 
 @Component({
-  imports: [],
+  imports: [Card],
   selector: 'app-testimonials',
   styleUrl: './testimonials.css',
   templateUrl: './testimonials.html',
