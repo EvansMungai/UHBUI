@@ -43,5 +43,26 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 ]
             }
         ]
+    },
+    matron: {
+        menuSections: [
+            {
+                title: '',
+                items: [
+                    { label: 'Dashboard', link: '/uhb/matron' },
+                    // { label: 'View Application', link: '/uhb/housekeeper/view-application' },
+                    // { label: 'Successful Applications', link: '/uhb/housekeeper/successful-applications' },
+                ]
+            }
+        ],
+        dropdownMenuSections: [
+            {
+                title: '',
+                items: [
+                    {label: 'My Account', link: '/my-account'},
+                    {label: 'Log out', link: '/log-out'},
+                ]
+            }
+        ]
     }
 }

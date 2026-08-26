@@ -23,6 +23,11 @@ export const routes: Routes = [
                     { path: 'view-application', loadComponent: () => import('./shared/features/housekeeper/view-application/view-application').then(m => m.ViewApplication) },
                     { path: 'successful-applications', loadComponent: () => import('./shared/features/housekeeper/successful-applications/successful-applications').then(m => m.SuccessfulApplications) },
                 ]
+            },
+            {
+                path: 'matron', component: WebPart, data: { menu: 'matron' }, children: [
+                    { path: '', loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
+                ]
             }
         ]
     },
