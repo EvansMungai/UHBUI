@@ -29,7 +29,8 @@
                     UHB
                 </span>
             </a>
-            <button type="button" class="rounded-lg p-2 text-gray-500 transition hover:ring-2 hover:ring-base hover:text-white"
+            <button type="button"
+                class="rounded-lg p-2 text-gray-500 transition hover:ring-2 hover:ring-base hover:text-white"
                 aria-label="Close navigation" (click)="closeMobileMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" class="h-5 w-5">
                     <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -43,7 +44,6 @@
     }
     <!-- Main Content -->
     <main class="min-w-0">
-        <!-- Header -->
         <header
             class="fixed top-0 z-30 flex h-15 w-full items-center border-b border-gray-100 dark:border-gray-700 bg-primary dark:bg-primary-alt px-6 lg:w-[calc(100%-14.5rem)]">
             <button type="button"
@@ -53,23 +53,25 @@
                     <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 </svg>
             </button>
-            <!-- Breadcrumb -->
             <app-breadcrumb page="E-commerce" />
 
             <div class="ml-auto flex items-center gap-2">
                 <app-theme-toggle />
 
-                <!-- User Menu -->
                 <details class="relative">
-                    <summary
-                        class="cursor-pointer list-none rounded-full focus:outline-none focus:ring-2 focus:ring-gray-300">
-                        <img src="https://raw.githubusercontent.com/hummingbirdui/hummingbird/refs/heads/main/apps/docs/public/images/avatar/avatar_1.webp"
-                            alt="Avatar" class="h-8 w-8 rounded-full" />
+                    <summary class="cursor-pointer list-none rounded-full hover:ring-2 hover:ring-accent">
+                        <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" stroke-width="2" />
+                            <circle cx="12" cy="9" r="2.5" stroke-width="2" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7.5 17.5a5 5 0 019 0" />
+                        </svg>
+
                     </summary>
 
-                    <!-- Dropdown -->
                     <div
-                        class="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+                        class="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-accent bg-primary dark:bg-primary-alt py-1 shadow-lg">
                         <app-menu [sections]="dropdownMenuSections" (navigate)="closeMobileMenu()" />
                     </div>
                 </details>
