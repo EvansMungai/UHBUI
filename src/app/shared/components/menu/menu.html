@@ -22,9 +22,9 @@
         </h2>
         <div class="py-4 dark:border-white space-y-0.5">
             @for (item of section.items; track item.link) {
-            <a [routerLink]="item.link" routerLinkActive="bg-gray-100 font-medium text-gray-900"
+            <a [routerLink]="item.link" routerLinkActive="bg-accent"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="block rounded-lg px-3 py-2 text-sm text-gray-500 dark:text-white/90 transition hover:bg-white dark:hover:bg-gray-700 hover:text-fg-brand hover:bg-gray-100 hover:text-accent"
+                class="block rounded-lg px-3 py-2 text-sm dark:text-white/90 transition dark:hover:bg-gray-700 hover:bg-accent"
                 (click)="onNavigate()">
                 {{ item.label }}
             </a>
