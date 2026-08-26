@@ -1,4 +1,4 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Breadcrumb } from "../../components/breadcrumb/breadcrumb";
 import { Menu } from '../../components/menu/menu';
 import { NavigationSection } from '../../../core/interfaces/Menu';
