@@ -30,6 +30,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 items: [
                     { label: 'Dashboard', link: '/uhb/housekeeper' },
                     { label: 'View Application', link: '/uhb/housekeeper/view-application' },
+                    { label: 'Successful Applications', link: '/uhb/housekeeper/successful-applications' },
                 ]
             }
         ],

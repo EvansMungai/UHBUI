@@ -21,6 +21,7 @@ export const routes: Routes = [
                 path: 'housekeeper', component: WebPart, data: { menu: 'housekeeper' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/housekeeper/review-applications/review-applications').then(m => m.ReviewApplications) },
                     { path: 'view-application', loadComponent: () => import('./shared/features/housekeeper/view-application/view-application').then(m => m.ViewApplication) },
+                    { path: 'successful-applications', loadComponent: () => import('./shared/features/housekeeper/successful-applications/successful-applications').then(m => m.SuccessfulApplications) },
                 ]
             }
         ]
