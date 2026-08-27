@@ -30,9 +30,9 @@ export class Toast implements OnInit, OnDestroy {
   clearAllTrigger = signal<{} | null>(null);
   private activeTimers = new Map<any, any>();
 
-  get styles(): string {
+  styles(message: ToastMessageOptions): string {
     const defaultStyles = `fixed flex flex-col border border-gray-200 p-4 mb-3 rounded-lg shadow-xl min-w-[300px]`;
-    return `${defaultStyles} ${this.toastPosition()} ${this.toastStyles()}`.trim();
+    return `${defaultStyles} ${this.toastPosition()} ${this.toastStyles()} ${this.toastSeverity(message)}`.trim();
   }
 
   toastPosition = computed(() => {
@@ -44,6 +44,18 @@ export class Toast implements OnInit, OnDestroy {
     };
     return positionMap[this.position()]
   });
+
+  toastSeverity(message: ToastMessageOptions): string {
+    const severityMap: Record<string, string> = {
+      success: 'border border-success bg-success dark:border-green-400 dark:bg-green-800',
+      error: 'border border-error bg-error dark:border-red-400 dark:bg-red-800',
+      warn: 'border border-warn bg-warn dark:border-yellow-600 dark:bg-yellow-800',
+      info: 'border border-accent bg-accent dark:border-blue-600 dark:bg-blue-800'
+    };
+
+    return severityMap[message.severity ?? 'info'];
+  }
+
 
   containsMessage(collection: ToastMessageOptions[], message: ToastMessageOptions): boolean {
     if (!collection) {
