@@ -51,196 +51,178 @@
             Application period is required.}
             }
     </div>
-    <div class="mb-2">
+    <h4 class="text-lg font-bold sm:ml-5 mt-5 mb-3">SECTION II: NEEDS ASSESSMENT (Attach evidence where needed)</h4>
+    <div class="mb-2 flex items-center space-x-5">
         <label for="disability" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Do you live with any Disability?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="disabled" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="disabled" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="disability" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="disability" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="disabilityDetails" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, provide the disability details:
         </label>
-        <!-- <input id="disabilityDetails" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="disabilityDetails"
+        <input id="disabilityDetails" type="text" [formField]="bookingForm.disabilityDetails"
+            placeholder="disability details"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
     </div>
-    <h4 class="text-lg font-bold sm:ml-5 mt-5 mb-3">SECTION II: NEEDS ASSESSMENT (Attach evidence where needed)</h4>
     <div class="mb-2">
         <label for="accommodationBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Have you ever been accommodated within the university before?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="accommodationBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="accommodationBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === true"
+                (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === false"
+                (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="accommodationPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, provide the accommodation period:
         </label>
-        <!-- <input id="accommodationPeriod" type="text" [formField]="bookingForm.disabilityDetails"
+        <input id="accommodationPeriod" type="text" [formField]="bookingForm.accommodationPeriod"
             placeholder="accommodation period"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
+
     </div>
-    <div class="mb-2">
+    <div class="mb-2 space-x-5">
         <label for="sponsoredBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Are you sponsored by an organization recognized by the University and sponsorship includes accommodation?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === true" (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === false" (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="sponsor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, provide the name of the sponsor:
         </label>
-        <!-- <input id="sponsor" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="accommodation period"
+        <input id="sponsor" type="text" [formField]="bookingForm.sponsor" placeholder="sponsor"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
     </div>
-    <div class="mb-2">
+    <div class="mb-2 flex items-center space-x-5">
         <label for="receievesHelb" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Do you receive HELB?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === true" (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === false" (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="helbAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, how much per year:
         </label>
-        <!-- <input id="helbAmount" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="accommodation period"
+        <input id="helbAmount" type="text" [formField]="bookingForm.helbAmount" placeholder="Helb Amount"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
     </div>
-    <div class="mb-2">
+    <div class="mb-2 flex items-center space-x-5">
         <label for="receievesBursary" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Have you ever benefitted from the university bursary before?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary" (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === false" (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="bursaryAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, state the amount awarded:
         </label>
-        <!-- <input id="bursaryAmount" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="accommodation period"
+        <input id="bursaryAmount" type="text" [formField]="bookingForm.bursaryAmount" placeholder="Bursary Amount"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
     </div>
-    <div class="mb-2">
+    <div class="mb-2 flex items-center space-x-5">
         <label for="workStudyBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Have you ever benefitted from the university's work study program before?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === true"
+                (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === false"
+                (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="workStudyPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, state the period:
         </label>
-        <!-- <input id="workStudyPeriod" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="accommodation period"
+        <input id="workStudyPeriod" type="text" [formField]="bookingForm.workStudyPeriod" placeholder="Work period"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
+
     </div>
-    <div class="mb-2">
+    <div class="mb-2 flex items-center space-x-5">
         <label for="specialExamsBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Have you ever deferred studies on financial grounds?
         </label>
-        <!-- <div class="flex items-center space-x-1">
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">YES</label>
-            <input type="radio" [formField]="bookingForm.disability" value="true"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-            <label for="sponsoredBefore" class="text-md font-medium mr-1">NO</label>
-            <input type="radio" [formField]="bookingForm.disability" value="false"
-                class="size-5 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:ring-offset-gray-900 dark:checked:bg-blue-600" />
-        </div> -->
+        <label>
+            <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
+                ...value,disability: true}))" />
+            Yes
+        </label>
+        <label>
+            <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
+                ...value, disability: false }))" />
+            No
+        </label>
     </div>
     <div class="mb-2">
         <label for="specialExamsPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             If yes, state the period:
         </label>
-        <!-- <input id="specialExamsPeriod" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="accommodation period"
+        <input id="specialExamsPeriod" type="text" [formField]="bookingForm.specialExamPeriod"
+            placeholder="Special Exams period"
             class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            } -->
     </div>
     <div class="mb-2">
         <label for="Notes">
-            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Briefly describe why you should be considered for a space within the university hostels:</span>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Briefly describe why you should be
+                considered for a space within the university hostels:</span>
 
-            <textarea id="Notes"
+            <textarea id="Notes" [formField]="bookingForm.reasonsForConsideration"
                 class="mt-0.5 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400"
-                rows="4"></textarea>
+                rows="4" placeholder="Reasons for consideration"></textarea>
         </label>
     </div>
 </form>

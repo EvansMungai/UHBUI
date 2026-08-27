@@ -10,7 +10,7 @@ import { form, required, schema, FormRoot, FormField } from '@angular/forms/sign
 })
 export class Booking {
   loading = signal<boolean>(false);
-  bookingModel = signal<ApplicationData>({ applicationPeriod: '', registrationNo: '', preferredHostel: '', status: '', roomNo: '', disability: false, disabilityDetails: 'N/A', accommodatedBefore: false, accommodationPeriod: '', isSponsored: false, sponsor: '', receivesHelb: false, helbAmount: '', receivedBursary: false, bursaryAmount: '', workStudyBenefitsBefore: false, workStudyPeriod: '', specialExamsOnFinancialGrounds: false, specialExamPeriod: '', reasonsForConsideration: '' });
+  bookingModel = signal<ApplicationData>({ applicationPeriod: '', registrationNo: '', preferredHostel: '', status: '', roomNo: '', disability: false, disabilityDetails: '', accommodatedBefore: false, accommodationPeriod: '', isSponsored: false, sponsor: '', receivesHelb: false, helbAmount: '', receivedBursary: false, bursaryAmount: '', workStudyBenefitsBefore: false, workStudyPeriod: '', specialExamsOnFinancialGrounds: false, specialExamPeriod: '', reasonsForConsideration: '' });
   bookingForm = form(this.bookingModel, schema(path => {
     required(path.registrationNo, { message: "Registration number is required" });
     required(path.applicationPeriod, { message: "Application period is required" });
