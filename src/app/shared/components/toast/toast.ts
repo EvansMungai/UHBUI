@@ -1,4 +1,4 @@
-import { Component, computed, contentChild, HostListener, inject, input, OnDestroy, OnInit, signal, TemplateRef } from '@angular/core';
+import { Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 import { ToastService } from '../../../core/services/toast';
 import { Subscription } from 'rxjs';
@@ -18,9 +18,8 @@ export class Toast implements OnInit, OnDestroy {
   position = input<'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'>('top-right');
   toastStyles = input<string>();
   isVisible = signal<boolean>(false);
-  summary = signal<string>('');
-  detail = signal<string>('');
-  headerTemplate = contentChild<TemplateRef<any>>('headerTemplate');
+  // summary = signal<string>('');
+  // detail = signal<string>('');
 
   messages = signal<ToastMessageOptions[]>([]);
   messagesArchieve: ToastMessageOptions[] | undefined;
@@ -47,10 +46,10 @@ export class Toast implements OnInit, OnDestroy {
 
   toastSeverity(message: ToastMessageOptions): string {
     const severityMap: Record<string, string> = {
-      success: 'border border-success bg-success dark:border-green-400 dark:bg-green-800',
-      error: 'border border-error bg-error dark:border-red-400 dark:bg-red-800',
-      warn: 'border border-warn bg-warn dark:border-yellow-600 dark:bg-yellow-800',
-      info: 'border border-accent bg-accent dark:border-blue-600 dark:bg-blue-800'
+      success: 'border border-success bg-green-100 dark:text-white dark:border-green-400 dark:bg-green-800',
+      error: 'border border-error bg-red-300 dark:border-red-400 dark:bg-error',
+      warn: 'border border-amber-500 bg-amber-400 dark:border-yellow-600',
+      info: 'border border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-accent'
     };
 
     return severityMap[message.severity ?? 'info'];
