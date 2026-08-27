@@ -33,6 +33,7 @@ export class Auth {
         try {
           const credentials = field().value();
           const response = await firstValueFrom(this.authService.register(credentials));
+          this.authService.setToken(response.token);
           this.redirectBasedOnRole(response.user.roles[0]);
           this.toastService.add({
             severity: 'success',
@@ -65,6 +66,7 @@ export class Auth {
         try {
           const credentials = field().value();
           const response = await firstValueFrom(this.authService.login(credentials));
+          this.authService.setToken(response.token);
           this.redirectBasedOnRole(response.user.roles[0]);
           this.toastService.add({
             severity: 'success',

@@ -20,6 +20,18 @@ export class AuthService {
         }
     }
 
+    setToken(token: string): void {
+        localStorage.setItem('access_token', token);
+    }
+
+    getToken(): string | null {
+        return localStorage.getItem('access_token');
+    }
+
+    clearToken(): void {
+        return localStorage.removeItem('access_token');
+    }
+
     login(data: AccessRequest): Observable<AccessResponse> {
         return this.http.post<AccessResponse>(`${environment.apiUrl}/login`, data, { params: { platform: 'web' } })
     }
