@@ -5,12 +5,18 @@
         @for (item of section.items; track item.link) {
         <li>
             <a [routerLink]="item.link" routerLinkActive="text-primary-700" [routerLinkActiveOptions]="{ exact: true }"
-                class="text-sm font-medium text-gray-700 dark:text-white/90 transition hover:text-primary-700" (click)="onNavigate()">
+                class="text-sm font-medium text-gray-700 dark:text-white/90 transition hover:text-primary-700"
+                (click)="onNavigate()">
                 {{ item.label }}
             </a>
         </li>
         }
         }
+        <a routerLink="/logout" routerLinkActive="text-primary-700" [routerLinkActiveOptions]="{ exact: true }"
+            class="text-sm font-medium text-gray-700 dark:text-white/90 transition hover:text-primary-700"
+            (click)="onLogOut()">
+            Log out
+        </a>
     </ul>
 </nav>
 } @else {
@@ -22,13 +28,17 @@
         </h2>
         <div class="py-4 dark:border-white space-y-0.5">
             @for (item of section.items; track item.link) {
-            <a [routerLink]="item.link" routerLinkActive="bg-accent"
-                [routerLinkActiveOptions]="{ exact: true }"
+            <a [routerLink]="item.link" routerLinkActive="bg-accent" [routerLinkActiveOptions]="{ exact: true }"
                 class="block rounded-lg px-3 py-2 text-sm dark:text-white/90 transition dark:hover:bg-gray-700 hover:bg-accent"
                 (click)="onNavigate()">
                 {{ item.label }}
             </a>
             }
+            <a routerLink="/logout" routerLinkActive="bg-accent" [routerLinkActiveOptions]="{ exact: true }"
+                class="block rounded-lg px-3 py-2 text-sm dark:text-white/90 transition dark:hover:bg-gray-700 hover:bg-accent"
+                (click)="onLogOut()">
+                Log Out
+            </a>
         </div>
     </section>
     }

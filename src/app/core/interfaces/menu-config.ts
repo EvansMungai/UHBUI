@@ -17,8 +17,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    {label: 'My Account', link: '/my-account'},
-                    {label: 'Log out', link: '/log-out'},
+                    { label: 'My Account', link: '/my-account' },
                 ]
             }
         ]
@@ -38,8 +37,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    {label: 'My Account', link: '/my-account'},
-                    {label: 'Log out', link: '/log-out'},
+                    { label: 'My Account', link: '/my-account' },
                 ]
             }
         ]
@@ -59,8 +57,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    {label: 'My Account', link: '/my-account'},
-                    {label: 'Log out', link: '/log-out'},
+                    { label: 'My Account', link: '/my-account' },
                 ]
             }
         ]
@@ -80,8 +77,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    {label: 'My Account', link: '/my-account'},
-                    {label: 'Log out', link: '/log-out'},
+                    { label: 'My Account', link: '/my-account' },
                 ]
             }
         ]

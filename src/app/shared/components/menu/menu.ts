@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NavigationSection } from '../../../core/interfaces/Menu';
+import { AuthService } from '../../../core/services/auth';
 
 @Component({
   imports: [RouterLink, RouterLinkActive],
@@ -9,11 +10,15 @@ import { NavigationSection } from '../../../core/interfaces/Menu';
   templateUrl: './menu.html',
 })
 export class Menu {
+  private authService = inject(AuthService);
   sections = input.required<NavigationSection[]>();
   horizontal = input<boolean>(false);
   navigate = output<void>();
 
   onNavigate(): void {
     this.navigate.emit();
+  }
+  onLogOut(): void {
+    this.authService.logout();
   }
 }

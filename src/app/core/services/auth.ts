@@ -4,10 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Service()
 export class AuthService {
     private currentUser!: UserDetials | null;
+    private router = inject(Router);
     private http = inject(HttpClient);
     private platformId = inject(PLATFORM_ID);
     private isBrowser = signal<boolean>(false);
@@ -38,4 +40,10 @@ export class AuthService {
     register(data: AccessRequest): Observable<AccessResponse> {
         return this.http.post<AccessResponse>(`${environment.apiUrl}/register`, data, { params: { platform: 'web' } });
     }
+    logout(): void {
+        this.clearToken();
+        localStorage.removeItem('user');
+        this.router.navigate(['/'])
+    }
+    
 }
