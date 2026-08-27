@@ -73,6 +73,11 @@
                     <div
                         class="absolute right-0 mt-2 w-48 overflow-hidden rounded-lg border border-accent bg-primary dark:bg-primary-alt py-1 shadow-lg">
                         <app-menu [sections]="dropdownMenuSections" (navigate)="closeMobileMenu()" />
+                        <a routerLink="/logout" routerLinkActive="bg-accent" [routerLinkActiveOptions]="{ exact: true }"
+                            class="block rounded-lg px-3 py-2 text-sm dark:text-white/90 transition dark:hover:bg-gray-700 hover:bg-accent"
+                            (click)="onLogOut()">
+                            Log Out
+                        </a>
                     </div>
                 </details>
             </div>
@@ -82,7 +87,8 @@
         <!-- Page Content -->
         <div class="flex min-h-screen flex-col pt-15 dark:bg-gray-700">
             <div class="flex flex-1 flex-col p-6">
-                <div class="mt-4 flex-1 px-4 sm:px-9 py-4 sm:py-[30px] rounded-lg bg-primary dark:bg-primary-alt md:mt-6">
+                <div
+                    class="mt-4 flex-1 px-4 sm:px-9 py-4 sm:py-[30px] rounded-lg bg-primary dark:bg-primary-alt md:mt-6">
                     <router-outlet />
                 </div>
             </div>
