@@ -1,11 +1,90 @@
-<h1 class="text-2xl sm:text-3xl md:text-[35px] font-bold text-center dark:text-white leading-tight">WELCOME TO UNIVERSITY HOSTEL BOOKING
-  SYSTEM</h1>
+<h1 class="text-2xl sm:text-2xl md:text-[35px] font-bold text-center dark:text-white leading-tight">WELCOME TO
+  UHB</h1>
 <p class="my-4 sm:my-5 text-sm dark:text-white">
   Welcome to the University Hostel Booking System! We're thrilled to have you here as part of our
   community. To get started, please take a moment to fill in your details below. This information will help us create
   your profile and ensure a smooth booking experience for you. We're excited to assist you in finding the perfect
   accommodation!
 </p>
-<app-card [cardStyles]="'border border-accent dark:text-white shadow-xl rounded-lg'">
-    This is where the registration form will appear
-</app-card>
+<form [formRoot]="registrationForm"
+  class="mt-6 dark:text-white block max-w-3xl mx-auto p-6 shadow-xl rounded-lg w-full bg-secondary dark:bg-gray-800">
+  <h3 class="text-lg sm:text-xl font-bold text-center mb-4">STUDENT REGISTRATION FORM</h3>
+  <div>
+    <label for="regNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      Registration Number:
+    </label>
+    <input id="regNo" type="text" [formField]="registrationForm.regNo" placeholder="Registration Number"
+      class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+    @if (registrationForm.regNo().touched() && registrationForm.regNo().invalid()) {
+    <p class="mt-1.5 text-xs text-red-500">
+      @if (registrationForm.regNo().getError('required')) {
+      Registration number is required.}
+      }
+  </div>
+  <div class="mb-3">
+    <label for="surname" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      Surname:
+    </label>
+    <input id="surname" type="text" [formField]="registrationForm.surname" placeholder="Surname"
+      class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+    @if (registrationForm.surname().touched() && registrationForm.surname().invalid()) {
+    <p class="mt-1.5 text-xs text-red-500">
+      @if (registrationForm.surname().getError('required')) {
+      Surname is required.}
+      }
+  </div>
+  <div class="mb-3">
+    <label for="firstName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      First Name:
+    </label>
+    <input id="firstName" type="text" [formField]="registrationForm.firstName" placeholder="Joe"
+      class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+    @if (registrationForm.firstName().touched() && registrationForm.firstName().invalid()) {
+    <p class="mt-1.5 text-xs text-red-500">
+      @if (registrationForm.firstName().getError('required')) {
+      First Name is required.}
+      }
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      Last Name:
+    </label>
+    <input id="firstName" type="text" [formField]="registrationForm.secondName" placeholder="Doe"
+      class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+    @if (registrationForm.secondName().touched() && registrationForm.secondName().invalid()) {
+    <p class="mt-1.5 text-xs text-red-500">
+      @if (registrationForm.secondName().getError('required')) {
+      Last Name is required.}
+      }
+  </div>
+  <div class="mb-2">
+    <label for="gender" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+      Gender:
+    </label>
+    <select id="Headline" [formField]="registrationForm.gender"
+      class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
+      <option value="" class="" disabled selected>Please select</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    @if (registrationForm.gender().touched() && registrationForm.gender().invalid()) {
+    <p class="mt-1.5 text-xs text-red-500">
+      @if (registrationForm.gender().getError('required')) {
+      Gender is required.}
+      }
+  </div>
+  <button type="submit" [disabled]="registrationForm().invalid() || loading()"
+    class="w-full h-12 rounded-lg mt-5 bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
+    @if (loading()) {
+    <span class="flex items-center justify-center gap-2">
+      <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+      </svg>
+      Registering Details...
+    </span>
+    } @else {
+    Register Student Details
+    }
+  </button>
+</form>

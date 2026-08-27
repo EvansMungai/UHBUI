@@ -28,18 +28,11 @@ export class Auth {
     submission: {
       action: async (field) => {
         this.loading.set(true);
-        const credentials = field().value();
-        console.log('Registering with the following credentials: ', credentials);
         try {
           const credentials = field().value();
           const response = await firstValueFrom(this.authService.register(credentials));
           this.authService.setToken(response.token);
-          this.redirectBasedOnRole(response.user.roles[0]);
-          this.toastService.add({
-            severity: 'success',
-            detail: 'Welcome To UHB',
-            life: 3000
-          })
+          this.router.navigate(['uhb/student/register'])
         } catch (err) {
           const error = extractErrorMessage(err);
           this.toastService.add({
