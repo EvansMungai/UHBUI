@@ -4,37 +4,52 @@
     information concerning Hostel Booking and Allocation. Below, you will find your student details as recorded in the
     system. Please verify that the information is accurate to ensure a smooth booking experience. If any details appear
     incorrect, kindly reach out to the administration for assistance.</p>
-<app-card [cardStyles]="'bg-primary dark:bg-primary-alt border border-accent shadow-xl rounded-lg'">
-    <p class="dark:text-white">This is where the student details will appear</p>
-</app-card>
-<!-- @defer(when studentData()){
-<div class="mt-6">
-    <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
-        Personal Information
-    </h3>
-    <div class="grid md:grid-cols-2 gap-4">
-        <div>
-            <span class="font-medium text-gray-600">Registration Number:</span>
-            <span class="ml-2">{{studentData()?.regNo}}</span>
-        </div>
-        <div>
-            <span class="font-medium text-gray-600">Surname:</span>
-            <span class="ml-2">{{studentData()?.surname}}</span>
-        </div>
-        <div>
-            <span class="font-medium text-gray-600">First Name:</span>
-            <span class="ml-2">{{studentData()?.firstName}}</span>
-        </div>
-        <div>
-            <span class="font-medium text-gray-600">Second Name:</span>
-            <span class="ml-2">{{studentData()?.secondName}}</span>
-        </div>
-        <div>
-            <span class="font-medium text-gray-600">Gender:</span>
-            <span class="ml-2">{{studentData()?.gender}}</span>
+<app-card [cardStyles]="'bg-primary dark:bg-primary-alt border border-accent shadow-xl rounded-lg p-6 block'">
+    @if (studentResource.isLoading()) {
+    <div class="flex items-center space-x-2 dark:text-white">
+        <span class="animate-pulse">Loading student profiles... Please Wait</span>
+    </div>
+    }
+
+    @else if (studentResource.error()) {
+    <div class="text-red-500 py-2">
+        <p>Failed to load student details. Please try again.</p>
+        <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+            Retry Connection
+        </button>
+    </div>
+    }
+
+    @else if (studentData(); as student) {
+    <div class="mt-2 dark:text-white">
+        <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 dark:border-gray-700 mb-4">
+            Personal Information
+        </h3>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div>
+                <span class="font-medium text-gray-500 dark:text-gray-400">Registration Number:</span>
+                <span class="ml-2 font-semibold">{{ student.regNo }}</span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-500 dark:text-gray-400">Surname:</span>
+                <span class="ml-2 font-semibold">{{ student.surname }}</span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-500 dark:text-gray-400">First Name:</span>
+                <span class="ml-2 font-semibold">{{ student.firstName }}</span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-500 dark:text-gray-400">Second Name:</span>
+                <span class="ml-2 font-semibold">{{ student.lastName }}</span>
+            </div>
+            <div>
+                <span class="font-medium text-gray-500 dark:text-gray-400">Gender:</span>
+                <span class="ml-2 font-semibold">{{ student.gender }}</span>
+            </div>
         </div>
     </div>
-</div>
-} @placeholder {
-<p>Loading .... Please Wait</p>
-} -->
+    }
+    @else {
+    <p class="dark:text-white text-gray-500">No student profile session active.</p>
+    }
+</app-card>

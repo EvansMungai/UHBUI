@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Card } from "../../../components/card/card";
-import { NavigationSection } from '../../../../core/interfaces/Menu';
+import { StudentData } from '../../../../core/models/student';
+import { httpResource } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   imports: [Card],
@@ -9,36 +11,18 @@ import { NavigationSection } from '../../../../core/interfaces/Menu';
   templateUrl: './student-dashboard.html',
 })
 export class StudentDashboard {
-  menuSections: NavigationSection[] = [
-    {
-      title: 'Dashboards',
-      items: [
-        {
-          label: 'E-commerce',
-          link: '/dashboard/e-commerce',
-        },
-        {
-          label: 'Project Management',
-          link: '/dashboard/projects',
-        },
-        {
-          label: 'CRM',
-          link: '/dashboard/crm',
-        },
-      ],
-    }];
-  dropdownMenuSections: NavigationSection[] = [
-    {
-      title: '',
-      items: [
-        {
-          label: 'My-account',
-          link: '/my-account',
-        },
-        {
-          label: 'Log out',
-          link: '/my-account',
-        }
-      ],
-    }];
+  currentRegNo = signal<string>('C026-01-0908/2022');
+
+  studentResource = httpResource<StudentData>(() => {
+    const regNo = this.currentRegNo().trim();
+    if (!regNo) return undefined;
+
+    return {
+      url: `${environment.apiUrl}/student`,
+      method: 'GET',
+      params: { id: encodeURIComponent(regNo) }
+    }
+  });
+
+  studentData = this.studentResource.value;
 }
