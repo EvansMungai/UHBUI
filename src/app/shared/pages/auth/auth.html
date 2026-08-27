@@ -29,7 +29,7 @@
                         Start your booking today.
                     </p>
                 </div>
-                <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="space-y-5 w-full">
+                <form [formRoot]="signUpForm" class="space-y-5 w-full">
                     <div>
                         <label for="signup-username"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -42,61 +42,52 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signup-username" type="text" formControlName="username"
+                            <input id="signup-username" type="text" [formField]="signUpForm.username"
                                 placeholder="username"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (
-                        signUpForm.controls.username.touched &&
-                        signUpForm.controls.username.invalid
-                        ) {
+                        @if (signUpForm.username().touched() && signUpForm.username().invalid()) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (signUpForm.controls.username.hasError('required')) {
+                            @if (signUpForm.username().getError('required')) {
                             Username is required.
-                            } @else if (
-                            signUpForm.controls.username.hasError('email')
-                            ) {
+                            } @else if (signUpForm.username().getError('email')) {
                             Please enter a valid username.
                             }
                         </p>
                         }
                     </div>
-                    <div class="flex justify-between items-center mb-1">
-                        <label for="signup-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Password
-                        </label>
-                        <span class="text-xs text-gray-400">
-                            Min. 8 Chars
-                        </span>
-                    </div>
-                    <div class="relative">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            class="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400 pointer-events-none"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                        <input id="signup-password" type="password" formControlName="password"
-                            autocomplete="new-password" placeholder="••••••••"
-                            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-                    </div>
-                    @if (
-                    signUpForm.controls.password.touched &&
-                    signUpForm.controls.password.invalid
-                    ) {
-                    <p class="mt-1.5 text-xs text-red-500">
-                        @if (
-                        signUpForm.controls.password.hasError('required')
-                        ) {
-                        Password is required.
-                        } @else if (
-                        signUpForm.controls.password.hasError('minlength')
-                        ) {
-                        Password must be at least 8 characters.
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <label for="signup-password"
+                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                                Password
+                            </label>
+                            <span class="text-xs text-gray-400">
+                                Min. 8 Chars
+                            </span>
+                        </div>
+                        <div class="relative">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-gray-400 pointer-events-none"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                            <input id="signup-password" type="password" [formField]="signUpForm.password"
+                                autocomplete="new-password" placeholder="••••••••"
+                                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                        </div>
+                        @if (signUpForm.password().touched() && signUpForm.password().invalid()) {
+                        <p class="mt-1.5 text-xs text-red-500">
+                            @if (signUpForm.password().getError('required')) {
+                            Password is required.
+                            } @else if (signUpForm.password().getError('minLength')) {
+                            Password must be at least 8 characters.
+                            }
+                        </p>
                         }
-                    </p>
-                    }
-                    <button type="submit" [disabled]="signUpForm.invalid || loading()"
+                    </div>
+                    <button type="submit" [disabled]="signUpForm().invalid() || loading()"
                         class="w-full h-12 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
                         @if (loading()) {
                         <span class="flex items-center justify-center gap-2">
@@ -126,7 +117,7 @@
                         Sign in to continue to your account.
                     </p>
                 </div>
-                <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="space-y-5 w-full">
+                <form [formRoot]="loginForm" class="space-y-5 w-full">
                     <div>
                         <label for="signin-username"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -139,15 +130,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signin-email" type="text" formControlName="username" 
-                                placeholder="username"
+                            <input id="signin-email" type="text" placeholder="username" [formField]="loginForm.username"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (signInForm.controls.username.touched &&signInForm.controls.username.invalid) {
+                        @if (loginForm.username().touched() && loginForm.username().invalid()) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (signInForm.controls.username.hasError('required')) {
+                            @if (loginForm.username().getError('required')) {
                             Username is required.
-                            } @else if (signInForm.controls.username.hasError('email')) {
+                            } @else if (loginForm.username().getError('email')) {
                             Please enter a valid username.
                             }
                         </p>
@@ -165,31 +155,23 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                             </svg>
-                            <input id="signin-password" type="password" formControlName="password"
+                            <input id="signin-password" type="password" [formField]="loginForm.password"
                                 autocomplete="current-password" placeholder="••••••••"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (signInForm.controls.password.touched
-                        &&signInForm.controls.password.hasError('required')) {
+                        @if (loginForm.password().touched() && loginForm.password().getError('required')) {
                         <p class="mt-1.5 text-xs text-red-500">
                             Password is required.
                         </p>
                         }
                     </div>
-                    <div class="flex items-center justify-between -mt-3 px-1.5">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <input type="checkbox" formControlName="rememberMe"
-                                class="size-4 rounded border-gray-300 text-primary focus:ring-primary" />
-                            <span class="text-xs text-gray-600 dark:text-gray-400">
-                                Keep me signed in
-                            </span>
-                        </label>
+                    <div class="-mt-3 px-1.5">
                         <a routerLink="/forgot-password"
-                            class="text-xs text-gray-500 dark:text-gray-400 hover:text-primary no-underline transition-colors">
+                            class="text-xs text-gray-500 dark:text-gray-400 hover:text-accent no-underline transition-colors">
                             Forgot password?
                         </a>
                     </div>
-                    <button type="submit" [disabled]="signInForm.invalid || loading()"
+                    <button type="submit" [disabled]="loginForm().invalid() || loading()"
                         class="w-full h-12 rounded-lg bg-accent px-5 font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
                         @if (loading()) {
                         <span class="flex items-center justify-center gap-2">
