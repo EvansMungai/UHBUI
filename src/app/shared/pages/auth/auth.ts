@@ -17,13 +17,13 @@ export class Auth {
   loading = signal<boolean>(false);
 
   readonly signInForm = this.fb.nonNullable.group({
-    email: ['', Validators.required, Validators.email],
+    username: ['', Validators.required],
     password: ['', Validators.required],
     rememberMe: false
   });
 
   readonly signUpForm = this.fb.nonNullable.group({
-    email: ['', Validators.required, Validators.email],
+    username: ['', Validators.required],
     password: ['', Validators.required]
   });
 

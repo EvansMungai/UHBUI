@@ -31,7 +31,7 @@
                 </div>
                 <form [formGroup]="signUpForm" (ngSubmit)="signUp()" class="space-y-5 w-full">
                     <div>
-                        <label for="signup-email"
+                        <label for="signup-username"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                             Username
                         </label>
@@ -42,21 +42,21 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signup-email" type="email" formControlName="email" autocomplete="email"
-                                placeholder="name@company.com"
+                            <input id="signup-username" type="text" formControlName="username"
+                                placeholder="username"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
                         @if (
-                        signUpForm.controls.email.touched &&
-                        signUpForm.controls.email.invalid
+                        signUpForm.controls.username.touched &&
+                        signUpForm.controls.username.invalid
                         ) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (signUpForm.controls.email.hasError('required')) {
-                            Email address is required.
+                            @if (signUpForm.controls.username.hasError('required')) {
+                            Username is required.
                             } @else if (
-                            signUpForm.controls.email.hasError('email')
+                            signUpForm.controls.username.hasError('email')
                             ) {
-                            Please enter a valid email address.
+                            Please enter a valid username.
                             }
                         </p>
                         }
@@ -96,7 +96,7 @@
                         }
                     </p>
                     }
-                    <button type="submit" [disabled]="signUpForm.invalid || loading"
+                    <button type="submit" [disabled]="signUpForm.invalid || loading()"
                         class="w-full h-12 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
                         @if (loading()) {
                         <span class="flex items-center justify-center gap-2">
@@ -128,9 +128,9 @@
                 </div>
                 <form [formGroup]="signInForm" (ngSubmit)="signIn()" class="space-y-5 w-full">
                     <div>
-                        <label for="signin-email"
+                        <label for="signin-username"
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                            Email Address
+                            Username
                         </label>
                         <div class="relative">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -139,16 +139,16 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signin-email" type="email" formControlName="email" autocomplete="email"
-                                placeholder="name@company.com"
+                            <input id="signin-email" type="text" formControlName="username" 
+                                placeholder="username"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (signInForm.controls.email.touched &&signInForm.controls.email.invalid) {
+                        @if (signInForm.controls.username.touched &&signInForm.controls.username.invalid) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (signInForm.controls.email.hasError('required')) {
-                            Email address is required.
-                            } @else if (signInForm.controls.email.hasError('email')) {
-                            Please enter a valid email address.
+                            @if (signInForm.controls.username.hasError('required')) {
+                            Username is required.
+                            } @else if (signInForm.controls.username.hasError('email')) {
+                            Please enter a valid username.
                             }
                         </p>
                         }
@@ -189,7 +189,7 @@
                             Forgot password?
                         </a>
                     </div>
-                    <button type="submit" [disabled]="signInForm.invalid || loading"
+                    <button type="submit" [disabled]="signInForm.invalid || loading()"
                         class="w-full h-12 rounded-lg bg-accent px-5 font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
                         @if (loading()) {
                         <span class="flex items-center justify-center gap-2">
