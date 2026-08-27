@@ -12,33 +12,33 @@ export const routes: Routes = [
     {
         path: 'uhb', children: [
             {
-                path: 'student', component: WebPart, data: { menu: 'student' }, children: [
+                path: 'student', component: WebPart, data: { menu: 'student', breadcrumb: 'Dashboard' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/student/student-dashboard/student-dashboard').then(m => m.StudentDashboard) },
-                    { path: 'register', loadComponent: () => import('./shared/features/student/student-registration/student-registration').then(m => m.StudentRegistration) },
-                    { path: 'booking', loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) },
-                    { path: 'application-details', loadComponent: () => import('./shared/features/student/application-details/application-details').then(m => m.ApplicationDetails) },
-                    { path: 'accommodation-details', loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },
+                    { path: 'register', data: { breadcrumb: 'Register' }, loadComponent: () => import('./shared/features/student/student-registration/student-registration').then(m => m.StudentRegistration) },
+                    { path: 'booking', data: { breadcrumb: 'Booking' }, loadComponent: () => import('./shared/features/student/booking/booking').then(m => m.Booking) },
+                    { path: 'application-details', data: { breadcrumb: 'Application-Details' }, loadComponent: () => import('./shared/features/student/application-details/application-details').then(m => m.ApplicationDetails) },
+                    { path: 'accommodation-details', data: { breadcrumb: 'Accommodation-Details' }, loadComponent: () => import('./shared/features/student/accommodation-details/accommodation-details').then(m => m.AccommodationDetails) },
                 ]
             },
             {
-                path: 'housekeeper', component: WebPart, data: { menu: 'housekeeper' }, children: [
+                path: 'housekeeper', component: WebPart, data: { menu: 'housekeeper', breadcrumb: 'Dashboard' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/housekeeper/review-applications/review-applications').then(m => m.ReviewApplications) },
-                    { path: 'view-application', loadComponent: () => import('./shared/features/housekeeper/view-application/view-application').then(m => m.ViewApplication) },
-                    { path: 'successful-applications', loadComponent: () => import('./shared/features/housekeeper/successful-applications/successful-applications').then(m => m.SuccessfulApplications) },
+                    { path: 'view-application', data: { breadcrumb: 'View-Application' }, loadComponent: () => import('./shared/features/housekeeper/view-application/view-application').then(m => m.ViewApplication) },
+                    { path: 'successful-applications', data: { breadcrumb: 'Successful-Applications' }, loadComponent: () => import('./shared/features/housekeeper/successful-applications/successful-applications').then(m => m.SuccessfulApplications) },
                 ]
             },
             {
-                path: 'matron', component: WebPart, data: { menu: 'matron' }, children: [
-                    { path: '', loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
-                    { path: 'view-allocation', loadComponent: () => import('./shared/features/matron/view-allocation/view-allocation').then(m => m.ViewAllocation) },
-                    { path: 'allocated-rooms', loadComponent: () => import('./shared/features/matron/rooms-allocated/rooms-allocated').then(m => m.RoomsAllocated) }
+                path: 'matron', component: WebPart, data: { menu: 'matron', breadcrumb: 'Dashboard' }, children: [
+                    { path: '',  loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
+                    { path: 'view-allocation', data: { breadcrumb: 'View-Allocation' }, loadComponent: () => import('./shared/features/matron/view-allocation/view-allocation').then(m => m.ViewAllocation) },
+                    { path: 'allocated-rooms', data: { breadcrumb: 'Allocated-Rooms' }, loadComponent: () => import('./shared/features/matron/rooms-allocated/rooms-allocated').then(m => m.RoomsAllocated) }
                 ]
             },
             {
-                path: 'admin', component: WebPart, data: { menu: 'admin' }, children: [
+                path: 'admin', component: WebPart, data: { menu: 'admin', breadcrumb: 'Dashboard' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/administrator/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
-                    { path: 'register-user', loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
-                    { path: 'change-user-role', loadComponent: () => import('./shared/features/administrator/change-user-role/change-user-role').then(m => m.ChangeUserRole) }
+                    { path: 'register-user', data: { breadcrumb: 'Register-User' }, loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
+                    { path: 'change-user-role', data: { breadcrumb: 'Change-User-Role' }, loadComponent: () => import('./shared/features/administrator/change-user-role/change-user-role').then(m => m.ChangeUserRole) }
                 ]
             },
         ]

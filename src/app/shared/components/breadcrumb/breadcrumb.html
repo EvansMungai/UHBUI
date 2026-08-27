@@ -3,16 +3,16 @@
         @for (breadcrumb of breadcrumbs(); track breadcrumb.url; let last = $last) {
         <li class="flex items-center gap-2">
             @if (!last) {
-            <a [routerLink]="breadcrumb.url" class="text-gray-500 transition hover:text-gray-900">
+            <a [routerLink]="breadcrumb.url" class="transition dark:text-white">
                 {{ breadcrumb.label }}
             </a>
             <span class="text-gray-400" aria-hidden="true">
                 /
             </span>
             } @else {
-            <span class="font-medium text-gray-900" aria-current="page">
+            <a class="font-medium text-accent" aria-current="page">
                 {{ breadcrumb.label }}
-            </span>
+            </a>
             }
         </li>
         }
