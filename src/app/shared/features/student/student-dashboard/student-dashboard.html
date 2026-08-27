@@ -1,55 +1,104 @@
-<h1 class="text-[35px] dark:text-white font-bold">Welcome aboard!</h1>
-<p class="my-5 dark:text-white">Welcome to the University Hostel Booking Dashboard! This app is your go-to place for all
-    important
-    information concerning Hostel Booking and Allocation. Below, you will find your student details as recorded in the
-    system. Please verify that the information is accurate to ensure a smooth booking experience. If any details appear
-    incorrect, kindly reach out to the administration for assistance.</p>
-<app-card [cardStyles]="'bg-primary dark:bg-primary-alt border border-accent shadow-xl rounded-lg p-6 block'">
-    @if (studentResource.isLoading()) {
-    <div class="flex items-center space-x-2 dark:text-white">
-        <span class="animate-pulse">Loading student profiles... Please Wait</span>
-    </div>
-    }
+<h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome aboard!</h1>
+<div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+        @if (studentResource.isLoading()) {
+        <div class="flex items-center space-x-2 dark:text-white">
+            <span class="animate-pulse">Loading student profile... Please Wait</span>
+        </div>
+        }
 
-    @else if (studentResource.error()) {
-    <div class="text-red-500 py-2">
-        <p>Failed to load student details. Please try again.</p>
-        <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
-            Retry Connection
-        </button>
-    </div>
-    }
+        @else if (studentResource.error()) {
+        <div class="text-red-500 py-2">
+            <p>Failed to load student details. Please try again.</p>
+            <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+                Retry Connection
+            </button>
+        </div>
+        }
 
-    @else if (studentData(); as student) {
-    <div class="mt-2 dark:text-white">
-        <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 dark:border-gray-700 mb-4">
-            Personal Information
-        </h3>
-        <div class="grid md:grid-cols-2 gap-4">
-            <div>
-                <span class="font-medium text-gray-500 dark:text-gray-400">Registration Number:</span>
-                <span class="ml-2 font-semibold">{{ student.regNo }}</span>
+        @else if (studentData(); as student) {
+        <div class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-accent/20 pb-4">
+                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl
+                   bg-accent/10 text-accent
+                   dark:bg-accent/20">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z
+                       M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Personal Information</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Basic student identification details</p>
+                </div>
             </div>
-            <div>
-                <span class="font-medium text-gray-500 dark:text-gray-400">Surname:</span>
-                <span class="ml-2 font-semibold">{{ student.surname }}</span>
-            </div>
-            <div>
-                <span class="font-medium text-gray-500 dark:text-gray-400">First Name:</span>
-                <span class="ml-2 font-semibold">{{ student.firstName }}</span>
-            </div>
-            <div>
-                <span class="font-medium text-gray-500 dark:text-gray-400">Second Name:</span>
-                <span class="ml-2 font-semibold">{{ student.secondName }}</span>
-            </div>
-            <div>
-                <span class="font-medium text-gray-500 dark:text-gray-400">Gender:</span>
-                <span class="ml-2 font-semibold">{{ student.gender }}</span>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Registration Number
+                    </p>
+                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                        {{ student.regNo }}
+                    </p>
+                </div>
+                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Surname
+                    </p>
+
+                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                        {{ student.surname }}
+                    </p>
+                </div>
+                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        First Name
+                    </p>
+
+                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                        {{ student.firstName }}
+                    </p>
+                </div>
+                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Second Name
+                    </p>
+
+                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                        {{ student.secondName }}
+                    </p>
+                </div>
+                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Gender
+                    </p>
+                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                        {{ student.gender }}
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-    }
-    @else {
-    <p class="dark:text-white text-gray-500">No student profile session active.</p>
-    }
+        }
+        @else {
+        <p class="dark:text-white text-gray-500">No student profile session active.</p>
+        }
+    </app-card>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+        <p class="dark:text-white">Application details to appear here for easy reference.</p>
+    </app-card>
+</div>
+<app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
+    <p class="dark:text-white">List of Total applications.</p>
 </app-card>
