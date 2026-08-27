@@ -27,19 +27,19 @@ export class Toast implements OnInit, OnDestroy {
   private activeTimers = new Map<any, any>();
 
   styles(message: ToastMessageOptions): string {
-    const defaultStyles = `fixed flex flex-col border border-gray-200 p-4 mb-3 rounded-lg shadow-xl min-w-[300px]`;
-    return `${defaultStyles} ${this.toastPosition()} ${this.toastStyles()} ${this.toastSeverity(message)}`.trim();
+    const defaultStyles = `fixed flex flex-col border border-gray-200 z-50 p-4 mb-3 rounded-lg shadow-xl min-w-[300px]`;
+    return `${defaultStyles} ${this.toastStyles()} ${this.toastPosition(message)} ${this.toastSeverity(message)}`.trim();
   }
 
-  toastPosition = computed(() => {
-    const positionMap = {
+  toastPosition(message: ToastMessageOptions): string {
+    const positionMap: Record<string, string> = {
       'top-left': 'top-5 left-5',
       'top-right': 'top-5 right-5',
       'bottom-left': 'bottom-5 left-5',
       'bottom-right': 'bottom-5 right-5'
     };
-    return positionMap[this.position()]
-  });
+    return positionMap[message.position ?? 'top-right']
+  }
 
   toastSeverity(message: ToastMessageOptions): string {
     const severityMap: Record<string, string> = {

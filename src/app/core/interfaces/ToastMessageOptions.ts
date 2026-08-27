@@ -5,6 +5,5 @@ export interface ToastMessageOptions {
     detail?: string
     life: number
     severity?: 'success' | 'error' | 'info' | 'warn'
-    contentStyleClass?: string
-    styleClass?: string
+    position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
 }
