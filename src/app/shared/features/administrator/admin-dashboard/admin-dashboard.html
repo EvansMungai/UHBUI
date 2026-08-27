@@ -1,10 +1,15 @@
-<h1 class="text-[35px] font-bold dark:text-white">Welcome to the Admin Dashboard!</h1>
-<p class="mt-3 dark:text-white">Gain complete control over the management of the system with an intuitive and streamlined admin
-    dashboard. Easily register hostels and add room details, ensuring all accommodations are accurately cataloged.
-    Effortlessly manage user roles, update personal profile information, and access a clear overview of registered
-    users. This page is designed to empower administrators to efficiently handle tasks and maintain an organized,
-    well-functioning system with minimal effort.
-</p>
-<app-card [cardStyles]="'border border-accent shadow-lg rounded-lg mt-9 dark:text-white'">
-    This is where the dashboard details will appear.
+<h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome!</h1>
+<div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+        <p class="dark:text-white">Total Hostels</p>
+    </app-card>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+        <p class="dark:text-white">Total Rooms</p>
+    </app-card>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+        <p class="dark:text-white">Total Applications</p>
+    </app-card>
+</div>
+<app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
+    <p class="dark:text-white">List of Total applications.</p>
 </app-card>
