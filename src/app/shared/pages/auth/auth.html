@@ -42,15 +42,15 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signup-username" type="text" [formField]="signUpForm.username"
+                            <input id="signup-username" type="text" [formField]="signUpForm.userName"
                                 placeholder="username"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (signUpForm.username().touched() && signUpForm.username().invalid()) {
+                        @if (signUpForm.userName().touched() && signUpForm.userName().invalid()) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (signUpForm.username().getError('required')) {
+                            @if (signUpForm.userName().getError('required')) {
                             Username is required.
-                            } @else if (signUpForm.username().getError('email')) {
+                            } @else if (signUpForm.userName().getError('email')) {
                             Please enter a valid username.
                             }
                         </p>
@@ -63,7 +63,7 @@
                                 Password
                             </label>
                             <span class="text-xs text-gray-400">
-                                Min. 8 Chars
+                                Min. 6 Chars
                             </span>
                         </div>
                         <div class="relative">
@@ -77,15 +77,37 @@
                                 autocomplete="new-password" placeholder="••••••••"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (signUpForm.password().touched() && signUpForm.password().invalid()) {
-                        <p class="mt-1.5 text-xs text-red-500">
-                            @if (signUpForm.password().getError('required')) {
-                            Password is required.
-                            } @else if (signUpForm.password().getError('minLength')) {
-                            Password must be at least 8 characters.
-                            }
-                        </p>
-                        }
+                        <div class="mt-1.5 text-xs">
+                            <p [class.text-green-500]="passwordRequirements().minLength"
+                                [class.text-gray-500]="!passwordRequirements().minLength">
+                                {{ passwordRequirements().minLength ? '✓' : '○' }}
+                                At least 6 characters
+                            </p>
+
+                            <p [class.text-green-500]="passwordRequirements().uppercase"
+                                [class.text-gray-500]="!passwordRequirements().uppercase">
+                                {{ passwordRequirements().uppercase ? '✓' : '○' }}
+                                At least one uppercase letter
+                            </p>
+
+                            <p [class.text-green-500]="passwordRequirements().lowercase"
+                                [class.text-gray-500]="!passwordRequirements().lowercase">
+                                {{ passwordRequirements().lowercase ? '✓' : '○' }}
+                                At least one lowercase letter
+                            </p>
+
+                            <p [class.text-green-500]="passwordRequirements().digit"
+                                [class.text-gray-500]="!passwordRequirements().digit">
+                                {{ passwordRequirements().digit ? '✓' : '○' }}
+                                At least one digit
+                            </p>
+
+                            <p [class.text-green-500]="passwordRequirements().special"
+                                [class.text-gray-500]="!passwordRequirements().special">
+                                {{ passwordRequirements().special ? '✓' : '○' }}
+                                At least one special character
+                            </p>
+                        </div>
                     </div>
                     <button type="submit" [disabled]="signUpForm().invalid() || loading()"
                         class="w-full h-12 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -130,14 +152,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
-                            <input id="signin-email" type="text" placeholder="username" [formField]="loginForm.username"
+                            <input id="signin-email" type="text" placeholder="username" [formField]="loginForm.userName"
                                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-12 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                         </div>
-                        @if (loginForm.username().touched() && loginForm.username().invalid()) {
+                        @if (loginForm.userName().touched() && loginForm.userName().invalid()) {
                         <p class="mt-1.5 text-xs text-red-500">
-                            @if (loginForm.username().getError('required')) {
+                            @if (loginForm.userName().getError('required')) {
                             Username is required.
-                            } @else if (loginForm.username().getError('email')) {
+                            } @else if (loginForm.userName().getError('email')) {
                             Please enter a valid username.
                             }
                         </p>
