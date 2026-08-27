@@ -8,7 +8,7 @@
         }
 
         @else if (studentResource.error()) {
-        <div class="text-red-500 py-2">
+        <div class="text-error py-2">
             <p>Failed to load student details. Please try again.</p>
             <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
                 Retry Connection
