@@ -1,11 +1,10 @@
 import { Component, computed, inject, input, OnDestroy, OnInit, signal } from '@angular/core';
-import { NgTemplateOutlet } from '@angular/common';
 import { ToastService } from '../../../core/services/toast';
 import { Subscription } from 'rxjs';
 import { ToastMessageOptions } from '../../../core/interfaces/ToastMessageOptions';
 
 @Component({
-  imports: [NgTemplateOutlet],
+  imports: [],
   selector: 'app-toast',
   styleUrl: './toast.css',
   templateUrl: './toast.html',
@@ -18,8 +17,6 @@ export class Toast implements OnInit, OnDestroy {
   position = input<'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'>('top-right');
   toastStyles = input<string>();
   isVisible = signal<boolean>(false);
-  // summary = signal<string>('');
-  // detail = signal<string>('');
 
   messages = signal<ToastMessageOptions[]>([]);
   messagesArchieve: ToastMessageOptions[] | undefined;
