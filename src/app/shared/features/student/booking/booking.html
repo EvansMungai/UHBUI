@@ -1,228 +1,234 @@
-<h1 class="text-[35px] dark:text-white font-bold text-center">BOOK A ROOM</h1>
-<p class="my-1 dark:text-white sm:my-5">Welcome to the hostel booking page! This is the first step towards securing your
-    place in our
-    on-campus
-    accommodation. To apply for internal hostel booking, please fill out the form below with accurate and complete
-    information.This information will help us process your application efficiently and match you to the most suitable
-    accommodation. We're here to make your stay comfortable and convenient — Welcome Home!</p>
-<form [formRoot]="bookingForm"
-    class="mt-6 dark:text-white block max-w-3xl mx-auto p-6 shadow-xl rounded-lg w-full bg-secondary dark:bg-gray-800">
-    <h3 class="text-lg sm:text-xl font-bold text-center mb-4">HOSTEL APPLICATION FORM</h3>
+<div class="mt-4 flex-1 px-4 sm:px-9 py-4 sm:py-[30px] rounded-lg bg-primary dark:bg-primary-alt md:mt-6">
+    <h1 class="text-[35px] dark:text-white font-bold text-center">BOOK A ROOM</h1>
+    <p class="my-1 dark:text-white sm:my-5">Welcome to the hostel booking page! This is the first step towards securing
+        your
+        place in our
+        on-campus
+        accommodation. To apply for internal hostel booking, please fill out the form below with accurate and complete
+        information.This information will help us process your application efficiently and match you to the most
+        suitable
+        accommodation. We're here to make your stay comfortable and convenient — Welcome Home!</p>
+    <form [formRoot]="bookingForm"
+        class="mt-6 dark:text-white block max-w-3xl mx-auto p-6 shadow-xl rounded-lg w-full bg-secondary dark:bg-gray-800">
+        <h3 class="text-lg sm:text-xl font-bold text-center mb-4">HOSTEL APPLICATION FORM</h3>
 
-    <h4 class="text-md font-bold sm:ml-5 sm:mt-5 mb-3">SECTION I: PERSONAL DETAILS</h4>
-    <div>
-        <label for="regNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Registration Number:
-        </label>
-        <input id="regNo" type="text" [formField]="bookingForm.registrationNo" placeholder="Registration Number"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.registrationNo().touched() && bookingForm.registrationNo().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.registrationNo().getError('required')) {
-            Registration number is required.}
-            }
-    </div>
-    <div class="mb-2">
-        <label for="preferredHostel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Hostel Name:
-        </label>
-        <select id="Headline" [formField]="bookingForm.preferredHostel"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
-            <option value="" class="" disabled selected>Please select</option>
-            <option value="Batian">Batian</option>
-            <option value="Serengeti">Serengeti</option>
-        </select>
-        @if (bookingForm.preferredHostel().touched() && bookingForm.preferredHostel().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.preferredHostel().getError('required')) {
-            Hostel Name is required.}
-            }
-    </div>
-    <div class="mb-2">
-        <label for="applicationPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Application Period:
-        </label>
-        <input id="applicationPeriod" type="text" [formField]="bookingForm.applicationPeriod"
-            placeholder="application period"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-        @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
-        <p class="mt-1.5 text-xs text-red-500">
-            @if (bookingForm.applicationPeriod().getError('required')) {
-            Application period is required.}
-            }
-    </div>
-    <h4 class="text-lg font-bold sm:ml-5 mt-5 mb-3">SECTION II: NEEDS ASSESSMENT (Attach evidence where needed)</h4>
-    <div class="mb-2 flex items-center space-x-5">
-        <label for="disability" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Do you live with any Disability?
-        </label>
-        <label>
-            <input type="radio" name="disability" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
+        <h4 class="text-md font-bold sm:ml-5 sm:mt-5 mb-3">SECTION I: PERSONAL DETAILS</h4>
+        <div>
+            <label for="regNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Registration Number:
+            </label>
+            <input id="regNo" type="text" [formField]="bookingForm.registrationNo" placeholder="Registration Number"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+            @if (bookingForm.registrationNo().touched() && bookingForm.registrationNo().invalid()) {
+            <p class="mt-1.5 text-xs text-red-500">
+                @if (bookingForm.registrationNo().getError('required')) {
+                Registration number is required.}
+                }
+        </div>
+        <div class="mb-2">
+            <label for="preferredHostel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Hostel Name:
+            </label>
+            <select id="Headline" [formField]="bookingForm.preferredHostel"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
+                <option value="" class="" disabled selected>Please select</option>
+                <option value="Batian">Batian</option>
+                <option value="Serengeti">Serengeti</option>
+            </select>
+            @if (bookingForm.preferredHostel().touched() && bookingForm.preferredHostel().invalid()) {
+            <p class="mt-1.5 text-xs text-red-500">
+                @if (bookingForm.preferredHostel().getError('required')) {
+                Hostel Name is required.}
+                }
+        </div>
+        <div class="mb-2">
+            <label for="applicationPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Application Period:
+            </label>
+            <input id="applicationPeriod" type="text" [formField]="bookingForm.applicationPeriod"
+                placeholder="application period"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+            @if (bookingForm.applicationPeriod().touched() && bookingForm.applicationPeriod().invalid()) {
+            <p class="mt-1.5 text-xs text-red-500">
+                @if (bookingForm.applicationPeriod().getError('required')) {
+                Application period is required.}
+                }
+        </div>
+        <h4 class="text-lg font-bold sm:ml-5 mt-5 mb-3">SECTION II: NEEDS ASSESSMENT (Attach evidence where needed)</h4>
+        <div class="mb-2 flex items-center space-x-5">
+            <label for="disability" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Do you live with any Disability?
+            </label>
+            <label>
+                <input type="radio" name="disability" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="disability" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="disability" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="disabilityDetails" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, provide the disability details:
-        </label>
-        <input id="disabilityDetails" type="text" [formField]="bookingForm.disabilityDetails"
-            placeholder="disability details"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-    </div>
-    <div class="mb-2">
-        <label for="accommodationBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Have you ever been accommodated within the university before?
-        </label>
-        <label>
-            <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === true"
-                (change)="bookingModel.update(value => ({
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="disabilityDetails" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, provide the disability details:
+            </label>
+            <input id="disabilityDetails" type="text" [formField]="bookingForm.disabilityDetails"
+                placeholder="disability details"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+        </div>
+        <div class="mb-2">
+            <label for="accommodationBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Have you ever been accommodated within the university before?
+            </label>
+            <label>
+                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === true"
+                    (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === false"
-                (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === false"
+                    (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="accommodationPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, provide the accommodation period:
-        </label>
-        <input id="accommodationPeriod" type="text" [formField]="bookingForm.accommodationPeriod"
-            placeholder="accommodation period"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="accommodationPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, provide the accommodation period:
+            </label>
+            <input id="accommodationPeriod" type="text" [formField]="bookingForm.accommodationPeriod"
+                placeholder="accommodation period"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
 
-    </div>
-    <div class="mb-2 space-x-5">
-        <label for="sponsoredBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Are you sponsored by an organization recognized by the University and sponsorship includes accommodation?
-        </label>
-        <label>
-            <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === true" (change)="bookingModel.update(value => ({
+        </div>
+        <div class="mb-2 space-x-5">
+            <label for="sponsoredBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Are you sponsored by an organization recognized by the University and sponsorship includes
+                accommodation?
+            </label>
+            <label>
+                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === true" (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === false" (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === false" (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="sponsor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, provide the name of the sponsor:
-        </label>
-        <input id="sponsor" type="text" [formField]="bookingForm.sponsor" placeholder="sponsor"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-    </div>
-    <div class="mb-2 flex items-center space-x-5">
-        <label for="receievesHelb" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Do you receive HELB?
-        </label>
-        <label>
-            <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === true" (change)="bookingModel.update(value => ({
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="sponsor" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, provide the name of the sponsor:
+            </label>
+            <input id="sponsor" type="text" [formField]="bookingForm.sponsor" placeholder="sponsor"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+        </div>
+        <div class="mb-2 flex items-center space-x-5">
+            <label for="receievesHelb" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Do you receive HELB?
+            </label>
+            <label>
+                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === true" (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === false" (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === false" (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="helbAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, how much per year:
-        </label>
-        <input id="helbAmount" type="text" [formField]="bookingForm.helbAmount" placeholder="Helb Amount"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-    </div>
-    <div class="mb-2 flex items-center space-x-5">
-        <label for="receievesBursary" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Have you ever benefitted from the university bursary before?
-        </label>
-        <label>
-            <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary" (change)="bookingModel.update(value => ({
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="helbAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, how much per year:
+            </label>
+            <input id="helbAmount" type="text" [formField]="bookingForm.helbAmount" placeholder="Helb Amount"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+        </div>
+        <div class="mb-2 flex items-center space-x-5">
+            <label for="receievesBursary" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Have you ever benefitted from the university bursary before?
+            </label>
+            <label>
+                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary" (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === false" (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === false"
+                    (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="bursaryAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, state the amount awarded:
-        </label>
-        <input id="bursaryAmount" type="text" [formField]="bookingForm.bursaryAmount" placeholder="Bursary Amount"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-    </div>
-    <div class="mb-2 flex items-center space-x-5">
-        <label for="workStudyBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Have you ever benefitted from the university's work study program before?
-        </label>
-        <label>
-            <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === true"
-                (change)="bookingModel.update(value => ({
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="bursaryAmount" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, state the amount awarded:
+            </label>
+            <input id="bursaryAmount" type="text" [formField]="bookingForm.bursaryAmount" placeholder="Bursary Amount"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+        </div>
+        <div class="mb-2 flex items-center space-x-5">
+            <label for="workStudyBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Have you ever benefitted from the university's work study program before?
+            </label>
+            <label>
+                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === true"
+                    (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === false"
-                (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === false"
+                    (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="workStudyPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, state the period:
-        </label>
-        <input id="workStudyPeriod" type="text" [formField]="bookingForm.workStudyPeriod" placeholder="Work period"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="workStudyPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, state the period:
+            </label>
+            <input id="workStudyPeriod" type="text" [formField]="bookingForm.workStudyPeriod" placeholder="Work period"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
 
-    </div>
-    <div class="mb-2 flex items-center space-x-5">
-        <label for="specialExamsBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Have you ever deferred studies on financial grounds?
-        </label>
-        <label>
-            <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
+        </div>
+        <div class="mb-2 flex items-center space-x-5">
+            <label for="specialExamsBefore" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Have you ever deferred studies on financial grounds?
+            </label>
+            <label>
+                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
                 ...value,disability: true}))" />
-            Yes
-        </label>
-        <label>
-            <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
                 ...value, disability: false }))" />
-            No
-        </label>
-    </div>
-    <div class="mb-2">
-        <label for="specialExamsPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            If yes, state the period:
-        </label>
-        <input id="specialExamsPeriod" type="text" [formField]="bookingForm.specialExamPeriod"
-            placeholder="Special Exams period"
-            class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
-    </div>
-    <div class="mb-2">
-        <label for="Notes">
-            <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Briefly describe why you should be
-                considered for a space within the university hostels:</span>
+                No
+            </label>
+        </div>
+        <div class="mb-2">
+            <label for="specialExamsPeriod" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                If yes, state the period:
+            </label>
+            <input id="specialExamsPeriod" type="text" [formField]="bookingForm.specialExamPeriod"
+                placeholder="Special Exams period"
+                class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+        </div>
+        <div class="mb-2">
+            <label for="Notes">
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Briefly describe why you should be
+                    considered for a space within the university hostels:</span>
 
-            <textarea id="Notes" [formField]="bookingForm.reasonsForConsideration"
-                class="mt-0.5 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400"
-                rows="4" placeholder="Reasons for consideration"></textarea>
-        </label>
-    </div>
-</form>
+                <textarea id="Notes" [formField]="bookingForm.reasonsForConsideration"
+                    class="mt-0.5 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400"
+                    rows="4" placeholder="Reasons for consideration"></textarea>
+            </label>
+        </div>
+    </form>
+</div>

@@ -1,15 +1,17 @@
-<h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome!</h1>
-<div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
-    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block w-full'">
-        <p class="dark:text-white">Total Allocations</p>
-    </app-card>
-    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-        <p class="dark:text-white">Total Pending Allocations</p>
-    </app-card>
-    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-        <p class="dark:text-white">Total Reviewed Allocations</p>
+<div class="flex-1 px-4 sm:px-9">
+    <h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome!</h1>
+    <div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
+        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block w-full'">
+            <p class="dark:text-white">Total Allocations</p>
+        </app-card>
+        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+            <p class="dark:text-white">Total Pending Allocations</p>
+        </app-card>
+        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+            <p class="dark:text-white">Total Reviewed Allocations</p>
+        </app-card>
+    </div>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
+        <p class="dark:text-white">List of Total applications.</p>
     </app-card>
 </div>
-<app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
-    <p class="dark:text-white">List of Total applications.</p>
-</app-card>

@@ -1,116 +1,118 @@
-<h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome aboard!</h1>
-<div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
-    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-        @if (studentResource.isLoading()) {
-        <div class="flex items-center space-x-2 text-accent">
-            <span class="animate-pulse">
-                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                </svg>Loading student profile... Please Wait</span>
-        </div>
-        }
+<div class="flex-1 px-4 sm:px-9">
+    <h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome aboard!</h1>
+    <div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
+        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+            @if (studentResource.isLoading()) {
+            <div class="flex items-center space-x-2 text-accent">
+                <span class="animate-pulse">
+                    <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                    </svg>Loading student profile... Please Wait</span>
+            </div>
+            }
 
-        @else if (studentResource.error()) {
-        <div class="text-red-500 dark:text-error py-2">
-            <p class="flex items-center gap-1">
-                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
-                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
-                </svg>
-                Failed to load student details. Please try again.
-            </p>
+            @else if (studentResource.error()) {
+            <div class="text-red-500 dark:text-error py-2">
+                <p class="flex items-center gap-1">
+                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                        <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                    </svg>
+                    Failed to load student details. Please try again.
+                </p>
 
-            <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
-                Retry Connection
-            </button>
-        </div>
-        }
+                <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+                    Retry Connection
+                </button>
+            </div>
+            }
 
-        @else if (studentData(); as student) {
-        <div class="space-y-6">
-            <div class="flex items-center gap-3 border-b border-accent/20 pb-4">
-                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl
+            @else if (studentData(); as student) {
+            <div class="space-y-6">
+                <div class="flex items-center gap-3 border-b border-accent/20 pb-4">
+                    <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl
                    bg-accent/10 text-accent
                    dark:bg-accent/20">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0z
                        M12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </div>
+                        </svg>
+                    </div>
 
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Personal Information</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">Basic student identification details</p>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Personal Information</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Basic student identification details</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                        <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            Registration Number
+                        </p>
+                        <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                            {{ student.regNo }}
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                        <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            Surname
+                        </p>
+
+                        <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                            {{ student.surname }}
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                        <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            First Name
+                        </p>
+
+                        <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                            {{ student.firstName }}
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                        <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            Second Name
+                        </p>
+
+                        <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                            {{ student.secondName }}
+                        </p>
+                    </div>
+                    <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
+                   transition-colors hover:bg-white/80
+                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
+                        <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                            Gender
+                        </p>
+                        <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
+                            {{ student.gender }}
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
-                   transition-colors hover:bg-white/80
-                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
-                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        Registration Number
-                    </p>
-                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
-                        {{ student.regNo }}
-                    </p>
-                </div>
-                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
-                   transition-colors hover:bg-white/80
-                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
-                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        Surname
-                    </p>
-
-                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
-                        {{ student.surname }}
-                    </p>
-                </div>
-                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
-                   transition-colors hover:bg-white/80
-                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
-                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        First Name
-                    </p>
-
-                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
-                        {{ student.firstName }}
-                    </p>
-                </div>
-                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
-                   transition-colors hover:bg-white/80
-                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
-                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        Second Name
-                    </p>
-
-                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
-                        {{ student.secondName }}
-                    </p>
-                </div>
-                <div class="rounded-lg border border-gray-200/70 bg-white/50 p-4
-                   transition-colors hover:bg-white/80
-                   dark:border-gray-700/70 dark:bg-gray-800/30 dark:hover:bg-gray-800/60">
-                    <p class="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-gray-400">
-                        Gender
-                    </p>
-                    <p class="mt-1.5 font-semibold text-gray-900 dark:text-white">
-                        {{ student.gender }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        }
-        @else {
-        <p class="dark:text-white text-gray-500">No student profile session active.</p>
-        }
-    </app-card>
-    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-        <p class="dark:text-white">Application details to appear here for easy reference.</p>
+            }
+            @else {
+            <p class="dark:text-white text-gray-500">No student profile session active.</p>
+            }
+        </app-card>
+        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
+            <p class="dark:text-white">Application details to appear here for easy reference.</p>
+        </app-card>
+    </div>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
+        <p class="dark:text-white">List of Total applications.</p>
     </app-card>
 </div>
-<app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
-    <p class="dark:text-white">List of Total applications.</p>
-</app-card>
