@@ -2,14 +2,26 @@
 <div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
     <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
         @if (studentResource.isLoading()) {
-        <div class="flex items-center space-x-2 dark:text-white">
-            <span class="animate-pulse">Loading student profile... Please Wait</span>
+        <div class="flex items-center space-x-2 text-accent">
+            <span class="animate-pulse">
+                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>Loading student profile... Please Wait</span>
         </div>
         }
 
         @else if (studentResource.error()) {
-        <div class="text-error py-2">
-            <p>Failed to load student details. Please try again.</p>
+        <div class="text-red-500 dark:text-error py-2">
+            <p class="flex items-center gap-1">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                </svg>
+                Failed to load student details. Please try again.
+            </p>
+
             <button (click)="studentResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
                 Retry Connection
             </button>
