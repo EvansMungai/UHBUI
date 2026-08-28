@@ -37,7 +37,7 @@ export const routes: Routes = [
             {
                 path: 'admin', component: WebPart, data: { menu: 'admin', breadcrumb: 'Dashboard' }, children: [
                     { path: '', loadComponent: () => import('./shared/features/administrator/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
-                    { path: 'register-user', data: { breadcrumb: 'Register-User' }, loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
+                    { path: 'resources', data: { breadcrumb: 'Resources' }, loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
                     { path: 'change-user-role', data: { breadcrumb: 'Change-User-Role' }, loadComponent: () => import('./shared/features/administrator/change-user-role/change-user-role').then(m => m.ChangeUserRole) }
                 ]
             },

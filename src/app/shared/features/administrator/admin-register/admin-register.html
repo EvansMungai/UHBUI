@@ -3,7 +3,144 @@
     <p class="my-3 dark:text-white">Seamlessly register hostels and rooms, making them available for students to book.
         Ensure all details are accurate to provide a smooth booking experience
         for users.</p>
-    <app-card [cardStyles]="'border border-accent mt-9 shadow-lg rounded-lg dark:text-white'">
-        This is where the resources registration section will appear.
-    </app-card>
+    <div class="flex flex-col justify-center sm:items-center lg:items-start gap-8 mt-8 md:flex-row">
+        @if (registerHostelVisibility()) {
+        <app-card [cardStyles]="'border border-accent shadow-lg rounded-lg dark:text-white'">
+            <form [formRoot]="hostelRegistrationForm">
+                <h3 class="text-lg sm:text-xl font-bold text-center mb-4">HOSTEL REGISTRATION FORM</h3>
+                <div>
+                    <label for="hostelNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Hostel Number:
+                    </label>
+                    <input id="hostelNo" type="text" [formField]="hostelRegistrationForm.hostelNo"
+                        placeholder="Hostel Number"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                    @if (hostelRegistrationForm.hostelNo().touched() && hostelRegistrationForm.hostelNo().invalid()) {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of hostelRegistrationForm.hostelNo().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <div class="mt-3">
+                    <label for="hostelName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Hostel Name:
+                    </label>
+                    <input id="hostelName" type="text" [formField]="hostelRegistrationForm.hostelName"
+                        placeholder="Hostel Name"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                    @if (hostelRegistrationForm.hostelName().touched() && hostelRegistrationForm.hostelName().invalid())
+                    {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of hostelRegistrationForm.hostelName().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <div class="mt-3">
+                    <label for="capacity" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Hostel Capacity:
+                    </label>
+                    <input id="capacity" type="number" [formField]="hostelRegistrationForm.capacity"
+                        placeholder="Hostel Name"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                    @if (hostelRegistrationForm.capacity().touched() && hostelRegistrationForm.capacity().invalid()) {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of hostelRegistrationForm.capacity().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <div class="mt-3">
+                    <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Hostel Type:
+                    </label>
+                    <select id="type" [formField]="hostelRegistrationForm.type"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
+                        <option value="" class="" disabled selected>Please select</option>
+                        <option value="Male Hostel">Male Hostel</option>
+                        <option value="Female Hostel">Female Hostel</option>
+                    </select>
+                    @if (hostelRegistrationForm.type().touched() && hostelRegistrationForm.type().invalid()) {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of hostelRegistrationForm.type().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <button type="submit" [disabled]="hostelRegistrationForm().invalid() || loading()"
+                    class="w-full h-12 mt-3 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
+                    @if (loading()) {
+                    <span class="flex items-center justify-center gap-2">
+                        <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Creating Hostel Details...
+                    </span>
+                    } @else {
+                    Create Hostel
+                    }
+                </button>
+            </form>
+        </app-card>
+        }
+        @if (registerRoomVisibility()) {
+        <app-card [cardStyles]="'border border-accent shadow-lg rounded-lg dark:text-white'">
+            <form [formRoot]="roomRegistrationForm">
+                <h3 class="text-lg sm:text-xl font-bold text-center mb-4">ROOM REGISTRATION FORM</h3>
+                <div>
+                    <label for="hostelNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Hostel Number:
+                    </label>
+                    <select id="hostelNo" [formField]="roomRegistrationForm.hostelNo"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
+                        <option value="" class="" disabled selected>Please select</option>
+                        <option value="Hostel 1">Hostel 1</option>
+                        <option value="Hostel 2">Hostel 2</option>
+                    </select>
+                    @if (roomRegistrationForm.hostelNo().touched() && roomRegistrationForm.hostelNo().invalid()) {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of roomRegistrationForm.hostelNo().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <div class="mt-3">
+                    <label for="roomNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Room Number:
+                    </label>
+                    <input id="roomNo" type="text" [formField]="roomRegistrationForm.roomNo"
+                        placeholder="Room Number"
+                        class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
+                    @if (roomRegistrationForm.roomNo().touched() && roomRegistrationForm.roomNo().invalid())
+                    {
+                    <p class="mt-1.5 text-xs text-red-500">
+                        @for (error of roomRegistrationForm.roomNo().errors(); track error) {
+                        {{ error.message }}
+                        }
+                    </p>}
+                </div>
+                <button type="submit" [disabled]="roomRegistrationForm().invalid() || loading()"
+                    class="w-full h-12 mt-3 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
+                    @if (loading()) {
+                    <span class="flex items-center justify-center gap-2">
+                        <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Creating Room Details...
+                    </span>
+                    } @else {
+                    Create Room
+                    }
+                </button>
+            </form>
+        </app-card>
+        }
+    </div>
 </div>

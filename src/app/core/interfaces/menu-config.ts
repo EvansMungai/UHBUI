@@ -68,7 +68,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
                 title: '',
                 items: [
                     { label: 'Dashboard', link: '/uhb/admin' },
-                    { label: 'Resources Management', link: '/uhb/admin/register-user' },
+                    { label: 'Resources Management', link: '/uhb/admin/resources' },
                     { label: 'User Management', link: '/uhb/admin/change-user-role' },
                 ]
             }
