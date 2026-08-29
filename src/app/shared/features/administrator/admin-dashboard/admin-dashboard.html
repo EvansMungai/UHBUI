@@ -1,17 +1,84 @@
 <div class="flex-1 px-4 sm:px-9">
-    <h1 class="text-[35px] dark:text-white font-bold mb-3">Welcome!</h1>
-    <div class="flex flex-col md:flex-row md:space-x-3 space-y-3">
-        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-            <p class="dark:text-white">Total Hostels</p>
-        </app-card>
-        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-            <p class="dark:text-white">Total Rooms</p>
-        </app-card>
-        <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block'">
-            <p class="dark:text-white">Total Applications</p>
-        </app-card>
-    </div>
+    <h1 class="text-[35px] dark:text-white font-bold mb-2">Welcome To the Admin Dashboard!</h1>
+    <p class="dark:text-white">Gain complete control over the management of the system with an intuitive and streamlined admin
+        dashboard. Easily register hostels and add room details, ensuring all accommodations are accurately
+        cataloged.
+        Effortlessly manage user roles, update personal profile information.
+    </p>
     <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
-        <p class="dark:text-white">List of Total applications.</p>
+        @if (hostelResource.isLoading()) {
+        <div class="flex items-center space-x-2 text-accent">
+            <span class="animate-pulse">
+                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>Loading hostels ... Please Wait</span>
+        </div>
+        }
+        @else if (hostelResource.error()) {
+        <div class="text-red-500 dark:text-error py-2">
+            <p class="flex items-center gap-1">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                </svg>
+                Failed to load hostel details. Please try again.
+            </p>
+
+            <button (click)="hostelResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+                Retry Connection
+            </button>
+        </div>
+        } @else if (hostelData(); as hostels) {
+        <div class="space-y-6 dark:text-white">
+            <div>
+                <h5 class="mr-3 font-semibold dark:text-white">List of Hostels</h5>
+                <p class="text-gray-500">View details of the available hostels</p>
+            </div>
+            <app-table [data]="hostels" [columns]="hostelColumns"></app-table>
+        </div>
+        }
+        @else {
+        <p class="dark:text-white text-gray-500">No hostel session active.</p>
+        }
+    </app-card>
+    <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
+        @if (roomResource.isLoading()) {
+        <div class="flex items-center space-x-2 text-accent">
+            <span class="animate-pulse">
+                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>Loading rooms ... Please Wait</span>
+        </div>
+        }
+        @else if (roomResource.error()) {
+        <div class="text-red-500 dark:text-error py-2">
+            <p class="flex items-center gap-1">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                </svg>
+                Failed to load rooms details. Please try again.
+            </p>
+
+            <button (click)="roomResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+                Retry Connection
+            </button>
+        </div>
+        } @else if (roomData(); as rooms) {
+        <div class="space-y-6 dark:text-white">
+            <div>
+                <h5 class="mr-3 font-semibold dark:text-white">List of Rooms</h5>
+                <p class="text-gray-500">View details of the available rooms</p>
+            </div>
+            <app-table [data]="rooms" [columns]="roomColumns"></app-table>
+        </div>
+        }
+        @else {
+        <p class="dark:text-white text-gray-500">No room session active.</p>
+        }
     </app-card>
 </div>
