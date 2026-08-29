@@ -11,9 +11,9 @@ export class Table<T extends object> {
   readonly data = input<T[]>([]);
   readonly columns = input<TableColumn<T>[]>([]);
   readonly emptyMessage = input('No data found');
-  tableStyles = input<string>('w-full text-sm text-left rtl:text-right');
+  tableStyles = input<string>('w-full text-sm dark:text-white text-left rtl:text-right');
   headingStyles = input<string>('bg-accent dark:bg-neutral');
-  bodyStyles = input<string>('border border-secondary hover:bg-blue-200 dark:hover:bg-accent');
+  bodyStyles = input<string>('border border-accent dark:border-secondary hover:bg-blue-200 dark:hover:bg-accent');
 
   pageSize = input<number>(5);
   currentPage = signal<number>(1);

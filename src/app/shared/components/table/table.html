@@ -32,7 +32,7 @@
     </div>
     @if (data().length > 0) {
     <nav class="flex items-center flex-column rounded-b-lg flex-wrap md:flex-row justify-between p-4" aria-label="Table navigation">
-        <span class="text-sm font-normal text-body mb-4 md:mb-0 block w-full md:inline md:w-auto">
+        <span class="text-sm font-normal mb-4 md:mb-0 block w-full md:inline md:w-auto">
             Showing
             <span class="font-semibold text-heading">
                 {{ startRecord() }}-{{ endRecord() }}
@@ -45,7 +45,7 @@
         <ul class="flex -space-x-px text-sm">
             <li>
                 <button type="button" [disabled]="currentPage() === 1" (click)="previousPage()"
-                    class="flex items-center justify-center text-body bg-accent hover:text-heading font-medium rounded-s-lg text-sm px-3 h-9 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex items-center justify-center bg-accent hover:text-heading font-medium rounded-s-lg text-sm px-3 h-9 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
                     Previous
                 </button>
             </li>
@@ -60,7 +60,7 @@
             }
             <li>
                 <button type="button" [disabled]="currentPage() === totalPages()" (click)="nextPage()"
-                    class="flex items-center justify-center text-body bg-accent hover:text-heading font-medium rounded-e-lg text-sm px-3 h-9 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
+                    class="flex items-center justify-center bg-accent hover:text-heading font-medium rounded-e-lg text-sm px-3 h-9 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
                     Next
                 </button>
             </li>
