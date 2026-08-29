@@ -1,11 +1,10 @@
-import { Component, computed } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from '../../../components/card/card';
-import { httpResource, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { ApplicationData } from '../../../../core/models/application';
 import { environment } from '../../../../../environments/environment';
 import { TableColumn } from '../../../../core/Table';
 import { Table } from '../../../components/table/table';
-import { COMPOSITION_BUFFER_MODE } from '@angular/forms';
 
 @Component({
   imports: [Card, Table],

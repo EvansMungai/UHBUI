@@ -1,7 +1,160 @@
-<div class="font-sans dark:text-white mt-4 flex-1 px-4 sm:px-9 py-4 sm:py-[30px] rounded-lg bg-primary dark:bg-primary-alt md:mt-6">
+<div
+  class="font-sans dark:text-white mt-4 flex-1 px-4 sm:px-9 py-4 sm:py-[30px] rounded-lg bg-primary dark:bg-primary-alt md:mt-6">
   <div class="max-w-6xl mx-auto px-4 py-6">
     <div class="rounded-lg shadow-md p-6">
-      This is where the individual application details will appear.
+      @if (applicationResource.isLoading()) {
+      <div class="flex items-center space-x-2 text-accent">
+        <span class="animate-pulse">
+          <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+          </svg>
+          Loading application ... Please Wait
+        </span>
+      </div>
+      }
+      @else if (applicationResource.error(); as error) {
+      <div class="text-red-500 dark:text-error py-2">
+        <p class="flex items-center gap-1">
+          <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+            <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+          </svg>
+          Failed to load application details. Please try again.
+        </p>
+
+        <button (click)="applicationResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+          Retry Connection
+        </button>
+      </div>
+      }
+      @else if (applicationData(); as application) {
+      <div class="space-y-6 dark:text-white">
+        <div>
+          <h5 class="mr-3 font-semibold dark:text-white">List of Applications</h5>
+          <p class="text-gray-500">View details of the available applications</p>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+          <h1 class="text-2xl font-bold text-gray-800">Application Details</h1>
+          <span class="px-4 py-1 rounded-full text-sm font-semibold badge badge-warning text-neutral">
+            {{ application?.status}}
+          </span>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
+            Personal Information
+          </h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <span class="font-medium text-gray-600">Application ID:</span>
+              <!-- <span class="ml-2">{{ application?.appli}}</span> -->
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Application Period:</span>
+              <span class="ml-2">{{ application?.applicationPeriod}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Student ID:</span>
+              <span class="ml-2">{{application?.registrationNo}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Gender:</span>
+              <span class="ml-2">{{studentData()?.gender}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
+            Needs Assessment Information
+          </h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <span class="font-medium text-gray-600">Disabled:</span>
+              <span class="ml-2">{{application?.disability}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Disability Details:</span>
+              <span class="ml-2">{{application?.disabilityDetails || 'Not applicable'}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Accommodated within university before:</span>
+              <span class="ml-2">{{application?.accommodatedBefore}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Accommodation Period:</span>
+              <span class="ml-2">{{application?.accommodationPeriod}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Sponsored:</span>
+              <span class="ml-2">{{application?.isSponsored}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Sponsor Details:</span>
+              <span class="ml-2">{{application?.sponsor || 'Not applicable'}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Receives Helb:</span>
+              <span class="ml-2">{{application?.receivesHelb}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Helb Amount:</span>
+              <span class="ml-2">{{application?.helbAmount || 'Not applicable'}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Received Bursary Before:</span>
+              <span class="ml-2">{{application?.receivedBursary}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Bursary Amount:</span>
+              <span class="ml-2">{{application?.bursaryAmount || 'Not applicable'}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Work Study Benefits Before:</span>
+              <span class="ml-2">{{application?.workStudyBenefitsBefore}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Work Study Period:</span>
+              <span class="ml-2">{{application?.workStudyPeriod || 'Not applicable'}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Deferred before:</span>
+              <span class="ml-2">{{application?.specialExamsOnFinancialGrounds}}</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Defer Period:</span>
+              <span class="ml-2">{{application?.specialExamPeriod || 'Not applicable'}}</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <span class="font-medium text-gray-600">Reasons for consideration:</span>
+            <span class="ml-2">{{application?.reasonsForConsideration}}</span>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
+            Accommodation Preferences
+          </h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <span class="font-medium text-gray-600">Hostel Preference:</span>
+              <span class="ml-2">{{application.preferredHostel}} Hostel Residence</span>
+            </div>
+            <div>
+              <span class="font-medium text-gray-600">Hostel Type:</span>
+              <span class="ml-2">{{studentData()?.gender}} Hostel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      @else {
+      <p class="dark:text-white text-gray-500">No applications session active.</p>
+      }
     </div>
   </div>
 </div>

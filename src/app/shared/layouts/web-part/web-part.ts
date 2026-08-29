@@ -1,10 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { Breadcrumb } from "../../components/breadcrumb/breadcrumb";
 import { Menu } from '../../components/menu/menu';
-import { NavigationSection } from '../../../core/interfaces/Menu';
+import { MENU_CONFIGS, NavigationSection } from '../../../core/interfaces/Menu';
 import { ThemeToggle } from "../../components/theme-toggle/theme-toggle";
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MENU_CONFIGS } from '../../../core/interfaces/menu-config';
 import { AuthService } from '../../../core/services/auth';
 
 @Component({

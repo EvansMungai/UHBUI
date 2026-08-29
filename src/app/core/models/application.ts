@@ -1,3 +1,5 @@
+import { HttpErrorResponse } from "@angular/common/http";
+
 export interface ApplicationData {
     applicationPeriod: string,
     registrationNo: string,
