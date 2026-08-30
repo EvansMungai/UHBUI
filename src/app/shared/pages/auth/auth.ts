@@ -22,6 +22,7 @@ export class Auth {
   activeTab: AuthTab = 'signup';
   setTab(tab: AuthTab): void { this.activeTab = tab; };
   loading = signal<boolean>(false);
+  username = signal<string>('');
 
   signUpModel = signal({ userName: '', password: '' });
   signUpForm = form(this.signUpModel, {
@@ -60,10 +61,11 @@ export class Auth {
           const credentials = field().value();
           const response = await firstValueFrom(this.authService.login(credentials));
           this.authService.setToken(response.token);
+          this.username.set(response.user.userName);
           this.redirectBasedOnRole(response.user.roles[0]);
           this.toastService.add({
             severity: 'success',
-            summary: 'Welcome Back',
+            summary: `Welcome Back ${this.username()}!`,
             life: 3000
           })
         } catch (err) {

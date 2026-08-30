@@ -1,4 +1,5 @@
 interface User {
+    userName: string;
     regNo: string;
     roles: string[]
 }

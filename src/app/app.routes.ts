@@ -29,7 +29,7 @@ export const routes: Routes = [
             },
             {
                 path: 'matron', component: WebPart, data: { menu: 'matron', breadcrumb: 'Dashboard' }, children: [
-                    { path: '',  loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
+                    { path: '', loadComponent: () => import('./shared/features/matron/review-allocations/review-allocations').then(m => m.ReviewAllocations) },
                     { path: 'view-allocation/:id', data: { breadcrumb: 'View-Allocation' }, loadComponent: () => import('./shared/features/matron/view-allocation/view-allocation').then(m => m.ViewAllocation) },
                     { path: 'allocated-rooms', data: { breadcrumb: 'Allocated-Rooms' }, loadComponent: () => import('./shared/features/matron/rooms-allocated/rooms-allocated').then(m => m.default) }
                 ]
@@ -39,6 +39,11 @@ export const routes: Routes = [
                     { path: '', loadComponent: () => import('./shared/features/administrator/admin-dashboard/admin-dashboard').then(m => m.AdminDashboard) },
                     { path: 'resources', data: { breadcrumb: 'Resources' }, loadComponent: () => import('./shared/features/administrator/admin-register/admin-register').then(m => m.AdminRegister) },
                     { path: 'change-user-role', data: { breadcrumb: 'Change-User-Role' }, loadComponent: () => import('./shared/features/administrator/change-user-role/change-user-role').then(m => m.ChangeUserRole) }
+                ]
+            },
+            {
+                path: 'my-account', component: WebPart, data: {menu: ''}, children: [
+                    { path: '', loadComponent: () => import('./shared/pages/user-details/user-details').then(m => m.UserDetails) }
                 ]
             },
         ]
