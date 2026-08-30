@@ -1,5 +1,5 @@
 import { inject, PLATFORM_ID, Service, signal } from '@angular/core';
-import { AccessRequest, AccessResponse, UserDetials } from '../models/authentication';
+import { AccessRequest, AccessResponse, User } from '../models/authentication';
 import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 @Service()
 export class AuthService {
-    private currentUser!: UserDetials | null;
+    private currentUser = signal<User | null>(null);
     private router = inject(Router);
     private http = inject(HttpClient);
     private platformId = inject(PLATFORM_ID);
@@ -18,7 +18,7 @@ export class AuthService {
         this.isBrowser.set(isPlatformBrowser(this.platformId));
         if (this.isBrowser()) {
             const userData = localStorage.getItem('user');
-            if (userData) { this.currentUser = JSON.parse(userData) };
+            if (userData) { this.currentUser.set(JSON.parse(userData)) };
         }
     }
 
@@ -28,6 +28,14 @@ export class AuthService {
 
     getToken(): string | null {
         return localStorage.getItem('access_token');
+    }
+
+    setUser(user: User) {
+        this.currentUser.set(user);
+    }
+
+    getUser() {
+        return this.currentUser();
     }
 
     clearToken(): void {
@@ -45,5 +53,5 @@ export class AuthService {
         localStorage.removeItem('user');
         this.router.navigate(['/'])
     }
-    
+
 }

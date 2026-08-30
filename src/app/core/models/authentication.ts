@@ -1,14 +1,14 @@
-interface User {
+export interface User {
     userName: string;
     regNo: string;
     roles: string[]
 }
-export interface UserDetials { 
-    username: string,
-    role: 'Student' | 'Admin' | 'Housekeeper' | 'Matron'
-    phonenumber: string
-    email: string
-}
+// export interface UserDetials { 
+//     username: string,
+//     role: 'Student' | 'Admin' | 'Housekeeper' | 'Matron'
+//     phonenumber: string
+//     email: string
+// }
 export interface AccessRequest{
     userName: string;
     password: string;
