@@ -12,7 +12,21 @@
             </div>
             }
 
-            @else if (studentResource.error()) {
+            @else if (studentResource.error(); as error) {
+            @if (isNotFoundError(error)) {
+            <div class="py-2">
+                <h5 class="mr-3 font-semibold dark:text-white">Student Details</h5>
+                <p class="flex items-center text-red-500 dark:text-error gap-1 py-2">
+                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                        <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                    </svg>
+                    No student details were found.
+                </p>
+            </div>
+            }
+            @else {
             <div class="text-red-500 dark:text-error py-2">
                 <p class="flex items-center gap-1">
                     <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -27,8 +41,7 @@
                     Retry Connection
                 </button>
             </div>
-            }
-
+            }}
             @else if (studentData(); as student) {
             <div class="space-y-6">
                 <div class="flex items-center gap-3 border-b border-accent/20 pb-4">
@@ -113,6 +126,54 @@
         </app-card>
     </div>
     <app-card [cardStyles]="'bg-primary dark:bg-primary-alt shadow-xl rounded-lg p-6 block mt-6 w-full'">
-        <p class="dark:text-white">List of Total applications.</p>
+        @if (applicationResource.isLoading()) {
+        <div class="flex items-center space-x-2 text-accent">
+            <span class="animate-pulse">
+                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>Loading user applications ... Please Wait</span>
+        </div>
+        }
+        @else if (applicationResource.error(); as error) {
+        @if (isNotFoundError(error)) {
+        <div class="py-2">
+            <h5 class="mr-3 font-semibold dark:text-white">List of Applications</h5>
+            <p class="flex items-center text-red-500 dark:text-error gap-1 py-2">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                </svg>
+                No application were found.
+            </p>
+        </div>
+        } @else{
+        <div class="text-red-500 dark:text-error py-2">
+            <p class="flex items-center gap-1">
+                <svg class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 8v5" />
+                    <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+                </svg>
+                Failed to load application details. Please try again.
+            </p>
+
+            <button (click)="applicationResource.reload()" class="mt-2 text-sm underline text-accent font-medium">
+                Retry Connection
+            </button>
+        </div>}
+        } @else if (applicationData(); as application) {
+        <div class="space-y-6 dark:text-white">
+            <div>
+                <h5 class="mr-3 font-semibold dark:text-white">List of User Applications</h5>
+                <p class="text-gray-500">View details of the user applications.</p>
+            </div>
+            <app-table [data]="application" [columns]="applicationColumns"></app-table>
+        </div>
+        }
+        @else {
+        <p class="dark:text-white text-gray-500">No application session active.</p>
+        }
     </app-card>
 </div>
