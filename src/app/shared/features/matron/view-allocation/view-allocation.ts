@@ -2,7 +2,7 @@ import { httpResource } from '@angular/common/http';
 import { Component, input } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { ApplicationData } from '../../../../core/models/application';
-import { TableColumn } from '../../../../core/Table';
+import { TableColumn } from '../../../../core/interfaces/Table';
 
 @Component({
   imports: [],

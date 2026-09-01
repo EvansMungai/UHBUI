@@ -1,5 +1,5 @@
 import { Component, computed, input, signal } from '@angular/core';
-import { TableColumn } from '../../../core/Table';
+import { TableColumn } from '../../../core/interfaces/Table';
 
 @Component({
   imports: [],

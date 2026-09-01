@@ -4,7 +4,7 @@ import { httpResource } from '@angular/common/http';
 import { HostelData, RoomData } from '../../../../core/models/hostel';
 import { environment } from '../../../../../environments/environment';
 import { Table } from "../../../components/table/table";
-import { TableColumn } from '../../../../core/Table';
+import { TableColumn } from '../../../../core/interfaces/Table';
 
 @Component({
   imports: [Card, Table],

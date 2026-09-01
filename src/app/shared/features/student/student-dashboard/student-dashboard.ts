@@ -5,7 +5,7 @@ import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
 import { AuthService } from '../../../../core/services/auth';
 import { ApplicationData } from '../../../../core/models/application';
-import { TableColumn } from '../../../../core/Table';
+import { TableColumn } from '../../../../core/interfaces/Table';
 import { Table } from '../../../components/table/table';
 
 @Component({

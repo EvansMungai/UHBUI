@@ -4,7 +4,7 @@ import { Table } from '../../../components/table/table';
 import { HttpErrorResponse, httpResource } from '@angular/common/http';
 import { ApplicationData } from '../../../../core/models/application';
 import { environment } from '../../../../../environments/environment';
-import { TableColumn } from '../../../../core/Table';
+import { TableColumn } from '../../../../core/interfaces/Table';
 
 @Component({
   imports: [Card, Table],

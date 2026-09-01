@@ -3,7 +3,6 @@ import { Component, effect, input } from '@angular/core';
 import { ApplicationData } from '../../../../core/models/application';
 import { environment } from '../../../../../environments/environment';
 import { StudentData } from '../../../../core/models/student';
-import { HostelData } from '../../../../core/models/hostel';
 
 @Component({
   imports: [],
