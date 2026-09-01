@@ -23,6 +23,7 @@ export class ReviewApplications {
 
 
   tableColumns: TableColumn<ApplicationData>[] = [
+    { key: 'applicationNo', label: 'Application Id' },
     { key: 'applicationPeriod', label: 'Application Period' },
     { key: 'registrationNo', label: 'Registration Number' },
     { key: 'status', label: 'Application Status' },

@@ -31,14 +31,9 @@
       }
       @else if (applicationData(); as application) {
       <div class="space-y-6 dark:text-white">
-        <div>
-          <h5 class="mr-3 font-semibold dark:text-white">List of Applications</h5>
-          <p class="text-gray-500">View details of the available applications</p>
-        </div>
-
         <div class="flex justify-between items-center mb-6">
-          <h1 class="text-2xl font-bold text-gray-800">Application Details</h1>
-          <span class="px-4 py-1 rounded-full text-sm font-semibold badge badge-warning text-neutral">
+          <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Application Details</h1>
+          <span class="px-4 py-1 rounded-full text-sm font-semibold text-success">
             {{ application?.status}}
           </span>
         </div>
@@ -50,7 +45,7 @@
           <div class="grid md:grid-cols-2 gap-4">
             <div>
               <span class="font-medium text-gray-600">Application ID:</span>
-              <!-- <span class="ml-2">{{ application?.appli}}</span> -->
+              <span class="ml-2">{{ application?.applicationNo}}</span>
             </div>
             <div>
               <span class="font-medium text-gray-600">Application Period:</span>
@@ -86,7 +81,7 @@
             </div>
             <div>
               <span class="font-medium text-gray-600">Accommodation Period:</span>
-              <span class="ml-2">{{application?.accommodationPeriod}}</span>
+              <span class="ml-2">{{application?.accommodationPeriod || 'Not applicable'}}</span>
             </div>
             <div>
               <span class="font-medium text-gray-600">Sponsored:</span>
@@ -151,10 +146,62 @@
           </div>
         </div>
       </div>
+      <div class="my-8 rounded-md shadow-xl p-6">
+        <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
+          Review Application
+        </h3>
+        <h3 class="text-lg font-semibold text-blue-600 mb-4">Review Application</h3>
+        <form id="reviewApplicationForm" [formRoot]="reviewApplicationForm">
+          <div class="grid md:grid-cols-2 gap-6 mb-4">
+            <div>
+              <label for="status" class="block mb-2 font-medium">Accept or Reject:</label>
+              <select id="status" [formField]="reviewApplicationForm.status"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-gray-800">
+                <option value="" selected disabled>Review Application</option>
+                <option value="Accepted">Accept</option>
+                <option value="Rejected">Reject</option>
+              </select>
+              @if (reviewApplicationForm.status().touched() && reviewApplicationForm.status().invalid()) {
+              <p class="mt-1.5 text-xs text-red-500">
+                @for (error of reviewApplicationForm.status().errors(); track error) {
+                {{ error.message }}
+                }
+              </p>
+              }
+            </div>
+            @if (reviewApplicationForm.status().value() === 'Accepted') {
+            <div>
+              <label for="hostelBuilding" class="block mb-2 font-medium">Hostel Building:</label>
+              <select id="hostelBuilding" [formField]="reviewApplicationForm.preferredHostel"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-primary-alt focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option value="">Select Hostel Building</option>
+                @if (hostelData(); as hostels) {
+                @for(hostel of hostels; track $index){
+                <option value="{{hostel.hostelName}}">{{hostel.hostelName}}</option>
+                } }
+              </select>
+            </div>
+            }
+            <button type="submit" [disabled]="reviewApplicationForm().invalid() || loading()"
+              class="w-full h-12 mt-3 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
+              @if (loading()) {
+              <span class="flex items-center justify-center gap-2">
+                <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+                Reviewing Application...
+              </span>
+              } @else {
+              Review Application
+              }
+            </button>
+          </div>
+        </form>
+      </div>
       }
       @else {
       <p class="dark:text-white text-gray-500">No applications session active.</p>
       }
     </div>
   </div>
-</div>

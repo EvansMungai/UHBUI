@@ -1,37 +1,49 @@
 <div class="relative border border-secondary shadow-xs rounded-lg overflow-hidden">
     <div class="overflow-x-auto">
-    <table [class]="tableStyles()">
-        <thead [class]="headingStyles()">
-            <tr>
-                @for (column of columns(); track column.key) {
-                <th scope="col" class="px-6 py-3 font-medium whitespace-nowrap">
-                    {{ column.label }}
-                </th>
+        <table [class]="tableStyles()">
+            <thead [class]="headingStyles()">
+                <tr>
+                    @for (column of columns(); track column.key) {
+                    <th scope="col" class="px-6 py-3 font-medium whitespace-nowrap">
+                        {{ column.label }}
+                    </th>
+                    }
+                    @if (showActionColumn()) {
+                    <th scope="col" class="px-6 py-3 font-medium whitespace-nowrap">Action</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (row of paginatedData(); track $index) {
+                <tr [class]="bodyStyles()">
+                    @for (column of columns(); track column.key) {
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {{ row[column.key] }}
+                    </td>
+                    }
+                    @if (showActionColumn()) {
+                    <td>
+                        <a [routerLink]="[actionColumnRoute(), row[actionColumnId()]!]"
+                            class="inline-flex py-2 px-5 font-medium text-center text-white rounded-lg bg-accent hover:ring-2 hover:ring-base hover:bg-secondary hover:text-accent dark:hover:bg-secondary">
+                            Action
+                        </a>
+                    </td>
+                    }
+                </tr>
                 }
-            </tr>
-        </thead>
-        <tbody>
-            @for (row of paginatedData(); track $index) {
-            <tr [class]="bodyStyles()">
-                @for (column of columns(); track column.key) {
-                <td class="px-6 py-4 whitespace-nowrap">
-                    {{ row[column.key] }}
-                </td>
+                @if (data().length === 0) {
+                <tr>
+                    <td [attr.colspan]="columns().length" class="px-6 py-8 text-center">
+                        {{ emptyMessage() }}
+                    </td>
+                </tr>
                 }
-            </tr>
-            }
-            @if (data().length === 0) {
-            <tr>
-                <td [attr.colspan]="columns().length" class="px-6 py-8 text-center">
-                    {{ emptyMessage() }}
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+            </tbody>
+        </table>
     </div>
     @if (data().length > 0) {
-    <nav class="flex items-center flex-column rounded-b-lg flex-wrap md:flex-row justify-between p-4" aria-label="Table navigation">
+    <nav class="flex items-center flex-column rounded-b-lg flex-wrap md:flex-row justify-between p-4"
+        aria-label="Table navigation">
         <span class="text-sm font-normal mb-4 md:mb-0 block w-full md:inline md:w-auto">
             Showing
             <span class="font-semibold text-heading">
@@ -53,7 +65,8 @@
             <li>
                 <button type="button" (click)="goToPage(page)" [attr.aria-current]="
                                 currentPage() === page ? 'page' : null
-                            " [class]="'flex items-center justify-center bg-accent opacity-50 font-medium text-sm w-9 h-9'">
+                            "
+                    [class]="'flex items-center justify-center bg-accent opacity-50 font-medium text-sm w-9 h-9'">
                     {{ page }}
                 </button>
             </li>

@@ -1,8 +1,9 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { TableColumn } from '../../../core/interfaces/Table';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  imports: [],
+  imports: [RouterLink],
   selector: 'app-table',
   styleUrl: './table.css',
   templateUrl: './table.html',
@@ -14,6 +15,10 @@ export class Table<T extends object> {
   tableStyles = input<string>('w-full text-sm dark:text-white text-left rtl:text-right');
   headingStyles = input<string>('bg-accent dark:bg-neutral');
   bodyStyles = input<string>('border border-accent dark:border-secondary hover:bg-blue-200 dark:hover:bg-accent');
+
+  showActionColumn = input<boolean>(false);
+  actionColumnRoute = input<string>('');
+  actionColumnId = input<keyof T>('id' as keyof T);
 
   pageSize = input<number>(5);
   currentPage = signal<number>(1);

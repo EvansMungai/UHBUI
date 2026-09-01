@@ -1,6 +1,5 @@
-import { HttpErrorResponse } from "@angular/common/http";
-
 export interface ApplicationData {
+    applicationNo?: number,
     applicationPeriod: string,
     registrationNo: string,
     preferredHostel: string,
@@ -21,4 +20,8 @@ export interface ApplicationData {
     specialExamsOnFinancialGrounds: string,
     specialExamPeriod: string,
     reasonsForConsideration: string
+}
+export interface ApplicationUpdateRequest {
+    status: string,
+    preferredHostel: string
 }
