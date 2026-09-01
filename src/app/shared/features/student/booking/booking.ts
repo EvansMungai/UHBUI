@@ -1,6 +1,14 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ApplicationData } from '../../../../core/models/application';
 import { form, required, schema, FormRoot, FormField } from '@angular/forms/signals';
+import { httpResource } from '@angular/common/http';
+import { HostelData } from '../../../../core/models/hostel';
+import { environment } from '../../../../../environments/environment';
+import { Application } from '../../../../core/services/application';
+import { firstValueFrom } from 'rxjs';
+import { ToastService } from '../../../../core/services/toast';
+import { extractErrorMessage } from '../../../../core/utils/ErrorHandling';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [FormRoot, FormField],
@@ -9,8 +17,12 @@ import { form, required, schema, FormRoot, FormField } from '@angular/forms/sign
   templateUrl: './booking.html',
 })
 export class Booking {
+  private applicationService = inject(Application);
+  private toastService = inject(ToastService);
+  private router = inject(Router);
+
   loading = signal<boolean>(false);
-  bookingModel = signal<ApplicationData>({ applicationPeriod: '', registrationNo: '', preferredHostel: '', status: '', roomNo: '', disability: false, disabilityDetails: '', accommodatedBefore: false, accommodationPeriod: '', isSponsored: false, sponsor: '', receivesHelb: false, helbAmount: '', receivedBursary: false, bursaryAmount: '', workStudyBenefitsBefore: false, workStudyPeriod: '', specialExamsOnFinancialGrounds: false, specialExamPeriod: '', reasonsForConsideration: '' });
+  bookingModel = signal<ApplicationData>({ applicationPeriod: '', registrationNo: '', preferredHostel: '', status: '', roomNo: '', disability: 'false', disabilityDetails: '', accommodatedBefore: 'false', accommodationPeriod: '', isSponsored: 'false', sponsor: '', receivesHelb: 'false', helbAmount: '', receivedBursary: 'false', bursaryAmount: '', workStudyBenefitsBefore: 'false', workStudyPeriod: '', specialExamsOnFinancialGrounds: 'false', specialExamPeriod: '', reasonsForConsideration: '' });
   bookingForm = form(this.bookingModel, schema(path => {
     required(path.registrationNo, { message: "Registration number is required" });
     required(path.applicationPeriod, { message: "Application period is required" });
@@ -25,8 +37,35 @@ export class Booking {
   }), {
     submission: {
       action: async (field) => {
-
+        const data = field().value();
+        try {
+          this.loading.set(true);
+          await firstValueFrom(this.applicationService.createApplication(data));
+          this.toastService.add({
+            severity: 'success',
+            summary: 'You have successfully applied for hostel booking',
+            life: 3000
+          });
+        } catch (err) {
+          const error = extractErrorMessage(err);
+          this.toastService.add({
+            severity: 'error',
+            summary: error.message ?? error,
+            detail: error.detail ?? '',
+            life: 3000
+          })
+        } finally {
+          this.loading.set(false);
+          this.router.navigate(['/uhb/student/application-details']);
+        }
       }
     }
-  })
+  });
+  hostelResource = httpResource<HostelData[]>(() => {
+    return {
+      url: `${environment.apiUrl}/hostels`,
+      method: 'GET'
+    }
+  });
+  hostelData = this.hostelResource.value;
 }

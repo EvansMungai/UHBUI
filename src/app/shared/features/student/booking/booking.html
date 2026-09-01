@@ -29,11 +29,14 @@
             <label for="preferredHostel" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Hostel Name:
             </label>
-            <select id="Headline" [formField]="bookingForm.preferredHostel"
+            <select id="preferredHostel" [formField]="bookingForm.preferredHostel"
                 class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
+                @if (hostelData(); as hostels) {
                 <option value="" class="" disabled selected>Please select</option>
-                <option value="Batian">Batian</option>
-                <option value="Serengeti">Serengeti</option>
+                @for (hostel of hostels; track $index) {
+                <option value="{{hostel.hostelName}}">{{hostel.hostelName}}</option>
+                }
+                }
             </select>
             @if (bookingForm.preferredHostel().touched() && bookingForm.preferredHostel().invalid()) {
             <p class="mt-1.5 text-xs text-red-500">
@@ -60,13 +63,13 @@
                 Do you live with any Disability?
             </label>
             <label>
-                <input type="radio" name="disability" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                <input type="radio" name="disability" [checked]="bookingModel().disability === 'Yes'" (change)="bookingModel.update(value => ({
+                ...value, disability: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="disability" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                <input type="radio" name="disability" [checked]="bookingModel().disability === 'No'" (change)="bookingModel.update(value => ({
+                ...value, disability: 'No' }))" />
                 No
             </label>
         </div>
@@ -83,15 +86,15 @@
                 Have you ever been accommodated within the university before?
             </label>
             <label>
-                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === true"
+                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === 'Yes'"
                     (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                ...value, accommodatedBefore: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === false"
+                <input type="radio" name="accommodationBefore" [checked]="bookingModel().accommodatedBefore === 'No'"
                     (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                ...value, accommodatedBefore: 'No' }))" />
                 No
             </label>
         </div>
@@ -110,13 +113,13 @@
                 accommodation?
             </label>
             <label>
-                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === true" (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === 'Yes'" (change)="bookingModel.update(value => ({
+                ...value, isSponsored: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === false" (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                <input type="radio" name="sponsoredBefore" [checked]="bookingModel().isSponsored === 'No'" (change)="bookingModel.update(value => ({
+                ...value, isSponsored: 'No' }))" />
                 No
             </label>
         </div>
@@ -132,13 +135,13 @@
                 Do you receive HELB?
             </label>
             <label>
-                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === true" (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === 'Yes'" (change)="bookingModel.update(value => ({
+                ...value, receivesHelb: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === false" (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                <input type="radio" name="receivesHelb" [checked]="bookingModel().receivesHelb === 'No'" (change)="bookingModel.update(value => ({
+                ...value, receivesHelb: 'No' }))" />
                 No
             </label>
         </div>
@@ -154,14 +157,14 @@
                 Have you ever benefitted from the university bursary before?
             </label>
             <label>
-                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary" (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === 'Yes'" (change)="bookingModel.update(value => ({
+                ...value, receivedBursary: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === false"
+                <input type="radio" name="receivesBursary" [checked]="bookingModel().receivedBursary === 'No'"
                     (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                ...value, receivedBursary: 'No' }))" />
                 No
             </label>
         </div>
@@ -177,15 +180,15 @@
                 Have you ever benefitted from the university's work study program before?
             </label>
             <label>
-                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === true"
+                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === 'Yes'"
                     (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                ...value, workStudyBenefitsBefore: 'true'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === false"
+                <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === 'No'"
                     (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                ...value, workStudyBenefitsBefore: 'false' }))" />
                 No
             </label>
         </div>
@@ -202,13 +205,13 @@
                 Have you ever deferred studies on financial grounds?
             </label>
             <label>
-                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === true" (change)="bookingModel.update(value => ({
-                ...value,disability: true}))" />
+                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().specialExamsOnFinancialGrounds" (change)="bookingModel.update(value => ({
+                ...value, specialExamsBefore: 'Yes'}))" />
                 Yes
             </label>
             <label>
-                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().disability === false" (change)="bookingModel.update(value => ({
-                ...value, disability: false }))" />
+                <input type="radio" name="specialExamsBefore" [checked]="bookingModel().specialExamsOnFinancialGrounds" (change)="bookingModel.update(value => ({
+                ...value, specialExamsBefore: 'No' }))" />
                 No
             </label>
         </div>
