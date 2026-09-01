@@ -30,13 +30,9 @@
         </div>
         } @else if (applicationData(); as application) {
         <div class="space-y-6 dark:text-white">
-            <div>
-                <h5 class="mr-3 font-semibold dark:text-white">List of Applications</h5>
-                <p class="text-gray-500">View details of the available applications</p>
-            </div>
             <div class="flex justify-between items-center mb-6">
-                <h1 class="text-2xl font-bold text-gray-800">Application Details</h1>
-                <span class="px-4 py-1 rounded-full text-sm font-semibold badge badge-warning text-neutral">
+                <h1 class="text-2xl font-bold text-gray-800 dark:text-white">Application Details</h1>
+                <span class="px-4 py-1 rounded-full text-sm font-semibold text-success">
                     {{ application?.status }}
                 </span>
             </div>
@@ -48,7 +44,7 @@
                 <div class="grid md:grid-cols-2 gap-4 mb-6">
                     <div>
                         <span class="font-medium text-gray-600">Application ID:</span>
-                        <!-- <span class="ml-2">{{application?.applicationNo}}</span> -->
+                        <span class="ml-2">{{application?.applicationNo}}</span>
                     </div>
                     <div>
                         <span class="font-medium text-gray-600">Application Period:</span>
@@ -91,11 +87,56 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="mb-8">
+                    <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
+                        Room Allocation
+                    </h3>
+                    <div class="rounded-md p-6">
+                        <h3 class="text-lg font-semibold text-blue-600 mb-4">Allocate Room</h3>
+                        <form id="roomAllocationForm" [formRoot]="reviewAllocationForm">
+                            <div class="grid md:grid-cols-2 gap-6 mb-4 items-end">
+                                <div>
+                                    <label for="roomNo" class="block mb-2 font-medium">
+                                        Room Number:
+                                    </label>
+
+                                    <select id="roomNo" [formField]="reviewAllocationForm.roomNo"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-md dark:bg-primary-alt">
+                                        <option value="" selected disabled>Select Room Number</option>
+
+                                        @if (roomData(); as rooms) {
+                                        @for (room of rooms; track $index) {
+                                        <option value="{{room.roomNo}}">
+                                            {{room.roomNo}}
+                                        </option>
+                                        }
+                                        }
+                                    </select>
+                                </div>
+
+                                <button type="submit" [disabled]="reviewAllocationForm().invalid() || loading()"
+                                    class="w-full h-12 rounded-lg bg-accent px-5 text-base font-semibold text-white shadow-sm transition hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-accent/30 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    @if (loading()) {
+                                    <span class="flex items-center justify-center gap-2">
+                                        <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                stroke-width="4" />
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 5.373 0 0 0 12 12h4z" />
+                                        </svg>
+                                        Allocating Room...
+                                    </span>
+                                    } @else {
+                                    Allocate Room
+                                    }
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        }
-        @else {
-        <p class="dark:text-white text-gray-500">No applications session active.</p>
-        }
+        </div> }
     </div>
 </div>

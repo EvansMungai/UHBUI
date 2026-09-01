@@ -55,7 +55,7 @@
                 <p class="text-gray-500">View details of the available applications for allocation</p>
             </div>
 
-            <app-table [data]="applications" [columns]="tableColumns"></app-table>
+            <app-table [data]="applications" [columns]="tableColumns" [showActionColumn]="true" [actionColumnRoute]="'/uhb/matron/view-allocation'" [actionColumnId]="'applicationNo'"></app-table>
         </div>
         }
         @else {

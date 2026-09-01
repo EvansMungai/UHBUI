@@ -64,8 +64,7 @@ export class ViewApplication {
             severity: 'success', 
             summary: 'Application has been reviewed.',
             life: 3000
-          });
-          this.router.navigate(['uhb/housekeeper'])          
+          });        
         } catch (err) {
           const error = extractErrorMessage(err);
           this.toastService.add({
@@ -74,9 +73,9 @@ export class ViewApplication {
             detail: error.detail ?? '',
             life: 3000
           })
-          this.router.navigate(['uhb/housekeeper'])
         } finally {
           this.loading.set(false);
+          this.router.navigate(['uhb/housekeeper']) 
         }
       }
     }

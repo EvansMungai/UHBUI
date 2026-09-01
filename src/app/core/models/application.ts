@@ -25,3 +25,6 @@ export interface ApplicationUpdateRequest {
     status: string,
     preferredHostel: string
 }
+export interface AllocateRoomRequest {
+    roomNo: string
+}
