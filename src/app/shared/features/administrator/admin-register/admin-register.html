@@ -98,8 +98,10 @@
                     <select id="hostelNo" [formField]="roomRegistrationForm.hostelNo"
                         class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400">
                         <option value="" class="" disabled selected>Please select</option>
-                        <option value="Hostel 1">Hostel 1</option>
-                        <option value="Hostel 2">Hostel 2</option>
+                        @if (hostelData(); as hostels) {
+                        @for (hostel of hostels; track $index) {
+                        <option value="{{hostel.hostelNo}}">{{hostel.hostelNo}}: {{hostel.hostelName}}</option>}
+                        }
                     </select>
                     @if (roomRegistrationForm.hostelNo().touched() && roomRegistrationForm.hostelNo().invalid()) {
                     <p class="mt-1.5 text-xs text-red-500">
@@ -112,8 +114,7 @@
                     <label for="roomNo" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                         Room Number:
                     </label>
-                    <input id="roomNo" type="text" [formField]="roomRegistrationForm.roomNo"
-                        placeholder="Room Number"
+                    <input id="roomNo" type="text" [formField]="roomRegistrationForm.roomNo" placeholder="Room Number"
                         class="w-full h-12 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-950 text-gray-900 dark:text-white pl-2 pr-4 text-base outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-400" />
                     @if (roomRegistrationForm.roomNo().touched() && roomRegistrationForm.roomNo().invalid())
                     {

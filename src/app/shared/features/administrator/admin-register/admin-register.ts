@@ -6,6 +6,8 @@ import { Resources } from '../../../../core/services/resources';
 import { firstValueFrom } from 'rxjs';
 import { ToastService } from '../../../../core/services/toast';
 import { extractErrorMessage } from '../../../../core/utils/ErrorHandling';
+import { httpResource } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   imports: [Card, FormRoot, FormField],
@@ -19,6 +21,14 @@ export class AdminRegister {
   loading = signal<boolean>(false);
   registerHostelVisibility = signal<boolean>(true);
   registerRoomVisibility = signal<boolean>(true);
+
+  hostelResource = httpResource<HostelData[]>(() => {
+    return {
+      url: `${environment.apiUrl}/hostels`,
+      method: 'GET'
+    }
+  });
+  hostelData = this.hostelResource.value;
 
   hostelRegistrationModel = signal<HostelData>({ hostelNo: '', hostelName: '', capacity: 0, type: 'Male Hostel' });
   hostelRegistrationForm = form(this.hostelRegistrationModel, schema(path => {
@@ -72,7 +82,7 @@ export class AdminRegister {
         } catch (err) {
           const error = extractErrorMessage(err);
           this.toastService.add({
-            severity : 'error',
+            severity: 'error',
             summary: error.message ?? error,
             detail: error.detail ?? '',
             life: 3000
