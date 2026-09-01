@@ -182,13 +182,13 @@
             <label>
                 <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === 'Yes'"
                     (change)="bookingModel.update(value => ({
-                ...value, workStudyBenefitsBefore: 'true'}))" />
+                ...value, workStudyBenefitsBefore: 'Yes'}))" />
                 Yes
             </label>
             <label>
                 <input type="radio" name="workStudyBefore" [checked]="bookingModel().workStudyBenefitsBefore === 'No'"
                     (change)="bookingModel.update(value => ({
-                ...value, workStudyBenefitsBefore: 'false' }))" />
+                ...value, workStudyBenefitsBefore: 'No' }))" />
                 No
             </label>
         </div>
@@ -206,12 +206,12 @@
             </label>
             <label>
                 <input type="radio" name="specialExamsBefore" [checked]="bookingModel().specialExamsOnFinancialGrounds" (change)="bookingModel.update(value => ({
-                ...value, specialExamsBefore: 'Yes'}))" />
+                ...value, specialExamsOnFinancialGrounds: 'Yes'}))" />
                 Yes
             </label>
             <label>
                 <input type="radio" name="specialExamsBefore" [checked]="bookingModel().specialExamsOnFinancialGrounds" (change)="bookingModel.update(value => ({
-                ...value, specialExamsBefore: 'No' }))" />
+                ...value, specialExamsOnFinancialGrounds: 'No' }))" />
                 No
             </label>
         </div>

@@ -55,13 +55,13 @@
                         Personal Information
                     </h3>
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div>
+                        <!-- <div>
                             <span class="font-medium text-gray-600">Application ID:</span>
-                            <!-- <span class="ml-2">{{ application.a}}</span>  -->
-                        </div>
+                            <span class="ml-2">{{ application.applilcat}}</span> 
+                        </div> -->
                         <div>
                             <span class="font-medium text-gray-600">Application Period:</span>
-                            <span class="ml-2">{{ application.accommodationPeriod}}</span>
+                            <span class="ml-2">{{ application.applicationPeriod }}</span>
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Registration Number:</span>
@@ -81,7 +81,7 @@
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Disability Details:</span>
-                            <span class="ml-2">{{application.disabilityDetails}}</span>
+                            <span class="ml-2">{{application.disabilityDetails || 'Not applicable'}}</span>
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Accommodated within university before:</span>
@@ -89,7 +89,7 @@
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Accommodation Period:</span>
-                            <span class="ml-2">{{ application.accommodationPeriod}}</span>
+                            <span class="ml-2">{{ application.accommodationPeriod || 'Not applicable'}}</span>
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Sponsored:</span>

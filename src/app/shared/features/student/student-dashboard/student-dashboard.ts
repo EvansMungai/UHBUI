@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Card } from "../../../components/card/card";
 import { StudentData } from '../../../../core/models/student';
 import { HttpErrorResponse, httpResource } from '@angular/common/http';
@@ -46,7 +46,8 @@ export class StudentDashboard {
     { key: 'applicationPeriod', label: 'Application Period' },
     { key: 'registrationNo', label: 'Registration Number' },
     { key: 'status', label: 'Status' },
-  ]
+  ];
+  firstApplication = computed(() => this.applicationData()?.[0]);
 
   isNotFoundError(error: Error | null): boolean {
     return error instanceof HttpErrorResponse && error.status === 404;

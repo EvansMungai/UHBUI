@@ -58,86 +58,30 @@
                         Personal Information
                     </h3>
                     <div class="grid md:grid-cols-2 gap-4">
-                        <div>
+                        <!-- <div>
                             <span class="font-medium text-gray-600">Application ID:</span>
-                            <!-- <span class="ml-2">{{ application.a}}</span>  -->
-                        </div>
+                            <span class="ml-2">{{ application.a}}</span> 
+                        </div> -->
                         <div>
                             <span class="font-medium text-gray-600">Application Period:</span>
-                            <span class="ml-2">{{ application.accommodationPeriod}}</span>
+                            <span class="ml-2">{{ application.applicationPeriod }}</span>
                         </div>
                         <div>
                             <span class="font-medium text-gray-600">Registration Number:</span>
                             <span class="ml-2">{{ application.registrationNo }}</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="mb-8">
-                    <h3 class="text-lg font-semibold pb-2 border-b border-gray-200 mb-4">
-                        Needs Assessment Information
-                    </h3>
-                    <div class="grid md:grid-cols-2 gap-4">
                         <div>
-                            <span class="font-medium text-gray-600">Disabled:</span>
-                            <span class="ml-2">{{application.disability}}</span>
+                            <span class="font-medium text-gray-600">Status:</span>
+                            <span class="ml-2">{{ application.status }}</span>
                         </div>
                         <div>
-                            <span class="font-medium text-gray-600">Disability Details:</span>
-                            <span class="ml-2">{{application.disabilityDetails}}</span>
+                            <span class="font-medium text-gray-600">Preferred Hostel:</span>
+                            <span class="ml-2">{{ application.preferredHostel }}</span>
                         </div>
                         <div>
-                            <span class="font-medium text-gray-600">Accommodated within university before:</span>
-                            <span class="ml-2">{{ application.accommodatedBefore}}</span>
+                            <span class="font-medium text-gray-600">Room Number:</span>
+                            <span class="ml-2">{{ application.roomNo || 'Not Assigned' }}</span>
                         </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Accommodation Period:</span>
-                            <span class="ml-2">{{ application.accommodationPeriod}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Sponsored:</span>
-                            <span class="ml-2">{{ application.isSponsored}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Sponsor Details:</span>
-                            <span class="ml-2">{{ application.sponsor || 'Not applicable'}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Receives Helb:</span>
-                            <span class="ml-2">{{ application.receivesHelb}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Helb Amount:</span>
-                            <span class="ml-2">{{ application.helbAmount || 'Not applicable'}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Received Bursary Before:</span>
-                            <span class="ml-2">{{ application.receivedBursary}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Bursary Amount:</span>
-                            <span class="ml-2">{{ application.bursaryAmount || 'Not applicable'}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Work Study Benefits Before:</span>
-                            <span class="ml-2">{{ application.workStudyBenefitsBefore}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Work Study Period:</span>
-                            <span class="ml-2">{{ application.workStudyPeriod || 'Not applicable'}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Deferred before:</span>
-                            <span class="ml-2">{{ application.specialExamsOnFinancialGrounds}}</span>
-                        </div>
-                        <div>
-                            <span class="font-medium text-gray-600">Defer Period:</span>
-                            <span class="ml-2">{{ application.specialExamPeriod || 'Not applicable'}}</span>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <span class="font-medium text-gray-600">Reasons for consideration:</span>
-                        <span class="ml-2">{{ application.reasonsForConsideration}}</span>
                     </div>
                 </div>
             </div>
