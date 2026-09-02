@@ -30,7 +30,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    { label: 'My Account', link: '/my-account' },
+                    { label: 'My Account', link: '/uhb/student/my-account' },
                 ]
             }
         ]
@@ -49,7 +49,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    { label: 'My Account', link: '/my-account' }
+                    { label: 'My Account', link: '/uhb/housekeeper/my-account' }
                 ]
             }
         ]
@@ -68,7 +68,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    { label: 'My Account', link: '/my-account' },
+                    { label: 'My Account', link: '/uhb/matron/my-account' },
                 ]
             }
         ]
@@ -88,7 +88,7 @@ export const MENU_CONFIGS: Record<string, MenuConfig> = {
             {
                 title: '',
                 items: [
-                    { label: 'My Account', link: '/my-account' },
+                    { label: 'My Account', link: '/uhb/admin/my-account' },
                 ]
             }
         ]

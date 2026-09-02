@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { Card } from '../../components/card/card';
+import { AuthService } from '../../../core/services/auth';
 
 @Component({
   imports: [Card],
@@ -8,4 +9,7 @@ import { Card } from '../../components/card/card';
   templateUrl: './user-details.html',
 })
 export class UserDetails {
+  private readonly authService = inject(AuthService);
+  username = this.authService.getUser()?.userName;
+  roles = this.authService.getUser()?.roles;
 }
