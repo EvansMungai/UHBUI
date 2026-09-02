@@ -1,7 +1,6 @@
-import { inject, PLATFORM_ID, Service, signal } from '@angular/core';
+import { inject, Service, signal } from '@angular/core';
 import { AccessRequest, AccessResponse, User } from '../models/authentication';
 import { HttpClient } from '@angular/common/http';
-import { isPlatformBrowser } from '@angular/common';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
@@ -9,21 +8,13 @@ import { Router } from '@angular/router';
 @Service()
 export class AuthService {
     private currentUser = signal<User | null>(null);
+    private token = signal<string | null>(null);
     private router = inject(Router);
     private http = inject(HttpClient);
-    private platformId = inject(PLATFORM_ID);
-    private isBrowser = signal<boolean>(false);
-
-    constructor() {
-        this.isBrowser.set(isPlatformBrowser(this.platformId));
-        if (this.isBrowser()) {
-            const userData = localStorage.getItem('user');
-            if (userData) { this.currentUser.set(JSON.parse(userData)) };
-        }
-    }
 
     setToken(token: string): void {
-        localStorage.setItem('access_token', token);
+        // localStorage.setItem('access_token', token);
+        
     }
 
     getToken(): string | null {
@@ -36,6 +27,15 @@ export class AuthService {
 
     getUser() {
         return this.currentUser();
+    }
+
+    getRoles(): string[] {
+        return this.currentUser()?.roles ?? [];
+    }
+
+    hasAnyRole(roles: string[]): boolean {
+        const userRoles = this.getRoles();
+        return roles.some(role => userRoles.includes(role));
     }
 
     clearToken(): void {
